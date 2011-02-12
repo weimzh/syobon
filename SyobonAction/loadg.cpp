@@ -268,6 +268,7 @@ loadg (void)
 }
 
 extern bool sound;
+
 void
 parseArgs (int argc, char *argv[])
 {

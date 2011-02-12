@@ -81,6 +81,10 @@
 		71B2E8961305C28800611261 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B2E8901305C28800611261 /* main.cpp */; };
 		71B2E8971305C28800611261 /* main.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B2E8911305C28800611261 /* main.h */; };
 		71B2E8C61305C29500611261 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 71B2E8981305C29500611261 /* data */; };
+		71B4D77D130699F200686FC4 /* SDL_gfxPrimitives_font.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B4D77A130699F200686FC4 /* SDL_gfxPrimitives_font.h */; };
+		71B4D77E130699F200686FC4 /* SDL_gfxPrimitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D77B130699F200686FC4 /* SDL_gfxPrimitives.c */; };
+		71B4D77F130699F200686FC4 /* SDL_gfxPrimitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B4D77C130699F200686FC4 /* SDL_gfxPrimitives.h */; };
+		71B4D781130699FF00686FC4 /* font.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B4D780130699FF00686FC4 /* font.h */; };
 		F5A47AA101A0483001D3D55B /* SDLMain.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A47A9D01A0482F01D3D55B /* SDLMain.h */; };
 		F5A47AA301A0483001D3D55B /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A47A9E01A0483001D3D55B /* SDLMain.m */; };
 /* End PBXBuildFile section */
@@ -126,6 +130,10 @@
 		71B2E8901305C28800611261 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = SOURCE_ROOT; };
 		71B2E8911305C28800611261 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = ../main.h; sourceTree = SOURCE_ROOT; };
 		71B2E8981305C29500611261 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../data; sourceTree = SOURCE_ROOT; };
+		71B4D77A130699F200686FC4 /* SDL_gfxPrimitives_font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL_gfxPrimitives_font.h; path = ../sdlgfx/SDL_gfxPrimitives_font.h; sourceTree = SOURCE_ROOT; };
+		71B4D77B130699F200686FC4 /* SDL_gfxPrimitives.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SDL_gfxPrimitives.c; path = ../sdlgfx/SDL_gfxPrimitives.c; sourceTree = SOURCE_ROOT; };
+		71B4D77C130699F200686FC4 /* SDL_gfxPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL_gfxPrimitives.h; path = ../sdlgfx/SDL_gfxPrimitives.h; sourceTree = SOURCE_ROOT; };
+		71B4D780130699FF00686FC4 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = font.h; path = ../font.h; sourceTree = SOURCE_ROOT; };
 		F5A47A9D01A0482F01D3D55B /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = SOURCE_ROOT; };
 		F5A47A9E01A0483001D3D55B /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -197,8 +205,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				71B4D777130699D700686FC4 /* sdlgfx */,
 				71B2E88C1305C28800611261 /* DxLib.cpp */,
 				71B2E88D1305C28800611261 /* DxLib.h */,
+				71B4D780130699FF00686FC4 /* font.h */,
 				71B2E88E1305C28800611261 /* joyconfig.h */,
 				71B2E88F1305C28800611261 /* loadg.cpp */,
 				71B2E8901305C28800611261 /* main.cpp */,
@@ -225,6 +235,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		71B4D777130699D700686FC4 /* sdlgfx */ = {
+			isa = PBXGroup;
+			children = (
+				71B4D77A130699F200686FC4 /* SDL_gfxPrimitives_font.h */,
+				71B4D77B130699F200686FC4 /* SDL_gfxPrimitives.c */,
+				71B4D77C130699F200686FC4 /* SDL_gfxPrimitives.h */,
+			);
+			name = sdlgfx;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -236,6 +256,9 @@
 				71B2E8931305C28800611261 /* DxLib.h in Headers */,
 				71B2E8941305C28800611261 /* joyconfig.h in Headers */,
 				71B2E8971305C28800611261 /* main.h in Headers */,
+				71B4D77D130699F200686FC4 /* SDL_gfxPrimitives_font.h in Headers */,
+				71B4D77F130699F200686FC4 /* SDL_gfxPrimitives.h in Headers */,
+				71B4D781130699FF00686FC4 /* font.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +304,7 @@
 				71B2E8921305C28800611261 /* DxLib.cpp in Sources */,
 				71B2E8951305C28800611261 /* loadg.cpp in Sources */,
 				71B2E8961305C28800611261 /* main.cpp in Sources */,
+				71B4D77E130699F200686FC4 /* SDL_gfxPrimitives.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +339,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "-DPREFIX=\\\"./SyobonAction.app/Contents/Resources/data/\\\"";
+				OTHER_CFLAGS = "-D_MACOSX=1";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SDL,
@@ -323,6 +347,7 @@
 					SDL_image,
 					"-framework",
 					SDL_mixer,
+					"-liconv",
 				);
 				PRODUCT_NAME = SyobonAction;
 				SECTORDER_FLAGS = "";
@@ -351,10 +376,15 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				OPTIMIZATION_CFLAGS = "-O2";
-				OTHER_CFLAGS = "-DPREFIX=\\\"./SyobonAction.app/Contents/Resources/data/\\\"";
+				OTHER_CFLAGS = "-D_MACOSX=1";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SDL,
+					"-framework",
+					SDL_image,
+					"-framework",
+					SDL_mixer,
+					"-liconv",
 				);
 				PRODUCT_NAME = SyobonAction;
 				SECTORDER_FLAGS = "";

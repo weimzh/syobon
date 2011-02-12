@@ -11,10 +11,6 @@ main (int argc, char *argv[])
     /* 全ロード */
     loadg ();
 
-    /* フォント */
-    SetFontSize (16);
-//SetFontThickness(4) ;
-
     /* ループ */
 //for (maint=0;maint<=2;maint++){
     while (ProcessMessage () == 0 && CheckHitKey (KEY_INPUT_ESCAPE) == 0)
@@ -1165,7 +1161,6 @@ rpaint ()
         /* メッセージ */
         if (mainmsgtype >= 1)
         {
-            setfont (20, 4);
             if (mainmsgtype == 1)
             {
                 DrawFormatString (126, 100,
@@ -1178,7 +1173,6 @@ rpaint ()
                     DrawFormatString (88 + t2 * 143, 210,
                                       GetColor (255, 255, 255), "1");
             }
-            setfont (20, 5);
         }			//mainmsgtype>=1
 
         /* 画面黒 */
@@ -1204,10 +1198,7 @@ rpaint ()
         str ("制作・プレイに関わった方々",
              240 - 13 * 20 / 2, xx[12] / 100);
         str ("ステージ１　プレイ", 240 - 9 * 20 / 2, xx[13] / 100);
-        //Theres an encoding error here, this is only temporary
-        //str("æy@]`y",240-6*20/2,xx[14]/100);
-        str ("TODO: Fix this encoding error...", 240 - 6 * 20 / 2,
-             xx[14] / 100);
+        str ("先輩　�〜Ｚ", 240 - 6 * 20 / 2, xx[14] / 100);
         str ("ステージ２　プレイ", 240 - 9 * 20 / 2, xx[15] / 100);
         str ("友人　willowlet ", 240 - 8 * 20 / 2, xx[16] / 100);
         str ("ステージ３　プレイ", 240 - 9 * 20 / 2, xx[17] / 100);
@@ -1237,9 +1228,6 @@ rpaint ()
         setc0 ();
         FillScreen ();
 
-        SetFontSize (16);
-        SetFontThickness (4);
-
         drawimage (grap[0][0], 190, 190);
         DrawFormatString (230, 200, GetColor (255, 255, 255), " × %d", nokori);
 
@@ -1265,7 +1253,7 @@ rpaint ()
         }
 
         setcolor (0, 0, 0);
-        str ("Enterキーを押せ!!", 240 - 8 * 20 / 2, 250);
+        str ("Enter キーを押せ!!", 240 - 8 * 20 / 2, 250);
 
     }
     ScreenFlip ();
@@ -5296,10 +5284,6 @@ deinit ()
             Mix_FreeChunk (oto[i]);
 //--
 
-//Font
-    for (int i = 0; i < FONT_MAX; i++)
-        TTF_CloseFont (font[i]);
-
 //Joystick
     if (joystick)
         SDL_JoystickClose (joystick);
@@ -5308,13 +5292,11 @@ deinit ()
 #if SDL_IMAGE_MAJOR_VERSION > 1 || SDL_IMAGE_MINOR_VERSION > 2 || SDL_IMAGE_PATCHLEVEL >= 8
     IMG_Quit ();
 #endif
-    TTF_Quit ();
 
 #if SDL_MIXER_MAJOR_VERSION > 1 || SDL_MIXER_MINOR_VERSION > 2 || SDL_MIXER_PATCHLEVEL >= 10
     Mix_Quit ();
 #endif
     SDL_Quit ();
-    exit (0);
 }
 
 //画像関係
@@ -11106,14 +11088,9 @@ ttmsg ()
     }
     if (tmsgtype == 2)
     {
-        /* フォント */
-        setfont (20, 5);
-
         if (tmsg == 0)
         {
             setc1 ();
-            /* フォント */
-            setfont (20, 5);
             txmsg ("テスト　hoge", 0);
         }
 
@@ -11199,8 +11176,6 @@ ttmsg ()
             txmsg ("決して怪しいブロックじゃないですよ", 5);
             txmsg ("                          (…チッ)", 6);
         }
-
-        setfont (16, 4);
     }				//2
 
     if (tmsgtype == 3)
@@ -11225,14 +11200,6 @@ txmsg (string x, int a)
     str (x, 60 + xx, 40 + xx + a * 24);
 
 }				//txmsg
-
-/* フォント変更 */
-void
-setfont (int x, int y)
-{
-    SetFontSize (x);
-    SetFontThickness (y);
-}
 
 /* グラ作成 */
 void

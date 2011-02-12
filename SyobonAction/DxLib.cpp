@@ -37,13 +37,6 @@ DxLib_Init ()
     }
 #endif
 
-    //Initialize font
-    if (TTF_Init () == -1)
-    {
-        fprintf (stderr, "Unable to init SDL_ttf: %s\n", TTF_GetError ());
-        return -1;
-    }
-
     //Audio Rate, Audio Format, Audio Channels, Audio Buffers
 #define AUDIO_CHANNELS 2
     if (sound && Mix_OpenAudio (22050, AUDIO_S16SYS, AUDIO_CHANNELS, 1024))
@@ -56,8 +49,7 @@ DxLib_Init ()
 
     for (int i = 0; i < SDLK_LAST; i++)
         keysHeld[i] = false;
-    for (int i = 0; i < FONT_MAX; i++)
-        font[i] = NULL;
+
     srand ((unsigned int) time (NULL));
 
     return 0;
@@ -66,54 +58,134 @@ DxLib_Init ()
 //Main screen
 SDL_Surface *screen;
 
-//Fonts
-byte fontsize = 0;
-TTF_Font *font[FONT_MAX];
-
-//Strings
-void
-SetFontSize (byte size)
-{
-    fontsize = size;
-    if (font[size] == NULL)
-    {
-        font[size] = TTF_OpenFont (PREFIX "res/sazanami-gothic.ttf", size);
-        if (font[size] == NULL)
-        {
-            printf ("Unable to load font: %s\n", TTF_GetError ());
-            exit (1);
-        }
-    }
-}
-
 byte fontType = DX_FONTTYPE_NORMAL;
+
 void
 ChangeFontType (byte type)
 {
     fontType = type;
 }
 
+#include "font.h"
+
+static void
+DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
+{
+    if (!screen) return;
+
+    Uint32 pixel = SDL_MapRGB(screen->format, c >> 16, c >> 8, c);
+    int i, j;
+
+    if (SDL_MUSTLOCK(screen)) SDL_LockSurface(screen);
+
+    if (*ch <= 0x7f) {
+      // ASCII character
+      unsigned short cvtchar = ascii2sjis(*ch);
+
+      if (cvtchar) {
+	unsigned char buf[2];
+
+	buf[0] = cvtchar >> 8;
+	buf[1] = cvtchar & 0xff;
+
+        unsigned short *font = (unsigned short *)kanjiaddr(buf);
+
+        if (font) {
+	  for (i = 0; i < 15; i++) {
+	    for (j = 0; j < 16; j++) {
+	      if (((*font >> 8) | (*font << 8)) & (1 << (16 - j))) {
+		if (b + i >= screen->h || b + i < 0) continue;
+		if (a + j >= screen->w || a + j < 0) continue;
+
+		int offset = (b + i) * screen->pitch + (a + j) * 4;
+	        if (offset >= 0) *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
+	      }
+	    }
+	    font++;
+          }
+        }
+      }
+    } else {
+      // full-width char
+      unsigned short *font = (unsigned short *)kanjiaddr(ch);
+
+      if (font) {
+	for (i = 0; i < 15; i++) {
+	  for (j = 0; j < 16; j++) {
+	    if (((*font >> 8) | (*font << 8)) & (1 << (16 - j))) {
+              if (b + i >= screen->h || b + i < 0) continue;
+	      if (a + j >= screen->w || a + j < 0) continue;
+
+	      int offset = (b + i) * screen->pitch + (a + j) * 4;
+	      if (offset >= 0) *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
+	    }
+	  }
+	  font++;
+	}
+      }
+    }
+
+    if (SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
+}
+
 void
 DrawString (int a, int b, const char *x, Uint32 c)
 {
-    SDL_Color color = { c >> 16, c >> 8, c };
-    SDL_Surface *rendered = TTF_RenderUTF8_Solid (font[fontsize], x, color);
-    if (fontType == DX_FONTTYPE_EDGE)
-    {
-        SDL_Color blk = { 0, 0, 0 };
-        SDL_Surface *shadow = TTF_RenderUTF8_Solid (font[fontsize], x, blk);
-        DrawGraphZ (a - 1, b - 1, shadow);
-        DrawGraphZ (a, b - 1, shadow);
-        DrawGraphZ (a + 1, b - 1, shadow);
-        DrawGraphZ (a - 1, b, shadow);
-        DrawGraphZ (a + 1, b, shadow);
-        DrawGraphZ (a - 1, b + 1, shadow);
-        DrawGraphZ (a, b + 1, shadow);
-        DrawGraphZ (a + 1, b + 1, shadow);
-        SDL_FreeSurface (shadow);
+  char outbuf[4096];
+
+  // Convert UTF-8 to Shift-JIS
+#ifndef _WIN32
+  iconv_t cd = iconv_open("SHIFT_JIS", "UTF8");
+
+  char *pin = (char *)x, *pout = outbuf;
+  size_t insize = strlen(x), outsize = 4096;
+
+#ifdef _MACOSX
+  iconv(cd, (const char **)&pin, &insize, &pout, &outsize);
+#else
+  iconv(cd, &pin, &insize, &pout, &outsize);
+#endif
+  *pout = '\0';
+
+  iconv_close(cd);
+#else
+  char tmpbuf[8192];
+
+  MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)x, -1, (LPWSTR)tmpbuf, sizeof(tmpbuf));
+  WideCharToMultiByte(932, 0, (LPCWSTR)tmpbuf, -1, (LPSTR)outbuf, sizeof(outbuf), NULL, NULL);
+#endif
+
+  int len = strlen(outbuf);
+  unsigned char *p = (unsigned char *)outbuf;
+
+  while (len > 0) {
+    if (fontType == DX_FONTTYPE_EDGE) {
+      DrawChar(p, a - 1, b - 1, 0);
+      DrawChar(p, a, b - 1, 0);
+      DrawChar(p, a + 1, b - 1, 0);
+      DrawChar(p, a - 1, b, 0);
+      DrawChar(p, a + 1, b, 0);
+      DrawChar(p, a - 1, b + 1, 0);
+      DrawChar(p, a, b + 1, 0);
+      DrawChar(p, a + 1, b + 1, 0);
     }
-    DrawGraphZ (a, b, rendered);
-    SDL_FreeSurface (rendered);
+
+    DrawChar(p, a, b, c);
+
+    if (*p <= 0x7f) {
+      a += 9;
+      if (*p == '-') a += 3;
+      else if (*p == '?') a += 8;
+      else if (*p == 'M') a += 3;
+      else if (*p == 'N') a += 2;
+      p++;
+      len--;
+    } else {
+      a += 17;
+      p += 2;
+      len -= 2;
+    }
+  }
 }
 
 void
@@ -127,8 +199,6 @@ DrawFormatString (int a, int b, Uint32 color, const char *str, ...)
     DrawString (a, b, newstr, color);
     delete[]newstr;
 }
-
-//void DrawFormatString(int a, int b, int c
 
 //Key Aliases
 #define KEY_INPUT_ESCAPE SDLK_ESCAPE
@@ -154,9 +224,9 @@ UpdateKeys ()
             {
                 if (event.jaxis.axis == JOYSTICK_XAXIS)
                 {
-                    if (event.jaxis.value < 0)
+                    if (event.jaxis.value < -16383)
                         keysHeld[SDLK_LEFT] = true;
-                    else if (event.jaxis.value > 0)
+                    else if (event.jaxis.value > 16383)
                         keysHeld[SDLK_RIGHT] = true;
                     else
                     {
@@ -166,9 +236,9 @@ UpdateKeys ()
                 }
                 else if (event.jaxis.axis == JOYSTICK_YAXIS)
                 {
-                    if (event.jaxis.value < 0)
+                    if (event.jaxis.value < -16383)
                         keysHeld[SDLK_UP] = true;
-                    else if (event.jaxis.value > 0)
+                    else if (event.jaxis.value > 16383)
                         keysHeld[SDLK_DOWN] = true;
                     else
                     {

@@ -5,7 +5,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
-#include <SDL_ttf.h>
 #include <SDL_gfxPrimitives.h>
 
 #include <time.h>
@@ -14,12 +13,22 @@
 #include <string>
 #include <stdarg.h>
 
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <iconv.h>
+#endif
+
 #ifdef _MSC_VER
 #define strcasecmp _strcmpi
 #endif
 
 #ifndef PREFIX
+#ifdef _MACOSX
+#define PREFIX "./SyobonAction.app/Contents/Resources/data/" 
+#else
 #define PREFIX "./data/"
+#endif
 #endif
 
 #include "joyconfig.h"
@@ -32,7 +41,6 @@
 #define GetNowCount() SDL_GetTicks()
 
 //UNIMPLEMENTED - macro substitution
-#define SetFontThickness(f);
 #define StopSoundMem(s);
 #define ChangeVolumeSoundMem(s, v);
 
@@ -49,14 +57,10 @@ int DxLib_Init ();
 //Main screen
 extern SDL_Surface *screen;
 
-//Fonts
-#define FONT_MAX 64
-extern TTF_Font *font[FONT_MAX];
-
 //Strings & fonts
 #define DX_FONTTYPE_NORMAL 0
 #define DX_FONTTYPE_EDGE 1
-void SetFontSize (byte size);
+
 void ChangeFontType (byte type);
 void DrawString (int a, int b, const char *x, Uint32 c);
 void DrawFormatString (int a, int b, Uint32 color, const char *str, ...);

@@ -59,7 +59,6 @@ int rand (int Rand);
 /* 描画 */
 Uint32 color;
 Uint32 gfxcolor;
-void setfont (int a);
 void setcolor (int red, int green, int blue);
 void setc0 ();
 void setc1 ();
@@ -151,7 +150,6 @@ int titem[tmax], txtype[tmax];
 int tmsgtm, tmsgtype, tmsgx, tmsgy, tmsgnobix, tmsgnobiy, tmsg;
 void ttmsg ();
 void txmsg (string x, int a);
-void setfont (int x, int y);
 
 /* 効果を持たないグラ */
 void eyobi (int xa, int xb, int xc, int xd, int xe, int xf, int xnobia,
