@@ -157,6 +157,8 @@ DrawString (int a, int b, const char *x, Uint32 c)
     if (SDL_MUSTLOCK(screen)) SDL_LockSurface(screen);
 
     while (len > 0) {
+        if (*p == 'I') a -= 2;
+
         if (fontType == DX_FONTTYPE_EDGE) {
             DrawChar(p, a - 1, b - 1, 0);
             DrawChar(p, a, b - 1, 0);
@@ -172,10 +174,11 @@ DrawString (int a, int b, const char *x, Uint32 c)
 
         if (*p <= 0x7f) {
             a += 9;
+
             if (*p == '-') a += 3;
             else if (*p == '?') a += 8;
-            else if (*p == 'M') a += 3;
-            else if (*p == 'N') a += 2;
+            else if (*p >= 'A' && *p <= 'Z' && *p != 'I') a += 4;
+
             p++;
             len--;
         } else {
