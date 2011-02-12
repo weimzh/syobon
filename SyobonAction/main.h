@@ -115,7 +115,7 @@ double pai = 3.1415926535;
 
 int sx, sco;
 int sa[smax], sb[smax], sc[smax], sd[smax], stype[smax], sxtype[smax],
-sr[smax];
+    sr[smax];
 int sgtype[smax];
 
 

@@ -76,116 +76,116 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
     Uint32 pixel = SDL_MapRGB(screen->format, c >> 16, c >> 8, c);
     int i, j;
 
-    if (SDL_MUSTLOCK(screen)) SDL_LockSurface(screen);
-
     if (*ch <= 0x7f) {
-      // ASCII character
-      unsigned short cvtchar = ascii2sjis(*ch);
+        // ASCII character
+        unsigned short cvtchar = ascii2sjis(*ch);
 
-      if (cvtchar) {
-	unsigned char buf[2];
+        if (cvtchar) {
+            unsigned char buf[2];
 
-	buf[0] = cvtchar >> 8;
-	buf[1] = cvtchar & 0xff;
+            buf[0] = cvtchar >> 8;
+            buf[1] = cvtchar & 0xff;
 
-        unsigned short *font = (unsigned short *)kanjiaddr(buf);
+            unsigned short *font = (unsigned short *)kanjiaddr(buf);
+
+            if (font) {
+                for (i = 0; i < 15; i++) {
+                    for (j = 0; j < 16; j++) {
+                        if (((*font >> 8) | (*font << 8)) & (1 << (16 - j))) {
+                            if (b + i >= screen->h || b + i < 0) continue;
+                            if (a + j >= screen->w || a + j < 0) continue;
+
+                            int offset = (b + i) * screen->pitch + (a + j) * 4;
+                            if (offset >= 0) *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
+                        }
+                    }
+                    font++;
+                }
+            }
+        }
+    } else {
+        // full-width char
+        unsigned short *font = (unsigned short *)kanjiaddr(ch);
 
         if (font) {
-	  for (i = 0; i < 15; i++) {
-	    for (j = 0; j < 16; j++) {
-	      if (((*font >> 8) | (*font << 8)) & (1 << (16 - j))) {
-		if (b + i >= screen->h || b + i < 0) continue;
-		if (a + j >= screen->w || a + j < 0) continue;
+            for (i = 0; i < 15; i++) {
+                for (j = 0; j < 16; j++) {
+                    if (((*font >> 8) | (*font << 8)) & (1 << (16 - j))) {
+                        if (b + i >= screen->h || b + i < 0) continue;
+                        if (a + j >= screen->w || a + j < 0) continue;
 
-		int offset = (b + i) * screen->pitch + (a + j) * 4;
-	        if (offset >= 0) *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
-	      }
-	    }
-	    font++;
-          }
+                        int offset = (b + i) * screen->pitch + (a + j) * 4;
+                        if (offset >= 0) *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
+                    }
+                }
+                font++;
+            }
         }
-      }
-    } else {
-      // full-width char
-      unsigned short *font = (unsigned short *)kanjiaddr(ch);
-
-      if (font) {
-	for (i = 0; i < 15; i++) {
-	  for (j = 0; j < 16; j++) {
-	    if (((*font >> 8) | (*font << 8)) & (1 << (16 - j))) {
-              if (b + i >= screen->h || b + i < 0) continue;
-	      if (a + j >= screen->w || a + j < 0) continue;
-
-	      int offset = (b + i) * screen->pitch + (a + j) * 4;
-	      if (offset >= 0) *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
-	    }
-	  }
-	  font++;
-	}
-      }
     }
-
-    if (SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 }
 
 void
 DrawString (int a, int b, const char *x, Uint32 c)
 {
-  char outbuf[4096];
+    char outbuf[4096];
 
-  // Convert UTF-8 to Shift-JIS
+    // Convert UTF-8 to Shift-JIS
 #ifndef _WIN32
-  iconv_t cd = iconv_open("SHIFT_JIS", "UTF8");
+    iconv_t cd = iconv_open("SHIFT_JIS", "UTF8");
 
-  char *pin = (char *)x, *pout = outbuf;
-  size_t insize = strlen(x), outsize = 4096;
+    char *pin = (char *)x, *pout = outbuf;
+    size_t insize = strlen(x), outsize = 4096;
 
 #ifdef _MACOSX
-  iconv(cd, (const char **)&pin, &insize, &pout, &outsize);
+    iconv(cd, (const char **)&pin, &insize, &pout, &outsize);
 #else
-  iconv(cd, &pin, &insize, &pout, &outsize);
+    iconv(cd, &pin, &insize, &pout, &outsize);
 #endif
-  *pout = '\0';
+    *pout = '\0';
 
-  iconv_close(cd);
+    iconv_close(cd);
 #else
-  char tmpbuf[8192];
+    char tmpbuf[8192];
 
-  MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)x, -1, (LPWSTR)tmpbuf, sizeof(tmpbuf));
-  WideCharToMultiByte(932, 0, (LPCWSTR)tmpbuf, -1, (LPSTR)outbuf, sizeof(outbuf), NULL, NULL);
+    MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)x, -1, (LPWSTR)tmpbuf, sizeof(tmpbuf));
+    WideCharToMultiByte(932, 0, (LPCWSTR)tmpbuf, -1, (LPSTR)outbuf, sizeof(outbuf), NULL, NULL);
 #endif
 
-  int len = strlen(outbuf);
-  unsigned char *p = (unsigned char *)outbuf;
+    int len = strlen(outbuf);
+    unsigned char *p = (unsigned char *)outbuf;
 
-  while (len > 0) {
-    if (fontType == DX_FONTTYPE_EDGE) {
-      DrawChar(p, a - 1, b - 1, 0);
-      DrawChar(p, a, b - 1, 0);
-      DrawChar(p, a + 1, b - 1, 0);
-      DrawChar(p, a - 1, b, 0);
-      DrawChar(p, a + 1, b, 0);
-      DrawChar(p, a - 1, b + 1, 0);
-      DrawChar(p, a, b + 1, 0);
-      DrawChar(p, a + 1, b + 1, 0);
+    if (SDL_MUSTLOCK(screen)) SDL_LockSurface(screen);
+
+    while (len > 0) {
+        if (fontType == DX_FONTTYPE_EDGE) {
+            DrawChar(p, a - 1, b - 1, 0);
+            DrawChar(p, a, b - 1, 0);
+            DrawChar(p, a + 1, b - 1, 0);
+            DrawChar(p, a - 1, b, 0);
+            DrawChar(p, a + 1, b, 0);
+            DrawChar(p, a - 1, b + 1, 0);
+            DrawChar(p, a, b + 1, 0);
+            DrawChar(p, a + 1, b + 1, 0);
+        }
+
+        DrawChar(p, a, b, c);
+
+        if (*p <= 0x7f) {
+            a += 9;
+            if (*p == '-') a += 3;
+            else if (*p == '?') a += 8;
+            else if (*p == 'M') a += 3;
+            else if (*p == 'N') a += 2;
+            p++;
+            len--;
+        } else {
+            a += 17;
+            p += 2;
+            len -= 2;
+        }
     }
 
-    DrawChar(p, a, b, c);
-
-    if (*p <= 0x7f) {
-      a += 9;
-      if (*p == '-') a += 3;
-      else if (*p == '?') a += 8;
-      else if (*p == 'M') a += 3;
-      else if (*p == 'N') a += 2;
-      p++;
-      len--;
-    } else {
-      a += 17;
-      p += 2;
-      len -= 2;
-    }
-  }
+    if (SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 }
 
 void
