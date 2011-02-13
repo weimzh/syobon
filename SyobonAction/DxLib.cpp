@@ -96,7 +96,7 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
                             if (a + j >= screen->w || a + j < 0) continue;
 
                             int offset = (b + i) * screen->pitch + (a + j) * 4;
-                            if (offset >= 0) *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
+                            *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
                         }
                     }
                     font++;
@@ -115,7 +115,7 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
                         if (a + j >= screen->w || a + j < 0) continue;
 
                         int offset = (b + i) * screen->pitch + (a + j) * 4;
-                        if (offset >= 0) *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
+                        *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
                     }
                 }
                 font++;

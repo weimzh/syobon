@@ -5550,9 +5550,7 @@ stage ()
     {
         for (t = 0; t <= 16; t++)
         {
-            xx[10] = 0;
-            if (stagedate[t][tt] >= 1 && stagedate[t][tt] <= 255)
-                xx[10] = (int) stagedate[t][tt];
+            xx[10] = (int) stagedate[t][tt];
             xx[21] = tt * 29;
             xx[22] = t * 29 - 12;
             xx[23] = xx[10];

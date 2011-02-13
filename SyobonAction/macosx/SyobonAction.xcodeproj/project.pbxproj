@@ -11,9 +11,9 @@
 			isa = PBXApplicationTarget;
 			buildConfigurationList = 71B2E86C1305C23500611261 /* Build configuration list for PBXApplicationTarget "SyobonAction" */;
 			buildPhases = (
-				29B97327FDCFA39411CA2CEA /* Headers */,
 				29B97328FDCFA39411CA2CEA /* Resources */,
 				29B9732BFDCFA39411CA2CEA /* Sources */,
+				71B55B93130708A100E6247A /* CopyFiles */,
 				29B9732DFDCFA39411CA2CEA /* Frameworks */,
 			);
 			buildSettings = {
@@ -47,7 +47,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>SyobonAction</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -75,17 +75,14 @@
 		71B2E8841305C27A00611261 /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B2E8811305C27A00611261 /* SDL_mixer.framework */; };
 		71B2E8851305C27A00611261 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B2E8821305C27A00611261 /* SDL.framework */; };
 		71B2E8921305C28800611261 /* DxLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B2E88C1305C28800611261 /* DxLib.cpp */; };
-		71B2E8931305C28800611261 /* DxLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B2E88D1305C28800611261 /* DxLib.h */; };
-		71B2E8941305C28800611261 /* joyconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B2E88E1305C28800611261 /* joyconfig.h */; };
 		71B2E8951305C28800611261 /* loadg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B2E88F1305C28800611261 /* loadg.cpp */; };
 		71B2E8961305C28800611261 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B2E8901305C28800611261 /* main.cpp */; };
-		71B2E8971305C28800611261 /* main.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B2E8911305C28800611261 /* main.h */; };
 		71B2E8C61305C29500611261 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 71B2E8981305C29500611261 /* data */; };
-		71B4D77D130699F200686FC4 /* SDL_gfxPrimitives_font.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B4D77A130699F200686FC4 /* SDL_gfxPrimitives_font.h */; };
 		71B4D77E130699F200686FC4 /* SDL_gfxPrimitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D77B130699F200686FC4 /* SDL_gfxPrimitives.c */; };
-		71B4D77F130699F200686FC4 /* SDL_gfxPrimitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B4D77C130699F200686FC4 /* SDL_gfxPrimitives.h */; };
-		71B4D781130699FF00686FC4 /* font.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B4D780130699FF00686FC4 /* font.h */; };
-		F5A47AA101A0483001D3D55B /* SDLMain.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A47A9D01A0482F01D3D55B /* SDLMain.h */; };
+		71B55B94130708B300E6247A /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71B2E8821305C27A00611261 /* SDL.framework */; };
+		71B55B95130708B300E6247A /* SDL_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71B2E8801305C27A00611261 /* SDL_image.framework */; };
+		71B55B96130708B300E6247A /* SDL_mixer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71B2E8811305C27A00611261 /* SDL_mixer.framework */; };
+		71B55BDD13070A1700E6247A /* SyobonAction.icns in Resources */ = {isa = PBXBuildFile; fileRef = 71B55BDC13070A1700E6247A /* SyobonAction.icns */; };
 		F5A47AA301A0483001D3D55B /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A47A9E01A0483001D3D55B /* SDLMain.m */; };
 /* End PBXBuildFile section */
 
@@ -114,12 +111,25 @@
 		};
 /* End PBXBuildStyle section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		71B55B93130708A100E6247A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				71B55B94130708B300E6247A /* SDL.framework in CopyFiles */,
+				71B55B95130708B300E6247A /* SDL_image.framework in CopyFiles */,
+				71B55B96130708B300E6247A /* SDL_mixer.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		17587328FF379C6511CA2CBB /* SyobonAction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = SyobonAction.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		71B2E8801305C27A00611261 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = /Library/Frameworks/SDL_image.framework; sourceTree = "<absolute>"; };
 		71B2E8811305C27A00611261 /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
 		71B2E8821305C27A00611261 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
@@ -134,6 +144,7 @@
 		71B4D77B130699F200686FC4 /* SDL_gfxPrimitives.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SDL_gfxPrimitives.c; path = ../sdlgfx/SDL_gfxPrimitives.c; sourceTree = SOURCE_ROOT; };
 		71B4D77C130699F200686FC4 /* SDL_gfxPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL_gfxPrimitives.h; path = ../sdlgfx/SDL_gfxPrimitives.h; sourceTree = SOURCE_ROOT; };
 		71B4D780130699FF00686FC4 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = font.h; path = ../font.h; sourceTree = SOURCE_ROOT; };
+		71B55BDC13070A1700E6247A /* SyobonAction.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SyobonAction.icns; sourceTree = "<group>"; };
 		F5A47A9D01A0482F01D3D55B /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = SOURCE_ROOT; };
 		F5A47A9E01A0483001D3D55B /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -171,15 +182,6 @@
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -220,6 +222,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				71B55BDC13070A1700E6247A /* SyobonAction.icns */,
 				71B2E8981305C29500611261 /* data */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 			);
@@ -230,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,23 +248,6 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		29B97327FDCFA39411CA2CEA /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F5A47AA101A0483001D3D55B /* SDLMain.h in Headers */,
-				71B2E8931305C28800611261 /* DxLib.h in Headers */,
-				71B2E8941305C28800611261 /* joyconfig.h in Headers */,
-				71B2E8971305C28800611261 /* main.h in Headers */,
-				71B4D77D130699F200686FC4 /* SDL_gfxPrimitives_font.h in Headers */,
-				71B4D77F130699F200686FC4 /* SDL_gfxPrimitives.h in Headers */,
-				71B4D781130699FF00686FC4 /* font.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -290,6 +275,7 @@
 			files = (
 				089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */,
 				71B2E8C61305C29500611261 /* data in Resources */,
+				71B55BDD13070A1700E6247A /* SyobonAction.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +394,7 @@
 		71B2E8721305C23500611261 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PREBINDING = NO;
 			};
 			name = Deployment;
 		};
