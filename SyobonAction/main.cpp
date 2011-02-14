@@ -4984,13 +4984,18 @@ Mainprogram ()
             xx[0] = 1;
             over = 1;
         }
-//if (CheckHitKeyAll() == 0){end();}
+
         if (CheckHitKey (KEY_INPUT_RETURN) == 1)
         {
             xx[0] = 1;
         }
-//if (CheckHitKey(KEY_INPUT_SPACE)==1){xx[0]=1;}
+
         if (CheckHitKey (KEY_INPUT_Z) == 1)
+        {
+            xx[0] = 1;
+        }
+
+        if (SDL_JoystickGetButton (joystick, JOYSTICK_JUMP))
         {
             xx[0] = 1;
         }

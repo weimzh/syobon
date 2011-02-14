@@ -272,22 +272,25 @@ CheckHitKey (int key)
     return keysHeld[key];
 }
 
-byte
+void
 WaitKey ()
 {
-    SDL_Event event;
     while (true)
     {
-        while (SDL_PollEvent (&event))
-            if (event.type == SDL_KEYDOWN)
-                return event.key.keysym.sym;
+		SDL_Delay (100);
+		UpdateKeys ();
+
+		for (int i = 0; i < SDLK_LAST; i++)
+			if (keysHeld[i])
+				return;
+
+		if (SDL_JoystickGetButton (joystick, JOYSTICK_JUMP))
+			return;
+
+		if (ex)
+			exit (0);
     }
 }
-
-/*Uint32 GetColor(byte r, byte g, byte b)
-{
-    return r << 8 * 3 | g << 8 * 2 | b << 8 | 0xFF;
-}*/
 
 void
 DrawGraphZ (int a, int b, SDL_Surface * mx)

@@ -92,11 +92,9 @@ extern SDL_Joystick *joystick;
 void UpdateKeys ();
 byte ProcessMessage ();
 byte CheckHitKey (int key);
-byte WaitKey ();
+void WaitKey ();
 
 #define GetColor(r, g, b) SDL_MapRGB(screen->format, r, g, b)
-
-//Uint32 GetColor(byte r, byte g, byte b);
 
 #define DrawGraph(a, b, mx, z) DrawGraphZ(a, b, mx)
 void DrawGraphZ (int a, int b, SDL_Surface * mx);
@@ -104,7 +102,6 @@ void DrawGraphZ (int a, int b, SDL_Surface * mx);
 #define DrawTurnGraph(a, b, mx, z) DrawTurnGraphZ(a, b, mx)
 void DrawTurnGraphZ (int a, int b, SDL_Surface * mx);
 
-//#define DrawVertTurnGraph(x, y, e, a, mx, z) DrawRotaGraphZ(x, y, a, mx)
 void DrawVertTurnGraph (int a, int b, SDL_Surface * mx);
 
 SDL_Surface *DerivationGraph (int srcx, int srcy, int width, int height,
