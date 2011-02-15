@@ -1374,12 +1374,14 @@ Mainprogram ()
                 actaon[3] = 1;
             }
         }
-//if (CheckHitKey(KEY_INPUT_F1)==1){end();}
+
         if (CheckHitKey (KEY_INPUT_F1) == 1)
         {
+            Mix_HaltMusic ();
+            stagecolor = 1;
             mainZ = 100;
         }
-//if (CheckHitKey(KEY_INPUT_Q)==1){mkeytm=0;}
+
         if (CheckHitKey (KEY_INPUT_O) == 1)
         {
             if (mhp >= 1)
