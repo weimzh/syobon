@@ -984,11 +984,11 @@ rpaint ()
             if (mmsgtype == 55)
                 xs[0] = "溶岩と合体したい……";
 
-            setc0 ();
-            str (xs[0], (ma + mnobia + 300) / 100 - 1, mb / 100 - 1);
-            str (xs[0], (ma + mnobia + 300) / 100 + 1, mb / 100 + 1);
+
+            ChangeFontType (DX_FONTTYPE_EDGE);
             setc1 ();
             str (xs[0], (ma + mnobia + 300) / 100, mb / 100);
+            ChangeFontType (DX_FONTTYPE_NORMAL);
 
         }			//mmsgtm
 
