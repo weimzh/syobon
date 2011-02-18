@@ -1,0 +1,2 @@
+?package(syobonaction):needs="X11" section="Games/Arcade" \
+  title="Syobon Action" command="/usr/games/SyobonAction"

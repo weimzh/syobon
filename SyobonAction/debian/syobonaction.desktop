@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Encoding=UTF-8
+Name=Syobon Action
+GenericName=Platform Game
+Exec=SyobonAction
+Terminal=false
+StartupNotify=false
+Categories=Game;ArcadeGame;
+

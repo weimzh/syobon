@@ -1,4 +1,6 @@
-CFLAGS=-O2 -DPREFIX=\"./data/\"
+PREFIX=./data
+
+CFLAGS=-O2 -DPREFIX=\"$(PREFIX)/\"
 LDFLAGS=
 
 all: SyobonAction

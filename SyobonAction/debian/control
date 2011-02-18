@@ -1,0 +1,15 @@
+Source: syobonaction
+Section: games
+Priority: extra
+Maintainer: whistler <whistler@(none)>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.1
+Homepage: http://syobon.codeplex.com/
+
+Package: syobonaction
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Syobon Action
+ This is an SDL version of Syobon Action. The original website is at:
+ http://www.geocities.jp/z_gundam_tanosii/home/Main.html (if you
+ understand Japanese).
