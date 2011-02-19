@@ -380,7 +380,7 @@ rpaint ()
                         }
                         if (stagecolor == 5)
                         {
-                            xx[9] = 60;//90
+                            xx[9] = 90;
                         }
                         xx[6] = 5 + xx[9];
                         drawimage (grap[xx[6]][1], xx[0] / 100, xx[1] / 100);
@@ -399,7 +399,7 @@ rpaint ()
                         }
                         if (stagecolor == 5)
                         {
-                            xx[9] = 60;//90
+                            xx[9] = 90;
                         }
                         xx[6] = 4 + xx[9];
                         drawimage (grap[xx[6]][1], xx[0] / 100, xx[1] / 100);
@@ -427,7 +427,7 @@ rpaint ()
                         }
                         if (stagecolor == 5)
                         {
-                            xx[9] = 60;//90
+                            xx[9] = 90;
                         }
                         xx[6] = 5 + xx[9];
                         drawimage (grap[xx[6]][1],
@@ -447,7 +447,7 @@ rpaint ()
                         }
                         if (stagecolor == 5)
                         {
-                            xx[9] = 60;//90
+                            xx[9] = 90;
                         }
                         xx[6] = 4 + xx[9];
                         drawimage (grap[xx[6]][1],
@@ -512,7 +512,7 @@ rpaint ()
                 }
                 if (stagecolor == 5)
                 {
-                    xx[9] = 60;//90;
+                    xx[9] = 90;
                 }
 
                 if (ttype[t] < 100)
@@ -733,7 +733,7 @@ rpaint ()
                     }
                     if (stagecolor == 5)
                     {
-                        xx[29] = 60;//90
+                        xx[29] = 90;
                     }
 
                     for (t3 = 0; t3 <= sc[t] / 3000; t3++)
