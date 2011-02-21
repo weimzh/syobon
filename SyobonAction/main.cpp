@@ -4792,6 +4792,7 @@ drawarc (int a, int b, int c, int d)
 void
 fillarc (int a, int b, int c, int d)
 {
+    filledEllipseColor (screen, a + 1, b, c, d, gfxcolor);
     filledEllipseColor (screen, a, b, c, d, gfxcolor);
 }
 
