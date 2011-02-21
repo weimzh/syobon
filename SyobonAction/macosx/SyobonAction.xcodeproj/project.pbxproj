@@ -6,158 +6,95 @@
 	objectVersion = 42;
 	objects = {
 
-/* Begin PBXApplicationTarget section */
-		29B97326FDCFA39411CA2CEA /* SyobonAction */ = {
-			isa = PBXApplicationTarget;
-			buildConfigurationList = 71B2E86C1305C23500611261 /* Build configuration list for PBXApplicationTarget "SyobonAction" */;
-			buildPhases = (
-				29B97328FDCFA39411CA2CEA /* Resources */,
-				29B9732BFDCFA39411CA2CEA /* Sources */,
-				71B55B93130708A100E6247A /* CopyFiles */,
-				29B9732DFDCFA39411CA2CEA /* Frameworks */,
-			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "\"/Library/Frameworks\"";
-				HEADER_SEARCH_PATHS = "\"/Library/Frameworks/SDL.framework/Headers\"";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SDL,
-				);
-				PRODUCT_NAME = SyobonAction;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			dependencies = (
-			);
-			name = SyobonAction;
-			productInstallPath = "$(HOME)/Applications";
-			productName = SyobonAction;
-			productReference = 17587328FF379C6511CA2CBB /* SyobonAction.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleIconFile</key>
-	<string>SyobonAction</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>0.1</string>
-	<key>NSMainNibFile</key>
-	<string>SDLMain.nib</string>
-	<key>NSPrincipalClass</key>
-	<string>SDLApplication</string>
-	<key>SyobonAction</key>
-	<string>SDL Cocoa App</string>
-</dict>
-</plist>
-";
-		};
-/* End PBXApplicationTarget section */
-
 /* Begin PBXBuildFile section */
-		089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		1058C7A3FEA54F0111CA2CBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		71B2E8831305C27A00611261 /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B2E8801305C27A00611261 /* SDL_image.framework */; };
-		71B2E8841305C27A00611261 /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B2E8811305C27A00611261 /* SDL_mixer.framework */; };
-		71B2E8851305C27A00611261 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B2E8821305C27A00611261 /* SDL.framework */; };
-		71B2E8921305C28800611261 /* DxLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B2E88C1305C28800611261 /* DxLib.cpp */; };
-		71B2E8951305C28800611261 /* loadg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B2E88F1305C28800611261 /* loadg.cpp */; };
-		71B2E8961305C28800611261 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B2E8901305C28800611261 /* main.cpp */; };
-		71B2E8C61305C29500611261 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 71B2E8981305C29500611261 /* data */; };
-		71B4D77E130699F200686FC4 /* SDL_gfxPrimitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D77B130699F200686FC4 /* SDL_gfxPrimitives.c */; };
-		71B55B94130708B300E6247A /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71B2E8821305C27A00611261 /* SDL.framework */; };
-		71B55B95130708B300E6247A /* SDL_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71B2E8801305C27A00611261 /* SDL_image.framework */; };
-		71B55B96130708B300E6247A /* SDL_mixer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71B2E8811305C27A00611261 /* SDL_mixer.framework */; };
-		71B55BDD13070A1700E6247A /* SyobonAction.icns in Resources */ = {isa = PBXBuildFile; fileRef = 71B55BDC13070A1700E6247A /* SyobonAction.icns */; };
-		F5A47AA301A0483001D3D55B /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A47A9E01A0483001D3D55B /* SDLMain.m */; };
+		002F39FA09D0881F00EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F39F909D0881F00EBEB88 /* SDL.framework */; };
+		002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = 002F39F909D0881F00EBEB88 /* SDL.framework */; };
+		71B6AC5D1310A37900AD6C45 /* txtmsg.h in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = 71B6AC5C1310A37900AD6C45 /* txtmsg.h */; };
+		71C8E3831310651400E11F34 /* SyobonAction.icns in Resources */ = {isa = PBXBuildFile; fileRef = 71C8E3821310651400E11F34 /* SyobonAction.icns */; };
+		71C8E3871310652B00E11F34 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C8E3851310652B00E11F34 /* SDLMain.m */; };
+		71C8E3931310654000E11F34 /* DxLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71C8E3881310653F00E11F34 /* DxLib.cpp */; };
+		71C8E3971310654000E11F34 /* loadg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71C8E38C1310653F00E11F34 /* loadg.cpp */; };
+		71C8E3981310654000E11F34 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71C8E38D1310653F00E11F34 /* main.cpp */; };
+		71C8E39A1310654000E11F34 /* SDL_gfxPrimitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 71C8E3901310653F00E11F34 /* SDL_gfxPrimitives.c */; };
+		71C8E39F1310655600E11F34 /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C8E39D1310655600E11F34 /* SDL_image.framework */; };
+		71C8E3A01310655600E11F34 /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C8E39E1310655600E11F34 /* SDL_mixer.framework */; };
+		71C8E3F3131065BE00E11F34 /* SDL_mixer.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = 71C8E39E1310655600E11F34 /* SDL_mixer.framework */; };
+		71C8E3F6131065C400E11F34 /* SDL_image.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = 71C8E39D1310655600E11F34 /* SDL_image.framework */; };
+		71C8E42E1310674700E11F34 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 71C8E4021310674600E11F34 /* data */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-		4A9504CCFFE6A4B311CA0CBA /* Development */ = {
+		71C8E372131064E700E11F34 /* Development */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
 			};
 			name = Development;
 		};
-		4A9504CDFFE6A4B311CA0CBA /* Deployment */ = {
+		71C8E373131064E700E11F34 /* Deployment */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				ZERO_LINK = NO;
 			};
 			name = Deployment;
 		};
 /* End PBXBuildStyle section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		71B55B93130708A100E6247A /* CopyFiles */ = {
+		002F39FD09D0883400EBEB88 /* Copy Frameworks into .app bundle */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				71B55B94130708B300E6247A /* SDL.framework in CopyFiles */,
-				71B55B95130708B300E6247A /* SDL_image.framework in CopyFiles */,
-				71B55B96130708B300E6247A /* SDL_mixer.framework in CopyFiles */,
+				71C8E3F6131065C400E11F34 /* SDL_image.framework in Copy Frameworks into .app bundle */,
+				71C8E3F3131065BE00E11F34 /* SDL_mixer.framework in Copy Frameworks into .app bundle */,
+				002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */,
+				71B6AC5D1310A37900AD6C45 /* txtmsg.h in Copy Frameworks into .app bundle */,
 			);
+			name = "Copy Frameworks into .app bundle";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		002F39F909D0881F00EBEB88 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		17587328FF379C6511CA2CBB /* SyobonAction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = SyobonAction.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		71B2E8801305C27A00611261 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = /Library/Frameworks/SDL_image.framework; sourceTree = "<absolute>"; };
-		71B2E8811305C27A00611261 /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
-		71B2E8821305C27A00611261 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
-		71B2E88C1305C28800611261 /* DxLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DxLib.cpp; path = ../DxLib.cpp; sourceTree = SOURCE_ROOT; };
-		71B2E88D1305C28800611261 /* DxLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DxLib.h; path = ../DxLib.h; sourceTree = SOURCE_ROOT; };
-		71B2E88E1305C28800611261 /* joyconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = joyconfig.h; path = ../joyconfig.h; sourceTree = SOURCE_ROOT; };
-		71B2E88F1305C28800611261 /* loadg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = loadg.cpp; path = ../loadg.cpp; sourceTree = SOURCE_ROOT; };
-		71B2E8901305C28800611261 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = SOURCE_ROOT; };
-		71B2E8911305C28800611261 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = ../main.h; sourceTree = SOURCE_ROOT; };
-		71B2E8981305C29500611261 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../data; sourceTree = SOURCE_ROOT; };
-		71B4D77A130699F200686FC4 /* SDL_gfxPrimitives_font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL_gfxPrimitives_font.h; path = ../sdlgfx/SDL_gfxPrimitives_font.h; sourceTree = SOURCE_ROOT; };
-		71B4D77B130699F200686FC4 /* SDL_gfxPrimitives.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SDL_gfxPrimitives.c; path = ../sdlgfx/SDL_gfxPrimitives.c; sourceTree = SOURCE_ROOT; };
-		71B4D77C130699F200686FC4 /* SDL_gfxPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL_gfxPrimitives.h; path = ../sdlgfx/SDL_gfxPrimitives.h; sourceTree = SOURCE_ROOT; };
-		71B4D780130699FF00686FC4 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = font.h; path = ../font.h; sourceTree = SOURCE_ROOT; };
-		71B55BDC13070A1700E6247A /* SyobonAction.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SyobonAction.icns; sourceTree = "<group>"; };
-		F5A47A9D01A0482F01D3D55B /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = SOURCE_ROOT; };
-		F5A47A9E01A0483001D3D55B /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = SOURCE_ROOT; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		71B6AC5C1310A37900AD6C45 /* txtmsg.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; name = txtmsg.h; path = ../txtmsg.h; sourceTree = SOURCE_ROOT; };
+		71C8E3821310651400E11F34 /* SyobonAction.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SyobonAction.icns; sourceTree = "<group>"; };
+		71C8E3841310652B00E11F34 /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = "-2147483623"; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = "<group>"; };
+		71C8E3851310652B00E11F34 /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = "-2147483623"; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = "<group>"; };
+		71C8E3881310653F00E11F34 /* DxLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DxLib.cpp; path = ../DxLib.cpp; sourceTree = SOURCE_ROOT; };
+		71C8E3891310653F00E11F34 /* DxLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DxLib.h; path = ../DxLib.h; sourceTree = SOURCE_ROOT; };
+		71C8E38A1310653F00E11F34 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = font.h; path = ../font.h; sourceTree = SOURCE_ROOT; };
+		71C8E38B1310653F00E11F34 /* joyconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = joyconfig.h; path = ../joyconfig.h; sourceTree = SOURCE_ROOT; };
+		71C8E38C1310653F00E11F34 /* loadg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = loadg.cpp; path = ../loadg.cpp; sourceTree = SOURCE_ROOT; };
+		71C8E38D1310653F00E11F34 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = SOURCE_ROOT; };
+		71C8E38E1310653F00E11F34 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = ../main.h; sourceTree = SOURCE_ROOT; };
+		71C8E3901310653F00E11F34 /* SDL_gfxPrimitives.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SDL_gfxPrimitives.c; path = ../sdlgfx/SDL_gfxPrimitives.c; sourceTree = SOURCE_ROOT; };
+		71C8E3911310654000E11F34 /* SDL_gfxPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL_gfxPrimitives.h; path = ../sdlgfx/SDL_gfxPrimitives.h; sourceTree = SOURCE_ROOT; };
+		71C8E3921310654000E11F34 /* SDL_gfxPrimitives_font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL_gfxPrimitives_font.h; path = ../sdlgfx/SDL_gfxPrimitives_font.h; sourceTree = SOURCE_ROOT; };
+		71C8E39D1310655600E11F34 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = /Library/Frameworks/SDL_image.framework; sourceTree = "<absolute>"; };
+		71C8E39E1310655600E11F34 /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
+		71C8E4021310674600E11F34 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../data; sourceTree = SOURCE_ROOT; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* SyobonAction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyobonAction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		29B9732DFDCFA39411CA2CEA /* Frameworks */ = {
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1058C7A3FEA54F0111CA2CBB /* Cocoa.framework in Frameworks */,
-				71B2E8831305C27A00611261 /* SDL_image.framework in Frameworks */,
-				71B2E8841305C27A00611261 /* SDL_mixer.framework in Frameworks */,
-				71B2E8851305C27A00611261 /* SDL.framework in Frameworks */,
+				002F39FA09D0881F00EBEB88 /* SDL.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				71C8E39F1310655600E11F34 /* SDL_image.framework in Frameworks */,
+				71C8E3A01310655600E11F34 /* SDL_mixer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,8 +104,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F5A47A9D01A0482F01D3D55B /* SDLMain.h */,
-				F5A47A9E01A0483001D3D55B /* SDLMain.m */,
+				71C8E3841310652B00E11F34 /* SDLMain.h */,
+				71C8E3851310652B00E11F34 /* SDLMain.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -176,18 +113,27 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				71B2E8801305C27A00611261 /* SDL_image.framework */,
-				71B2E8811305C27A00611261 /* SDL_mixer.framework */,
-				71B2E8821305C27A00611261 /* SDL.framework */,
+				71C8E39D1310655600E11F34 /* SDL_image.framework */,
+				71C8E39E1310655600E11F34 /* SDL_mixer.framework */,
+				002F39F909D0881F00EBEB88 /* SDL.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
 		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				17587328FF379C6511CA2CBB /* SyobonAction.app */,
+				8D1107320486CEB800E47090 /* SyobonAction.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,14 +153,15 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				71B4D777130699D700686FC4 /* sdlgfx */,
-				71B2E88C1305C28800611261 /* DxLib.cpp */,
-				71B2E88D1305C28800611261 /* DxLib.h */,
-				71B4D780130699FF00686FC4 /* font.h */,
-				71B2E88E1305C28800611261 /* joyconfig.h */,
-				71B2E88F1305C28800611261 /* loadg.cpp */,
-				71B2E8901305C28800611261 /* main.cpp */,
-				71B2E8911305C28800611261 /* main.h */,
+				71C8E38F1310653F00E11F34 /* sdlgfx */,
+				71C8E3881310653F00E11F34 /* DxLib.cpp */,
+				71C8E3891310653F00E11F34 /* DxLib.h */,
+				71C8E38A1310653F00E11F34 /* font.h */,
+				71C8E38B1310653F00E11F34 /* joyconfig.h */,
+				71C8E38C1310653F00E11F34 /* loadg.cpp */,
+				71C8E38D1310653F00E11F34 /* main.cpp */,
+				71C8E38E1310653F00E11F34 /* main.h */,
+				71B6AC5C1310A37900AD6C45 /* txtmsg.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -222,8 +169,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				71B55BDC13070A1700E6247A /* SyobonAction.icns */,
-				71B2E8981305C29500611261 /* data */,
+				71C8E4021310674600E11F34 /* data */,
+				71C8E3821310651400E11F34 /* SyobonAction.icns */,
+				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 			);
 			name = Resources;
@@ -233,64 +181,88 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		71B4D777130699D700686FC4 /* sdlgfx */ = {
+		71C8E38F1310653F00E11F34 /* sdlgfx */ = {
 			isa = PBXGroup;
 			children = (
-				71B4D77A130699F200686FC4 /* SDL_gfxPrimitives_font.h */,
-				71B4D77B130699F200686FC4 /* SDL_gfxPrimitives.c */,
-				71B4D77C130699F200686FC4 /* SDL_gfxPrimitives.h */,
+				71C8E3901310653F00E11F34 /* SDL_gfxPrimitives.c */,
+				71C8E3911310654000E11F34 /* SDL_gfxPrimitives.h */,
+				71C8E3921310654000E11F34 /* SDL_gfxPrimitives_font.h */,
 			);
 			name = sdlgfx;
-			sourceTree = "<group>";
+			path = ../sdlgfx;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* SyobonAction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SyobonAction" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				002F39FD09D0883400EBEB88 /* Copy Frameworks into .app bundle */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SyobonAction;
+			productInstallPath = "$(HOME)/Applications";
+			productName = SyobonAction;
+			productReference = 8D1107320486CEB800E47090 /* SyobonAction.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 71B2E8701305C23500611261 /* Build configuration list for PBXProject "SyobonAction" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SyobonAction" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				4A9504CCFFE6A4B311CA0CBA /* Development */,
-				4A9504CDFFE6A4B311CA0CBA /* Deployment */,
+				71C8E372131064E700E11F34 /* Development */,
+				71C8E373131064E700E11F34 /* Deployment */,
 			);
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* SyobonAction */;
 			projectDirPath = "";
 			targets = (
-				29B97326FDCFA39411CA2CEA /* SyobonAction */,
+				8D1107260486CEB800E47090 /* SyobonAction */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		29B97328FDCFA39411CA2CEA /* Resources */ = {
+		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */,
-				71B2E8C61305C29500611261 /* data in Resources */,
-				71B55BDD13070A1700E6247A /* SyobonAction.icns in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				71C8E3831310651400E11F34 /* SyobonAction.icns in Resources */,
+				71C8E42E1310674700E11F34 /* data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		29B9732BFDCFA39411CA2CEA /* Sources */ = {
+		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5A47AA301A0483001D3D55B /* SDLMain.m in Sources */,
-				71B2E8921305C28800611261 /* DxLib.cpp in Sources */,
-				71B2E8951305C28800611261 /* loadg.cpp in Sources */,
-				71B2E8961305C28800611261 /* main.cpp in Sources */,
-				71B4D77E130699F200686FC4 /* SDL_gfxPrimitives.c in Sources */,
+				71C8E3871310652B00E11F34 /* SDLMain.m in Sources */,
+				71C8E3931310654000E11F34 /* DxLib.cpp in Sources */,
+				71C8E3971310654000E11F34 /* loadg.cpp in Sources */,
+				71C8E3981310654000E11F34 /* main.cpp in Sources */,
+				71C8E39A1310654000E11F34 /* SDL_gfxPrimitives.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,116 +280,108 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		71B2E86D1305C23500611261 /* Development */ = {
+		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"/Library/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/SDL_image.framework/Headers",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/SDL_mixer.framework/Headers",
-					/Library/Frameworks/SDL.framework/Headers,
-				);
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "-D_MACOSX=1";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SDL,
-					"-framework",
-					SDL_image,
-					"-framework",
-					SDL_mixer,
-					"-liconv",
-				);
 				PRODUCT_NAME = SyobonAction;
-				SECTORDER_FLAGS = "";
-				USE_GCC3_PFE_SUPPORT = NO;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		71B2E86E1305C23500611261 /* Deployment */ = {
+		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"/Library/Frameworks\"";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/SDL_mixer.framework/Headers",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/SDL_image.framework/Headers",
-					/Library/Frameworks/SDL.framework/Headers,
+				ARCHS = (
+					ppc,
+					i386,
 				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O2";
-				OTHER_CFLAGS = "-D_MACOSX=1";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SDL,
-					"-framework",
-					SDL_image,
-					"-framework",
-					SDL_mixer,
-					"-liconv",
-				);
 				PRODUCT_NAME = SyobonAction;
-				SECTORDER_FLAGS = "";
-				USE_GCC3_PFE_SUPPORT = NO;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
 			};
-			name = Deployment;
+			name = Release;
 		};
-		71B2E8711305C23500611261 /* Development */ = {
+		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-			};
-			name = Development;
-		};
-		71B2E8721305C23500611261 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = _MACOSX;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL.framework/Headers,
+					/Library/Frameworks/SDL_image.framework/Headers,
+					/Library/Frameworks/SDL_mixer.framework/Headers,
+					"$(HEADER_SEARCH_PATHS)",
+				);
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
-			name = Deployment;
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
+				DEAD_CODE_STRIPPING = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = _MACOSX;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL.framework/Headers,
+					/Library/Frameworks/SDL_image.framework/Headers,
+					/Library/Frameworks/SDL_mixer.framework/Headers,
+					"$(HEADER_SEARCH_PATHS)",
+				);
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		71B2E86C1305C23500611261 /* Build configuration list for PBXApplicationTarget "SyobonAction" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SyobonAction" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				71B2E86D1305C23500611261 /* Development */,
-				71B2E86E1305C23500611261 /* Deployment */,
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Development;
+			defaultConfigurationName = Release;
 		};
-		71B2E8701305C23500611261 /* Build configuration list for PBXProject "SyobonAction" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SyobonAction" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				71B2E8711305C23500611261 /* Development */,
-				71B2E8721305C23500611261 /* Deployment */,
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Development;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

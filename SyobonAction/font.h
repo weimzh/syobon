@@ -26245,7 +26245,7 @@ static int kanjitrans(unsigned short scode)
     int ret = -1;
     unsigned char ss[2];
     unsigned char stmp = 0;
-
+	
     ss[0] = scode & 0xff;
     ss[1] = scode >> 8;
 
@@ -26336,6 +26336,25 @@ unsigned char *kanjiaddr( const unsigned char *sjis )
     int	code;
     unsigned char *kaddr, *addr;
     unsigned short sjiscode;
+
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+    // This is an ugly hack, however I don't care as long as it works
+	// as the code is already messy enough ;)
+	static int swap = 1;
+
+	if (swap) {
+		int i;
+
+		swap = 0;
+
+		for (i = 0; i < sizeof(got15j0b) / sizeof(int); i++) {
+			got15j0b[i] = (got15j0b[i] >> 16) | (got15j0b[i] << 16);
+		}
+		for (i = 0; i < sizeof(got15j1b) / sizeof(int); i++) {
+			got15j1b[i] = (got15j1b[i] >> 16) | (got15j1b[i] << 16);
+		}
+	}
+#endif
 
     sjiscode = *sjis << 8 | *(sjis+1);
     if ((sjiscode >= 0x8140) && (sjiscode <= 0x84be))

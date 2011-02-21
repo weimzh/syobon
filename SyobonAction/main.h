@@ -6,7 +6,7 @@ using namespace std;
 void loadg ();
 void parseArgs (int argc, char *argv[]);
 
-//String 使用
+/* String 使用 */
 
 /* プログラム中
 main-10
@@ -27,7 +27,7 @@ int fast = 1;
 /* トラップ表示 */
 int trap = 1;
 
-/* 中間ゲート*/
+/* 中間ゲート */
 int tyuukan = 0;
 
 /* スタッフロール */
@@ -50,8 +50,8 @@ void rpaint ();
 int maint;
 
 
-/*サブクラス
-(ウエイト系*/
+/* サブクラス
+(ウエイト系 */
 #define wait(i) SDL_Delay(i)
 void wait2 (long stime, long etime, int FLAME_TIME);
 int rand (int Rand);
@@ -195,7 +195,7 @@ int na[nmax], nb[nmax], nc[nmax], nd[nmax], ntype[nmax];
 int ne[nmax], nf[nmax], ng[nmax], nx[nmax];
 
 
-/* リフト*/
+/* リフト */
 #define srmax 21
 
 int srco;

@@ -4,6 +4,7 @@ SDL_Joystick *joystick;
 
 bool keysHeld[SDLK_LAST];
 bool sound = true;
+bool fullscreen = false;
 
 void deinit ();
 
@@ -20,14 +21,14 @@ DxLib_Init ()
 
     if (!(screen = SDL_SetVideoMode (480 /*(int)fmax/100 */ ,
                                      420 /*(int)fymax/100 */ , 32,
-                                     SDL_SWSURFACE | SDL_DOUBLEBUF)))
+                                     SDL_SWSURFACE | SDL_DOUBLEBUF | (fullscreen ? SDL_FULLSCREEN : 0))))
     {
         SDL_Quit ();
         return -1;
     }
 
     SDL_WM_SetCaption ("Syobon Action", NULL);
-    SDL_ShowCursor (SDL_DISABLE);
+    if (fullscreen) SDL_ShowCursor (SDL_DISABLE);
 
 #if SDL_IMAGE_MAJOR_VERSION > 1 || SDL_IMAGE_MINOR_VERSION > 2 || SDL_IMAGE_PATCHLEVEL >= 8
     if (IMG_Init (IMG_INIT_PNG) != IMG_INIT_PNG)
@@ -127,32 +128,8 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
 void
 DrawString (int a, int b, const char *x, Uint32 c)
 {
-    char outbuf[4096];
-
-    // Convert UTF-8 to Shift-JIS
-#ifndef _WIN32
-    iconv_t cd = iconv_open("SHIFT_JIS", "UTF8");
-
-    char *pin = (char *)x, *pout = outbuf;
-    size_t insize = strlen(x), outsize = 4096;
-
-#ifdef _MACOSX
-    iconv(cd, (const char **)&pin, &insize, &pout, &outsize);
-#else
-    iconv(cd, &pin, &insize, &pout, &outsize);
-#endif
-    *pout = '\0';
-
-    iconv_close(cd);
-#else
-    char tmpbuf[8192];
-
-    MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)x, -1, (LPWSTR)tmpbuf, sizeof(tmpbuf));
-    WideCharToMultiByte(932, 0, (LPCWSTR)tmpbuf, -1, (LPSTR)outbuf, sizeof(outbuf), NULL, NULL);
-#endif
-
-    int len = strlen(outbuf);
-    unsigned char *p = (unsigned char *)outbuf;
+    int len = (int)strlen(x);
+    unsigned char *p = (unsigned char *)x;
 
     if (SDL_MUSTLOCK(screen)) SDL_LockSurface(screen);
 
@@ -308,148 +285,68 @@ DrawGraphZ (int a, int b, SDL_Surface * mx)
 void
 DrawTurnGraphZ (int a, int b, SDL_Surface * mx)
 {
-    if (mx)
+    if (mx && mx->format->BitsPerPixel == 32)
     {
-        SDL_Surface *flipped;
-        SDL_Rect offset;
-        offset.x = a;
-        offset.y = b;
+        if (SDL_MUSTLOCK (screen)) SDL_LockSurface (screen);
+        if (SDL_MUSTLOCK (mx)) SDL_LockSurface (mx);
 
-        /*
-         * zoomSurface() is bugged, try to copy manually [zapek]
-         */
-        if (mx->format->BitsPerPixel == 32)
+        Uint32 *src = (Uint32 *) mx->pixels;
+        Uint32 *dst = (Uint32 *) screen->pixels;
+
+        int i, j;
+
+        for (i = 0; i < mx->h; i++)
         {
-            int lockmx = false;
-            int lockflipped = false;
-
-            flipped = SDL_CreateRGBSurface (mx->flags, mx->w, mx->h,
-                                            mx->format->BitsPerPixel,
-                                            mx->format->Rmask,
-                                            mx->format->Gmask,
-                                            mx->format->Bmask,
-                                            mx->format->Amask);
-
-            if (SDL_MUSTLOCK (mx))
+            for (j = 0; j < mx->w; j++)
             {
-                lockmx = true;
-            }
-            if (SDL_MUSTLOCK (flipped))
-            {
-                lockflipped = true;
-            }
+                int x = a + j, y = b + i;
+                if (x < 0 || y < 0 || x >= screen->w || y >= screen->h)
+                    continue;
 
-            if (lockmx)
-            {
-                SDL_LockSurface (mx);
+                Uint32 pixel = src[(i + 1) * mx->pitch / 4 - j - 1];
+                if (pixel == SDL_MapRGB (mx->format, 9 * 16 + 9, 255, 255))
+                    continue;
+
+                dst[y * screen->pitch / 4 + x] = pixel;
             }
-
-            if (lockflipped)
-            {
-                SDL_LockSurface (flipped);
-            }
-
-            Uint32 *src = (Uint32 *) mx->pixels;
-            Uint32 *dst = (Uint32 *) flipped->pixels;
-
-            int i, j;
-
-            for (i = 0; i < mx->h; i++)
-            {
-                for (j = 0; j < mx->w; j++)
-                {
-                    dst[i * mx->w + j] = src[(i + 1) * mx->w - j - 1];
-                }
-            }
-
-            if (lockflipped)
-            {
-                SDL_UnlockSurface (flipped);
-            }
-            if (lockmx)
-            {
-                SDL_UnlockSurface (mx);
-            }
-
-            SDL_SetColorKey (flipped, SDL_SRCCOLORKEY,
-                             SDL_MapRGB (flipped->format, 9 * 16 + 9, 255, 255));
-            SDL_BlitSurface (flipped, NULL, screen, &offset);
-            SDL_FreeSurface (flipped);
         }
+
+        if (SDL_MUSTLOCK (screen)) SDL_UnlockSurface (screen);
+        if (SDL_MUSTLOCK (mx)) SDL_UnlockSurface (mx);
     }
 }
 
 void
 DrawVertTurnGraph (int a, int b, SDL_Surface * mx)
 {
-    if (mx)
+    if (mx && mx->format->BitsPerPixel == 32)
     {
-        SDL_Surface *flipped;
-        SDL_Rect offset;
-        offset.x = a;
-        offset.y = b;
+        if (SDL_MUSTLOCK (screen)) SDL_LockSurface (screen);
+        if (SDL_MUSTLOCK (mx)) SDL_LockSurface (mx);
 
-        /*
-         * zoomSurface() is bugged, try to copy manually [zapek]
-         */
-        if (mx->format->BitsPerPixel == 32)
+        Uint32 *src = (Uint32 *) mx->pixels;
+        Uint32 *dst = (Uint32 *) screen->pixels;
+
+        int i, j;
+
+        for (i = 0; i < mx->h; i++)
         {
-            int lockmx = false;
-            int lockflipped = false;
-
-            flipped = SDL_CreateRGBSurface (mx->flags, mx->w, mx->h,
-                                            mx->format->BitsPerPixel,
-                                            mx->format->Rmask,
-                                            mx->format->Gmask,
-                                            mx->format->Bmask,
-                                            mx->format->Amask);
-
-            if (SDL_MUSTLOCK (mx))
+            for (j = 0; j < mx->w; j++)
             {
-                lockmx = true;
-            }
-            if (SDL_MUSTLOCK (flipped))
-            {
-                lockflipped = true;
-            }
+                int x = a + j, y = b + i;
+                if (x < 0 || y < 0 || x >= screen->w || y >= screen->h)
+                    continue;
 
-            if (lockmx)
-            {
-                SDL_LockSurface (mx);
+                Uint32 pixel = src[(mx->h - i - 1) * mx->pitch / 4 + j];
+                if (pixel == SDL_MapRGB (mx->format, 9 * 16 + 9, 255, 255))
+                    continue;
+
+                dst[y * screen->pitch / 4 + x] = pixel;
             }
-
-            if (lockflipped)
-            {
-                SDL_LockSurface (flipped);
-            }
-
-            Uint32 *src = (Uint32 *) mx->pixels;
-            Uint32 *dst = (Uint32 *) flipped->pixels;
-
-            int i, j;
-
-            for (i = 0; i < mx->h; i++)
-            {
-                for (j = 0; j < mx->w; j++)
-                {
-                    dst[i * mx->w + j] = src[(mx->h - i - 1) * mx->w + j];
-                }
-            }
-
-            if (lockflipped)
-            {
-                SDL_UnlockSurface (flipped);
-            }
-            if (lockmx)
-            {
-                SDL_UnlockSurface (mx);
-            }
-
-            SDL_SetColorKey (flipped, SDL_SRCCOLORKEY,
-                             SDL_MapRGB (flipped->format, 9 * 16 + 9, 255, 255));
-            SDL_BlitSurface (flipped, NULL, screen, &offset);
-            SDL_FreeSurface (flipped);
         }
+
+        if (SDL_MUSTLOCK (screen)) SDL_UnlockSurface (screen);
+        if (SDL_MUSTLOCK (mx)) SDL_UnlockSurface (mx);
     }
 }
 

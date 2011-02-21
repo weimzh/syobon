@@ -1,4 +1,5 @@
 #include "main.h"
+#include "txtmsg.h"
 
 /* プログラムは WinMain から始まります */
 int
@@ -12,7 +13,6 @@ main (int argc, char *argv[])
     loadg ();
 
     /* ループ */
-//for (maint=0;maint<=2;maint++){
     while (ProcessMessage () == 0 && CheckHitKey (KEY_INPUT_ESCAPE) == 0)
     {
         UpdateKeys ();
@@ -33,7 +33,7 @@ rpaint ()
 
     /* ダブルバッファリング */
     setcolor (0, 0, 0);
-//if (stagecolor==1)setcolor(170,170,255);
+
     if (stagecolor == 1)
         setcolor (160, 180, 250);
     if (stagecolor == 2)
@@ -98,14 +98,11 @@ rpaint ()
                 if (ntype[t] == 101)
                     DrawFormatString (xx[0] / 100 + fma,
                                       xx[1] / 100 + fmb,
-                                      GetColor (255, 255,
-                                                255), "ゲームクリアー");
+                                      GetColor (255, 255, 255), txtmsg[0]);
                 if (ntype[t] == 102)
                     DrawFormatString (xx[0] / 100 + fma,
                                       xx[1] / 100 + fmb,
-                                      GetColor (255, 255,
-                                                255),
-                                      "プレイしてくれてありがとー");
+                                      GetColor (255, 255, 255), txtmsg[1]);
 
             }
         }			//t
@@ -215,15 +212,11 @@ rpaint ()
                                   (srb[t] - fy) / 100, src[t] / 100, 30);
 
                         setcolor (180, 120, 60);
-                        fillrect ((sra[t] - fx) / 100 +
-                                  20,
-                                  (srb[t] - fy) / 100 +
-                                  30, src[t] / 100 - 40, 480);
+                        fillrect ((sra[t] - fx) / 100 + 20,
+                                  (srb[t] - fy) / 100 + 30, src[t] / 100 - 40, 480);
                         setcolor (100, 80, 20);
-                        drawrect ((sra[t] - fx) / 100 +
-                                  20,
-                                  (srb[t] - fy) / 100 +
-                                  30, src[t] / 100 - 40, 480);
+                        drawrect ((sra[t] - fx) / 100 + 20,
+                                  (srb[t] - fy) / 100 + 30, src[t] / 100 - 40, 480);
 
                     }
                 }
@@ -233,8 +226,7 @@ rpaint ()
                     {
                         xx[6] = 1 + 0;
                         drawimage (grap[xx[6]][1],
-                                   (sra[t] - fx) / 100 +
-                                   t2 * 29, (srb[t] - fy) / 100);
+                                   (sra[t] - fx) / 100 + t2 * 29, (srb[t] - fy) / 100);
                     }
                 }		//15
             }
@@ -523,7 +515,6 @@ rpaint ()
 
                 if (txtype[t] != 10)
                 {
-
                     if (ttype[t] == 100 || ttype[t] == 101
                             || ttype[t] == 102
                             || ttype[t] == 103
@@ -639,11 +630,9 @@ rpaint ()
                               (sb[t] - fy) / 100 + fmb,
                               (sa[t] - fx) / 100 + fma,
                               (sb[t] - fy) / 100 + fmb + sd[t] / 100);
-                    drawline ((sa[t] - fx) / 100 + fma +
-                              sc[t] / 100,
+                    drawline ((sa[t] - fx) / 100 + fma + sc[t] / 100,
                               (sb[t] - fy) / 100 + fmb,
-                              (sa[t] - fx) / 100 + fma +
-                              sc[t] / 100,
+                              (sa[t] - fx) / 100 + fma + sc[t] / 100,
                               (sb[t] - fy) / 100 + fmb + sd[t] / 100);
                 }
                 /* 土管(横) */
@@ -656,13 +645,10 @@ rpaint ()
                     setc0 ();
                     drawline ((sa[t] - fx) / 100 + fma,
                               (sb[t] - fy) / 100 + fmb,
-                              (sa[t] - fx) / 100 + fma +
-                              sc[t] / 100, (sb[t] - fy) / 100 + fmb);
+                              (sa[t] - fx) / 100 + fma + sc[t] / 100, (sb[t] - fy) / 100 + fmb);
                     drawline ((sa[t] - fx) / 100 + fma,
-                              (sb[t] - fy) / 100 + fmb +
-                              sd[t] / 100,
-                              (sa[t] - fx) / 100 + fma +
-                              sc[t] / 100,
+                              (sb[t] - fy) / 100 + fmb + sd[t] / 100,
+                              (sa[t] - fx) / 100 + fma + sc[t] / 100,
                               (sb[t] - fy) / 100 + fmb + sd[t] / 100);
                 }
                 /* 落ちてくるブロック */
@@ -673,9 +659,7 @@ rpaint ()
                         for (t3 = 0; t3 <= sc[t] / 3000; t3++)
                         {
                             drawimage (grap[1][1],
-                                       (sa[t] -
-                                        fx) / 100 +
-                                       fma + 29 * t3, (sb[t] - fy) / 100 + fmb);
+                                       (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + fmb);
                         }
                     }
                     if (sxtype[t] == 1 || sxtype[t] == 2)
@@ -683,9 +667,7 @@ rpaint ()
                         for (t3 = 0; t3 <= sc[t] / 3000; t3++)
                         {
                             drawimage (grap[31][1],
-                                       (sa[t] -
-                                        fx) / 100 +
-                                       fma + 29 * t3, (sb[t] - fy) / 100 + fmb);
+                                       (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + fmb);
                         }
                     }
                     if (sxtype[t] == 3 || sxtype[t] == 4)
@@ -694,14 +676,7 @@ rpaint ()
                         {
                             for (t2 = 0; t2 <= sd[t] / 3000; t2++)
                             {
-                                drawimage (grap[65]
-                                           [1], (sa[t]
-                                                 -
-                                                 fx) /
-                                           100 + fma + 29 * t3, (sb[t]
-                                                                 -
-                                                                 fy) /
-                                           100 + 29 * t2 + fmb);
+                                drawimage (grap[65][1], (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + 29 * t2 + fmb);
                             }
                         }
                     }
@@ -710,10 +685,7 @@ rpaint ()
                     {
                         for (t3 = 0; t3 <= sc[t] / 3000; t3++)
                         {
-                            drawimage (grap[65][1],
-                                       (sa[t] -
-                                        fx) / 100 +
-                                       fma + 29 * t3, (sb[t] - fy) / 100 + fmb);
+                            drawimage (grap[65][1], (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + fmb);
                         }
                     }
 
@@ -740,33 +712,14 @@ rpaint ()
                     {
                         if (sxtype[t] == 0)
                         {
-                            drawimage (grap
-                                       [5 +
-                                        xx[29]][1],
-                                       (sa[t] -
-                                        fx) / 100 +
-                                       fma + 29 * t3, (sb[t] - fy) / 100 + fmb);
+                            drawimage (grap[5 + xx[29]][1], (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + fmb);
                             if (stagecolor != 4)
                             {
-                                drawimage (grap[6 + xx[29]]
-                                           [1], (sa[t]
-                                                 -
-                                                 fx) /
-                                           100 + fma + 29 * t3, (sb[t]
-                                                                 -
-                                                                 fy) /
-                                           100 + fmb + 29);
+                                drawimage (grap[6 + xx[29]][1], (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + fmb + 29);
                             }
                             else
                             {
-                                drawimage (grap[5 + xx[29]]
-                                           [1], (sa[t]
-                                                 -
-                                                 fx) /
-                                           100 + fma + 29 * t3, (sb[t]
-                                                                 -
-                                                                 fy) /
-                                           100 + fmb + 29);
+                                drawimage (grap[5 + xx[29]][1], (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + fmb + 29);
                             }
                         }
                         if (sxtype[t] == 1)
@@ -788,14 +741,7 @@ rpaint ()
                         {
                             for (t2 = 0; t2 <= sd[t] / 3000; t2++)
                             {
-                                drawimage (grap[5 + xx[29]]
-                                           [1], (sa[t]
-                                                 -
-                                                 fx) /
-                                           100 + fma + 29 * t3, (sb[t]
-                                                                 -
-                                                                 fy) /
-                                           100 + fmb + 29 * t2);
+                                drawimage (grap[5 + xx[29]][1], (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + fmb + 29 * t2);
                             }
                         }
 
@@ -811,10 +757,7 @@ rpaint ()
                             setc0 ();
                         if (stagecolor == 2 || stagecolor == 4)
                             setc1 ();
-                        drawrect ((sa[t] - fx) / 100 +
-                                  fma,
-                                  (sb[t] - fy) / 100 +
-                                  fmb, sc[t] / 100, sd[t] / 100);
+                        drawrect ((sa[t] - fx) / 100 + fma, (sb[t] - fy) / 100 + fmb, sc[t] / 100, sd[t] / 100);
                     }
                 }
                 /* ゴール */
@@ -892,11 +835,7 @@ rpaint ()
                     {
                         for (t2 = 0; t2 <= sd[t] / 3000; t2++)
                         {
-                            drawimage (grap[65][1],
-                                       (sa[t] -
-                                        fx) / 100 +
-                                       fma + 29 * t3,
-                                       (sb[t] - fy) / 100 + 29 * t2 + fmb);
+                            drawimage (grap[65][1], (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + 29 * t2 + fmb);
                         }
                     }
                 }
@@ -907,7 +846,6 @@ rpaint ()
         /* ファイアバー */
         for (t = 0; t < amax; t++)
         {
-
             xx[0] = aa[t] - fx;
             xx[1] = ab[t] - fy;
             xx[14] = 12000;
@@ -930,22 +868,18 @@ rpaint ()
                         xx[23] = 8;
                         if (atype[t] == 87)
                         {
-                            fillarc (xx[0] / 100 +
-                                     xx[24],
+                            fillarc (xx[0] / 100 + xx[24],
                                      xx[1] / 100 + xx[25], xx[23], xx[23]);
                             setcolor (0, 0, 0);
-                            drawarc (xx[0] / 100 +
-                                     xx[24],
+                            drawarc (xx[0] / 100 + xx[24],
                                      xx[1] / 100 + xx[25], xx[23], xx[23]);
                         }
                         else
                         {
-                            fillarc (xx[0] / 100 -
-                                     xx[24],
+                            fillarc (xx[0] / 100 - xx[24],
                                      xx[1] / 100 + xx[25], xx[23], xx[23]);
                             setcolor (0, 0, 0);
-                            drawarc (xx[0] / 100 -
-                                     xx[24],
+                            drawarc (xx[0] / 100 - xx[24],
                                      xx[1] / 100 + xx[25], xx[23], xx[23]);
                         }
                     }
@@ -962,34 +896,32 @@ rpaint ()
             xs[0] = "";
 
             if (mmsgtype == 1)
-                xs[0] = "お、おいしい!!";
+                xs[0] = txtmsg[2];
             if (mmsgtype == 2)
-                xs[0] = "毒は無いが……";
+                xs[0] = txtmsg[3];
             if (mmsgtype == 3)
-                xs[0] = "刺さった!!";
+                xs[0] = txtmsg[4];
             if (mmsgtype == 10)
-                xs[0] = "食べるべきではなかった!!";
+                xs[0] = txtmsg[5];
             if (mmsgtype == 11)
-                xs[0] = "俺は燃える男だ!!";
+                xs[0] = txtmsg[6];
             if (mmsgtype == 50)
-                xs[0] = "体が……焼ける……";
+                xs[0] = txtmsg[7];
             if (mmsgtype == 51)
-                xs[0] = "たーまやー!!";
+                xs[0] = txtmsg[8];
             if (mmsgtype == 52)
-                xs[0] = "見事にオワタ";
+                xs[0] = txtmsg[9];
             if (mmsgtype == 53)
-                xs[0] = "足が、足がぁ!!";
+                xs[0] = txtmsg[10];
             if (mmsgtype == 54)
-                xs[0] = "流石は摂氏800度!!";
+                xs[0] = txtmsg[11];
             if (mmsgtype == 55)
-                xs[0] = "溶岩と合体したい……";
-
+                xs[0] = txtmsg[12];
 
             ChangeFontType (DX_FONTTYPE_EDGE);
             setc1 ();
             str (xs[0], (ma + mnobia + 300) / 100, mb / 100);
             ChangeFontType (DX_FONTTYPE_NORMAL);
-
         }			//mmsgtm
 
         /* 敵キャラのメッセージ */
@@ -1003,102 +935,102 @@ rpaint ()
                 xs[0] = "";
 
                 if (amsgtype[t] == 1001)
-                    xs[0] = "ヤッフー!!";
+                    xs[0] = txtmsg[13];
                 if (amsgtype[t] == 1002)
-                    xs[0] = "え?俺勝っちゃったの?";
+                    xs[0] = txtmsg[14];
                 if (amsgtype[t] == 1003)
-                    xs[0] = "貴様の死に場所はここだ!";
+                    xs[0] = txtmsg[15];
                 if (amsgtype[t] == 1004)
-                    xs[0] = "二度と会う事もないだろう";
+                    xs[0] = txtmsg[16];
                 if (amsgtype[t] == 1005)
-                    xs[0] = "俺、最強!!";
+                    xs[0] = txtmsg[17];
                 if (amsgtype[t] == 1006)
-                    xs[0] = "一昨日来やがれ!!";
+                    xs[0] = txtmsg[18];
                 if (amsgtype[t] == 1007)
-                    xs[0] = "漢に後退の二文字は無い!!";
+                    xs[0] = txtmsg[19];
                 if (amsgtype[t] == 1008)
-                    xs[0] = "ハッハァ!!";
+                    xs[0] = txtmsg[20];
 
                 if (amsgtype[t] == 1011)
-                    xs[0] = "ヤッフー!!";
+                    xs[0] = txtmsg[21];
                 if (amsgtype[t] == 1012)
-                    xs[0] = "え?俺勝っちゃったの?";
+                    xs[0] = txtmsg[22];
                 if (amsgtype[t] == 1013)
-                    xs[0] = "貴様の死に場所はここだ!";
+                    xs[0] = txtmsg[23];
                 if (amsgtype[t] == 1014)
-                    xs[0] = "身の程知らずが……";
+                    xs[0] = txtmsg[24];
                 if (amsgtype[t] == 1015)
-                    xs[0] = "油断が死を招く";
+                    xs[0] = txtmsg[25];
                 if (amsgtype[t] == 1016)
-                    xs[0] = "おめでたい奴だ";
+                    xs[0] = txtmsg[26];
                 if (amsgtype[t] == 1017)
-                    xs[0] = "屑が!!";
+                    xs[0] = txtmsg[27];
                 if (amsgtype[t] == 1018)
-                    xs[0] = "無謀な……";
+                    xs[0] = txtmsg[28];
 
                 if (amsgtype[t] == 1021)
-                    xs[0] = "ヤッフー!!";
+                    xs[0] = txtmsg[29];
                 if (amsgtype[t] == 1022)
-                    xs[0] = "え?俺勝っちゃったの?";
+                    xs[0] = txtmsg[30];
                 if (amsgtype[t] == 1023)
-                    xs[0] = "二度と会う事もないだろう";
+                    xs[0] = txtmsg[31];
                 if (amsgtype[t] == 1024)
-                    xs[0] = "身の程知らずが……";
+                    xs[0] = txtmsg[32];
                 if (amsgtype[t] == 1025)
-                    xs[0] = "僕は……負けない!!";
+                    xs[0] = txtmsg[33];
                 if (amsgtype[t] == 1026)
-                    xs[0] = "貴様に見切れる筋は無い";
+                    xs[0] = txtmsg[34];
                 if (amsgtype[t] == 1027)
-                    xs[0] = "今死ね、すぐ死ね、骨まで砕けろ!!";
+                    xs[0] = txtmsg[35];
                 if (amsgtype[t] == 1028)
-                    xs[0] = "任務完了!!";
+                    xs[0] = txtmsg[36];
 
                 if (amsgtype[t] == 1031)
-                    xs[0] = "ヤッフー!!";
+                    xs[0] = txtmsg[37];
                 if (amsgtype[t] == 1032)
-                    xs[0] = "え?俺勝っちゃったの?";
+                    xs[0] = txtmsg[38];
                 if (amsgtype[t] == 1033)
-                    xs[0] = "貴様の死に場所はここだ!";
+                    xs[0] = txtmsg[39];
                 if (amsgtype[t] == 1034)
-                    xs[0] = "身の程知らずが……";
+                    xs[0] = txtmsg[40];
                 if (amsgtype[t] == 1035)
-                    xs[0] = "油断が死を招く";
+                    xs[0] = txtmsg[41];
                 if (amsgtype[t] == 1036)
-                    xs[0] = "おめでたい奴だ";
+                    xs[0] = txtmsg[42];
                 if (amsgtype[t] == 1037)
-                    xs[0] = "屑が!!";
+                    xs[0] = txtmsg[43];
                 if (amsgtype[t] == 1038)
-                    xs[0] = "無謀な……";
+                    xs[0] = txtmsg[44];
 
                 if (amsgtype[t] == 15)
-                    xs[0] = "鉄壁!!よって、無敵!!";
+                    xs[0] = txtmsg[45];
                 if (amsgtype[t] == 16)
-                    xs[0] = "丸腰で勝てるとでも?";
+                    xs[0] = txtmsg[46];
                 if (amsgtype[t] == 17)
-                    xs[0] = "パリイ!!";
+                    xs[0] = txtmsg[47];
                 if (amsgtype[t] == 18)
-                    xs[0] = "自業自得だ";
+                    xs[0] = txtmsg[48];
                 if (amsgtype[t] == 20)
                     xs[0] = "Zzz";
                 if (amsgtype[t] == 21)
-                    xs[0] = "ク、クマー";
+                    xs[0] = txtmsg[49];
                 if (amsgtype[t] == 24)
                     xs[0] = "?";
                 if (amsgtype[t] == 25)
-                    xs[0] = "食べるべきではなかった!!";
+                    xs[0] = txtmsg[50];
                 if (amsgtype[t] == 30)
-                    xs[0] = "うめぇ!!";
+                    xs[0] = txtmsg[51];
                 if (amsgtype[t] == 31)
-                    xs[0] = "ブロックを侮ったな?";
+                    xs[0] = txtmsg[52];
                 if (amsgtype[t] == 32)
-                    xs[0] = "シャキーン";
+                    xs[0] = txtmsg[53];
 
                 if (amsgtype[t] == 50)
-                    xs[0] = "波動砲!!";
+                    xs[0] = txtmsg[54];
                 if (amsgtype[t] == 85)
-                    xs[0] = "裏切られたとでも思ったか?";
+                    xs[0] = txtmsg[55];
                 if (amsgtype[t] == 86)
-                    xs[0] = "ポールアターック!!";
+                    xs[0] = txtmsg[56];
 
                 if (amsgtype[t] != 31)
                 {
@@ -1195,47 +1127,44 @@ rpaint ()
     {
 
         setcolor (255, 255, 255);
-        str ("制作・プレイに関わった方々",
+        str (txtmsg[57],
              240 - 13 * 20 / 2, xx[12] / 100);
-        str ("ステージ１　プレイ", 240 - 9 * 20 / 2, xx[13] / 100);
-        str ("先輩　X〜Z", 240 - 6 * 20 / 2, xx[14] / 100);
-        str ("ステージ２　プレイ", 240 - 9 * 20 / 2, xx[15] / 100);
-        str ("友人　willowlet ", 240 - 8 * 20 / 2, xx[16] / 100);
-        str ("ステージ３　プレイ", 240 - 9 * 20 / 2, xx[17] / 100);
-        str ("友人　willowlet ", 240 - 8 * 20 / 2, xx[18] / 100);
-        str ("ステージ４　プレイ", 240 - 9 * 20 / 2, xx[19] / 100);
-        str ("友人２　ann ", 240 - 6 * 20 / 2, xx[20] / 100);
-        str ("ご協力", 240 - 3 * 20 / 2, xx[21] / 100);
-        str ("Ｔ先輩", 240 - 3 * 20 / 2, xx[22] / 100);
-        str ("Ｓ先輩", 240 - 3 * 20 / 2, xx[23] / 100);
-        str ("動画技術提供", 240 - 6 * 20 / 2, xx[24] / 100);
-        str ("Ｋ先輩", 240 - 3 * 20 / 2, xx[25] / 100);
-        str ("動画キャプチャ・編集・エンコード",
+        str (txtmsg[58], 240 - 9 * 20 / 2, xx[13] / 100);
+        str (txtmsg[59], 240 - 6 * 20 / 2, xx[14] / 100);
+        str (txtmsg[60], 240 - 9 * 20 / 2, xx[15] / 100);
+        str (txtmsg[61], 240 - 8 * 20 / 2, xx[16] / 100);
+        str (txtmsg[62], 240 - 9 * 20 / 2, xx[17] / 100);
+        str (txtmsg[61], 240 - 8 * 20 / 2, xx[18] / 100);
+        str (txtmsg[63], 240 - 9 * 20 / 2, xx[19] / 100);
+        str (txtmsg[64], 240 - 6 * 20 / 2, xx[20] / 100);
+        str (txtmsg[65], 240 - 3 * 20 / 2, xx[21] / 100);
+        str (txtmsg[66], 240 - 3 * 20 / 2, xx[22] / 100);
+        str (txtmsg[67], 240 - 3 * 20 / 2, xx[23] / 100);
+        str (txtmsg[68], 240 - 6 * 20 / 2, xx[24] / 100);
+        str (txtmsg[69], 240 - 3 * 20 / 2, xx[25] / 100);
+        str (txtmsg[70],
              240 - 16 * 20 / 2, xx[26] / 100);
         str ("willowlet ", 240 - 5 * 20 / 2, xx[27] / 100);
-        str ("プログラム・描画・ネタ・動画編集",
+        str (txtmsg[71],
              240 - 16 * 20 / 2, xx[28] / 100);
-        str ("ちく", 240 - 2 * 20 / 2, xx[29] / 100);
+        str (txtmsg[72], 240 - 2 * 20 / 2, xx[29] / 100);
 
         str
-        ("プレイしていただき　ありがとうございました〜",
+        (txtmsg[73],
          240 - 22 * 20 / 2, xx[30] / 100);
     }
     /* Showing lives */
     if (mainZ == 10)
     {
-
         setc0 ();
         FillScreen ();
 
         drawimage (grap[0][0], 190, 190);
-        DrawFormatString (230, 200, GetColor (255, 255, 255), " × %d", nokori);
-
+        DrawFormatString (230, 200, GetColor (255, 255, 255), " x %d", nokori);
     }
     /* タイトル */
     if (mainZ == 100)
     {
-
         setcolor (160, 180, 250);
         fillrect (0, 0, fxmax, fymax);
 
@@ -1253,7 +1182,7 @@ rpaint ()
         }
 
         setcolor (0, 0, 0);
-        str ("Enter キーを押せ!!", 240 - 8 * 20 / 2, 250);
+        str (txtmsg[74], 240 - 8 * 20 / 2, 250);
 
     }
     ScreenFlip ();
@@ -1264,7 +1193,6 @@ rpaint ()
 void
 Mainprogram ()
 {
-
     stime = long (GetNowCount ());
 
     if (ending == 1)
@@ -1274,7 +1202,6 @@ Mainprogram ()
 
     if (mainZ == 1 && tmsgtype == 0)
     {
-
         if (zxon == 0)
         {
             zxon = 1;
@@ -1427,17 +1354,10 @@ Mainprogram ()
                     md = -1500;
                 }
             }
-// && xx[0]==0 && md<=-10
 
-//if (mjumptm==7 && md>=-900){}
             if (xx[0] == 0)
                 actaon[1] = 10;
         }
-//if (( key & PAD_INPUT_UP) && keytm<=0){actaon[0]=-1;mmuki=0;}
-
-//xx[0]=200;
-//if (actaon[0]==-1){ma-=xx[0];}
-//if (actaon[0]==1){ma+=xx[0];}
 
         /* 加速による移動 */
         xx[0] = 40;
@@ -1454,7 +1374,7 @@ Mainprogram ()
             xx[12] = 9;
             xx[13] = 10;
         }
-//if (mzimen==0){xx[0]-=15;}
+
         if (actaon[0] == -1)
         {
             if (!(mzimen == 0 && mc < -xx[8]))
@@ -1543,34 +1463,13 @@ Mainprogram ()
             md = -1200;
             mjumptm = 10;
 
-//PlaySound( "jump.mp3" , DX_PLAYTYPE_NORMAL ) ;
-
-//PlayMusic( "SE/jump.mp3" , DX_PLAYTYPE_NORMAL ) ;
-
-//PlaySoundMem( oto[1], DX_PLAYTYPE_NORMAL ) ;
-
-//PlaySoundMem( oto[1], DX_PLAYTYPE_BACK) ;
             ot (oto[1]);
-
-            /*
-            md=-1040;
-            xx[1]=600;if (mc>xx[1] || mc<=-xx[1]){md=-1400;}
-            xx[1]=7;xx[2]=400;
-            if (mkasok>xx[1] && (mc>xx[2] || mc<=-xx[2])){
-            md=-1600;
-            if (mc>=800 || mc<=-800){md=-1800;}
-            }
-            */
 
             mzimen = 0;
 
         }
         if (actaon[1] <= 9)
             actaon[1] = 0;
-
-//if (actaon[1]==1){my+=xx[1];actaon[1]=0;}
-
-//}//陸地
 
         if (mmutekitm >= -1)
             mmutekitm--;
@@ -1587,7 +1486,7 @@ Mainprogram ()
             ot (oto[12]);
             StopSoundMem (oto[16]);
         }			//mhp
-//if (mhp<=-10){
+
         if (mtype == 200)
         {
             if (mtm <= 11)
@@ -1739,7 +1638,7 @@ Mainprogram ()
                     if (mtm <= 16 && mxtype != 3)
                     {
                         mb += 240;
-                    }		//mzz=100;}
+                    }
                     if (mtm <= 16 && mxtype == 3)
                     {
                         ma += 240;
@@ -1811,7 +1710,7 @@ Mainprogram ()
                     mainZ = 10;
                     maintm = 0;
                 }
-            }			//mtype==300
+            }
 
             if (mtype == 301 || mtype == 302)
             {
@@ -1892,23 +1791,14 @@ Mainprogram ()
                         maintm = 0;
                     }
                 }
-
-                /*
-                if (mtm<=1){mc=0;md=0;}
-                if (mtm>=2 && mtm<=42){md=600;mmuki=1;}
-                if (mtm>43 && mtm<=108){mc=300;}
-                if (mtm==110){mb=-80000000;mc=0;}
-                if (mtm==250)end();
-                */
             }			//mtype==301
-
         }			//mtype>=100
 
         /* 移動 */
         if (mkeytm >= 1)
         {
             mkeytm--;
-        }			//mc=0;}
+        }
         ma += mc;
         mb += md;
         if (mc < 0)
@@ -2007,7 +1897,7 @@ Mainprogram ()
                 mc = 0;
             }
         }
-//if (mb>=42000){mb=42000;mzimen=1;}
+
         if (mb >= 38000 && mhp >= 0 && stagecolor == 4)
         {
             mhp = -2;
@@ -2027,9 +1917,9 @@ Mainprogram ()
             xx[0] = 200;
             xx[1] = 3000;
             xx[2] = 1000;
-            xx[3] = 3000;		//xx[2]=1000
+            xx[3] = 3000;
             xx[8] = ta[t] - fx;
-            xx[9] = tb[t] - fy;	//xx[15]=0;
+            xx[9] = tb[t] - fy;
             if (ta[t] - fx + xx[1] >= -10 - xx[3]
                     && ta[t] - fx <= fxmax + 12000 + xx[3])
             {
@@ -2037,9 +1927,7 @@ Mainprogram ()
                 {
                     if (ttype[t] < 1000 && ttype[t] != 800 && ttype[t] != 140
                             && ttype[t] != 141)
-                    {   // && ttype[t]!=5){
-
-//if (!(mztm>=1 && mztype==1 && actaon[3]==1)){
+                    {
                         if (!(mztype == 1))
                         {
                             xx[16] = 0;
@@ -2073,34 +1961,14 @@ Mainprogram ()
                                     else if (ttype[t] == 115)
                                     {
                                         ot (oto[3]);
-                                        eyobi (ta[t]
-                                               + 1200, tb[t]
-                                               +
-                                               1200,
-                                               300,
-                                               -1000,
-                                               0, 160, 1000, 1000, 1, 120);
-                                        eyobi (ta[t]
-                                               + 1200, tb[t]
-                                               +
-                                               1200,
-                                               -300,
-                                               -1000,
-                                               0, 160, 1000, 1000, 1, 120);
-                                        eyobi (ta[t]
-                                               + 1200, tb[t]
-                                               +
-                                               1200,
-                                               240,
-                                               -1400,
-                                               0, 160, 1000, 1000, 1, 120);
-                                        eyobi (ta[t]
-                                               + 1200, tb[t]
-                                               +
-                                               1200,
-                                               -240,
-                                               -1400,
-                                               0, 160, 1000, 1000, 1, 120);
+                                        eyobi (ta[t] + 1200, tb[t] + 1200,
+                                               300, -1000, 0, 160, 1000, 1000, 1, 120);
+                                        eyobi (ta[t] + 1200, tb[t] + 1200,
+                                               -300, -1000, 0, 160, 1000, 1000, 1, 120);
+                                        eyobi (ta[t] + 1200, tb[t] + 1200,
+                                               240, -1400, 0, 160, 1000, 1000, 1, 120);
+                                        eyobi (ta[t] + 1200, tb[t] + 1200,
+                                               -240, -1400, 0, 160, 1000, 1000, 1, 120);
                                         brockbreak (t);
                                     }
                                     /* Pスイッチ */
@@ -2137,7 +2005,6 @@ Mainprogram ()
                                     /* ジャンプ台 */
                                     else if (ttype[t] == 120)
                                     {
-//txtype[t]=0;
                                         md = -2400;
                                         mtype = 3;
                                         mtm = 0;
@@ -2147,12 +2014,11 @@ Mainprogram ()
                             }
                         }	//!
 
-//sstr=""+mjumptm;
                         /* ブロック判定の入れ替え */
                         if (!(mztm >= 1 && mztype == 1))
                         {
                             xx[21] = 0;
-                            xx[22] = 1;	//xx[12]=0;
+                            xx[22] = 1;
                             if (mzimen == 1 || mjumptm >= 10)
                             {
                                 xx[21] = 3;
@@ -2160,20 +2026,14 @@ Mainprogram ()
                             }
                             for (t3 = 0; t3 <= 1; t3++)
                             {
-
                                 /* 下 */
                                 if (t3 == xx[21] && mtype != 100
                                         && ttype[t] != 117)
-                                {   // && xx[12]==0){
-                                    if (ma + mnobia > xx[8]
-                                            + xx[0]
-                                            * 2 + 800 && ma < xx[8]
-                                            + xx[1]
-                                            - xx[0]
-                                            * 2 - 800 && mb > xx[9]
-                                            - xx[0]
-                                            * 2 && mb < xx[9]
-                                            + xx[1] - xx[0] * 2 && md <= 0)
+                                {
+                                    if (ma + mnobia > xx[8] + xx[0] * 2 + 800
+                                            && ma < xx[8] + xx[1] - xx[0] * 2 - 800
+                                            && mb > xx[9] - xx[0] * 2
+                                            && mb < xx[9] + xx[1] - xx[0] * 2 && md <= 0)
                                     {
                                         xx[16] = 1;
                                         xx[17] = 1;
@@ -2181,67 +2041,35 @@ Mainprogram ()
                                         if (md < 0)
                                         {
                                             md = -md * 2 / 3;
-                                        }	//}
+                                        }
                                         /* 壊れる */
                                         if (ttype[t] == 1 && mzimen == 0)
                                         {
                                             ot (oto[3]);
-                                            eyobi (ta[t]
-                                                   + 1200, tb[t]
-                                                   +
-                                                   1200,
-                                                   300,
-                                                   -1000,
-                                                   0, 160, 1000, 1000, 1, 120);
-                                            eyobi (ta[t]
-                                                   + 1200, tb[t]
-                                                   +
-                                                   1200,
-                                                   -300,
-                                                   -1000,
-                                                   0, 160, 1000, 1000, 1, 120);
-                                            eyobi (ta[t]
-                                                   + 1200, tb[t]
-                                                   +
-                                                   1200,
-                                                   240,
-                                                   -1400,
-                                                   0, 160, 1000, 1000, 1, 120);
-                                            eyobi (ta[t]
-                                                   + 1200, tb[t]
-                                                   +
-                                                   1200,
-                                                   -240,
-                                                   -1400,
-                                                   0, 160, 1000, 1000, 1, 120);
+                                            eyobi (ta[t] + 1200, tb[t] + 1200,
+                                                   300, -1000, 0, 160, 1000, 1000, 1, 120);
+                                            eyobi (ta[t] + 1200, tb[t] + 1200,
+                                                   -300, -1000, 0, 160, 1000, 1000, 1, 120);
+                                            eyobi (ta[t] + 1200, tb[t] + 1200,
+                                                   240, -1400, 0, 160, 1000, 1000, 1, 120);
+                                            eyobi (ta[t] + 1200, tb[t] + 1200,
+                                                   -240, -1400, 0, 160, 1000, 1000, 1, 120);
                                             brockbreak (t);
                                         }
                                         /* コイン */
                                         if (ttype[t] == 2 && mzimen == 0)
                                         {
                                             ot (oto[4]);
-                                            eyobi (ta[t]
-                                                   +
-                                                   10,
-                                                   tb
-                                                   [t],
-                                                   0,
-                                                   -800,
-                                                   0, 40, 3000, 3000, 0, 16);
+                                            eyobi (ta[t] + 10, tb[t], 0,
+                                                   -800, 0, 40, 3000, 3000, 0, 16);
                                             ttype[t] = 3;
                                         }
                                         /* 隠し */
                                         if (ttype[t] == 7)
                                         {
                                             ot (oto[4]);
-                                            eyobi (ta[t]
-                                                   +
-                                                   10,
-                                                   tb
-                                                   [t],
-                                                   0,
-                                                   -800,
-                                                   0, 40, 3000, 3000, 0, 16);
+                                            eyobi (ta[t] + 10, tb[t],
+                                                   0, -800, 0, 40, 3000, 3000, 0, 16);
                                             mb = xx[9] + xx[1] + xx[0];
                                             ttype[t] = 3;
                                             if (md < 0)
@@ -2265,40 +2093,26 @@ Mainprogram ()
                                             && ttype[t] != 117)
                                     {
                                         if (!(ttype[t] == 114))
-                                        {   // && txtype[t]==1)){
+                                        {
                                             if (ta[t] >= -20000)
                                             {
-//if (ma+mnobia>xx[8] && ma<xx[8]+xx[2] && mb+mnobib>xx[9]+xx[1]/2-xx[0] &&){
                                                 if (ma + mnobia > xx[8]
-                                                        && ma < xx[8]
-                                                        + xx[2]
-                                                        && mb + mnobib > xx[9]
-                                                        + xx[1]
-                                                        / 2 - xx[0]
-                                                        && mb < xx[9]
-                                                        + xx[2] && mc >= 0)
+                                                        && ma < xx[8] + xx[2]
+                                                        && mb + mnobib > xx[9] + xx[1] / 2 - xx[0]
+                                                        && mb < xx[9] + xx[2] && mc >= 0)
                                                 {
                                                     ma = xx[8] - mnobia;
                                                     mc = 0;
                                                     xx[16] = 1;
-//if (ttype[t]!=4){ma=xx[8]-mnobia;mc=0;xx[16]=1;}
-//if (ttype[t]==4){ma=xx[8]-mnobia;mc=-mc*4/4;}
                                                 }
-                                                if (ma + mnobia >
-                                                        xx[8] + xx[2]
-                                                        && ma < xx[8]
-                                                        + xx[1]
-                                                        && mb + mnobib > xx[9]
-                                                        + xx[1]
-                                                        / 2 - xx[0]
-                                                        && mb < xx[9]
-                                                        + xx[2] && mc <= 0)
+                                                if (ma + mnobia > xx[8] + xx[2]
+                                                        && ma < xx[8] + xx[1]
+                                                        && mb + mnobib > xx[9] + xx[1] / 2 - xx[0]
+                                                        && mb < xx[9] + xx[2] && mc <= 0)
                                                 {
                                                     ma = xx[8] + xx[1];
                                                     mc = 0;
-                                                    xx[16] = 1;	//end();
-//if (ttype[t]!=4){ma=xx[8]+xx[1];mc=0;xx[16]=1;}
-//if (ttype[t]==4){ma=xx[8]+xx[1];mc=-mc*4/4;}
+                                                    xx[16] = 1;
                                                 }
                                             }
                                         }
@@ -2307,17 +2121,12 @@ Mainprogram ()
 
                             }	//t3
                         }	//!
-
                     }		// && ttype[t]<50
 
                     if (ttype[t] == 800)
                     {
-//if (xx[0]+xx[2]>=-xx[14] && xx[0]<=fxmax+xx[14] && xx[1]+xx[3]>=-10-9000 && xx[1]<=fymax+10000){
-                        if (mb >
-                                xx[9] - xx[0] * 2 - 2000
-                                && mb <
-                                xx[9] + xx[1] - xx[0] * 2 +
-                                2000
+                        if (mb > xx[9] - xx[0] * 2 - 2000
+                                && mb < xx[9] + xx[1] - xx[0] * 2 + 2000
                                 && ma + mnobia > xx[8] - 400 && ma < xx[8] + xx[1])
                         {
                             ta[t] = -800000;
@@ -2327,31 +2136,24 @@ Mainprogram ()
                     /* 剣とってクリア */
                     if (ttype[t] == 140)
                     {
-                        if (mb >
-                                xx[9] - xx[0] * 2 - 2000
-                                && mb <
-                                xx[9] + xx[1] - xx[0] * 2 +
-                                2000
+                        if (mb > xx[9] - xx[0] * 2 - 2000
+                                && mb < xx[9] + xx[1] - xx[0] * 2 + 2000
                                 && ma + mnobia > xx[8] - 400 && ma < xx[8] + xx[1])
                         {
-                            ta[t] = -800000;	//ot(oto[4]);
+                            ta[t] = -800000;
                             sracttype[20] = 1;
                             sron[20] = 1;
                             Mix_HaltMusic ();
                             mtype = 301;
                             mtm = 0;
                             ot (oto[16]);
-
                         }
                     }
                     /* 特殊的 */
                     if (ttype[t] == 100)
-                    {   //xx[9]+xx[1]+3000<mb && // && mb>xx[9]-xx[0]*2
-                        if (mb >
-                                xx[9] - xx[0] * 2 - 2000
-                                && mb <
-                                xx[9] + xx[1] - xx[0] * 2 +
-                                2000
+                    {
+                        if (mb > xx[9] - xx[0] * 2 - 2000
+                                && mb < xx[9] + xx[1] - xx[0] * 2 + 2000
                                 && ma + mnobia > xx[8] - 400
                                 && ma < xx[8] + xx[1] && md <= 0)
                         {
@@ -2363,16 +2165,11 @@ Mainprogram ()
                         {
                             if (xx[17] == 1)
                             {
-                                if (ma +
-                                        mnobia >
-                                        xx[8] - 400
-                                        && ma < xx[8] + xx[1] / 2 - 1500)
+                                if (ma + mnobia > xx[8] - 400 && ma < xx[8] + xx[1] / 2 - 1500)
                                 {
                                     ta[t] += 3000;
                                 }
-                                else if (ma + mnobia >= xx[8]
-                                         + xx[1]
-                                         / 2 - 1500 && ma < xx[8] + xx[1])
+                                else if (ma + mnobia >= xx[8] + xx[1] / 2 - 1500 && ma < xx[8] + xx[1])
                                 {
                                     ta[t] -= 3000;
                                 }
@@ -2390,7 +2187,7 @@ Mainprogram ()
 
                     /* 敵出現 */
                     if (ttype[t] == 101)
-                    {   //xx[9]+xx[1]+3000<mb && // && mb>xx[9]-xx[0]*2
+                    {
                         if (xx[17] == 1)
                         {
                             ot (oto[8]);
@@ -2495,7 +2292,6 @@ Mainprogram ()
                             ot (oto[4]);
                             eyobi (ta[t] + 10, tb[t],
                                    0, -800, 0, 40, 3000, 3000, 0, 16);
-//ttype[t]=3;
                         }
                     }
                     /* 隠し毒きのこ */
@@ -2513,8 +2309,7 @@ Mainprogram ()
                             if (txtype[t] == 2)
                             {
                                 ot (oto[4]);
-                                eyobi (ta[t] +
-                                       10, tb[t],
+                                eyobi (ta[t] + 10, tb[t],
                                        0, -800, 0, 40, 3000, 3000, 0, 16);
                                 ttype[t] = 115;
                                 txtype[t] = 0;
@@ -2541,11 +2336,7 @@ Mainprogram ()
                                 else
                                 {
                                     ot (oto[4]);
-                                    eyobi (ta[t]
-                                           +
-                                           10,
-                                           tb
-                                           [t],
+                                    eyobi (ta[t] + 10, tb[t],
                                            0, -800, 0, 40, 3000, 3000, 0, 16);
                                     ttype[t] = 3;
                                 }
@@ -2566,8 +2357,8 @@ Mainprogram ()
                         if (xx[17] == 1)
                         {
                             ot (oto[8]);
-//ot(oto[13]);
-                            ttype[t] = 3;	//abrocktm[aco]=18;ayobi(ta[t],tb[t],0,0,0,104,1);
+
+                            ttype[t] = 3;
                             tyobi (ta[t] / 100, (tb[t] / 100) - 29, 400);
                         }
                     }		//116
@@ -2654,17 +2445,13 @@ Mainprogram ()
                         if (xx[17] == 1)
                         {
                             ot (oto[3]);
-                            eyobi (ta[t] + 1200,
-                                   tb[t] + 1200, 300,
+                            eyobi (ta[t] + 1200, tb[t] + 1200, 300,
                                    -1000, 0, 160, 1000, 1000, 1, 120);
-                            eyobi (ta[t] + 1200,
-                                   tb[t] + 1200,
+                            eyobi (ta[t] + 1200, tb[t] + 1200,
                                    -300, -1000, 0, 160, 1000, 1000, 1, 120);
-                            eyobi (ta[t] + 1200,
-                                   tb[t] + 1200, 240,
+                            eyobi (ta[t] + 1200, tb[t] + 1200, 240,
                                    -1400, 0, 160, 1000, 1000, 1, 120);
-                            eyobi (ta[t] + 1200,
-                                   tb[t] + 1200,
+                            eyobi (ta[t] + 1200, tb[t] + 1200,
                                    -240, -1400, 0, 160, 1000, 1000, 1, 120);
                             brockbreak (t);
                         }
@@ -2673,23 +2460,17 @@ Mainprogram ()
                 }
                 else if (mtype == 1)
                 {
-                    if (ma + mnobia > xx[8]
-                            && ma < xx[8] + xx[1]
+                    if (ma + mnobia > xx[8] && ma < xx[8] + xx[1]
                             && mb + mnobib > xx[9] && mb < xx[9] + xx[1])
                     {
-
                         ot (oto[3]);
-                        eyobi (ta[t] + 1200,
-                               tb[t] + 1200, 300, -1000,
+                        eyobi (ta[t] + 1200, tb[t] + 1200, 300, -1000,
                                0, 160, 1000, 1000, 1, 120);
-                        eyobi (ta[t] + 1200,
-                               tb[t] + 1200, -300, -1000,
+                        eyobi (ta[t] + 1200, tb[t] + 1200, -300, -1000,
                                0, 160, 1000, 1000, 1, 120);
-                        eyobi (ta[t] + 1200,
-                               tb[t] + 1200, 240, -1400,
+                        eyobi (ta[t] + 1200, tb[t] + 1200, 240, -1400,
                                0, 160, 1000, 1000, 1, 120);
-                        eyobi (ta[t] + 1200,
-                               tb[t] + 1200, -240, -1400,
+                        eyobi (ta[t] + 1200, tb[t] + 1200, -240, -1400,
                                0, 160, 1000, 1000, 1, 120);
                         brockbreak (t);
 
@@ -2708,7 +2489,7 @@ Mainprogram ()
                 if (ttype[t] == 300)
                 {
                     if (txtype[t] >= 500 && ta[t] >= -6000)
-                    {   // && ta[t]>=-6000){
+                    {
                         if (txtype[t] <= 539)
                             txtype[t]++;
                         if (txtype[t] >= 540)
@@ -2739,8 +2520,7 @@ Mainprogram ()
                     /* おちるブロック */
                     if (stype[t] == 51)
                     {
-                        if (ma + mnobia >
-                                xx[8] + xx[0] + 3000
+                        if (ma + mnobia > xx[8] + xx[0] + 3000
                                 && ma < xx[8] + sc[t] - xx[0]
                                 && mb + mnobib > xx[9] + 3000 && sgtype[t] == 0)
                         {
@@ -2750,8 +2530,7 @@ Mainprogram ()
                                 sr[t] = 0;
                             }
                         }
-                        if (ma + mnobia >
-                                xx[8] + xx[0] + 1000
+                        if (ma + mnobia > xx[8] + xx[0] + 1000
                                 && ma < xx[8] + sc[t] - xx[0]
                                 && mb + mnobib > xx[9] + 3000 && sgtype[t] == 0)
                         {
@@ -2762,28 +2541,23 @@ Mainprogram ()
                             }
                         }
 
-                        if ((sxtype[t] == 1)
-                                && sb[27] >= 25000
+                        if ((sxtype[t] == 1) && sb[27] >= 25000
                                 && sa[27] > ma + mnobia
                                 && t != 27 && sgtype[t] == 0)
                         {
                             sgtype[t] = 1;
                             sr[t] = 0;
                         }
-                        if (sxtype[t] == 2
-                                && sb[28] >= 48000
+                        if (sxtype[t] == 2 && sb[28] >= 48000
                                 && t != 28 && sgtype[t] == 0 && mhp >= 1)
                         {
                             sgtype[t] = 1;
                             sr[t] = 0;
                         }
                         if ((sxtype[t] == 3
-                                && mb >= 30000
-                                || sxtype[t] == 4 && mb >= 25000)
-                                && sgtype[t] == 0
-                                && mhp >= 1
-                                && ma + mnobia >
-                                xx[8] + xx[0] + 3000 - 300
+                                && mb >= 30000 || sxtype[t] == 4 && mb >= 25000)
+                                && sgtype[t] == 0 && mhp >= 1
+                                && ma + mnobia > xx[8] + xx[0] + 3000 - 300
                                 && ma < xx[8] + sc[t] - xx[0])
                         {
                             sgtype[t] = 1;
@@ -2814,10 +2588,8 @@ Mainprogram ()
                     if (stype[t] == 52)
                     {
                         if (sgtype[t] == 0
-                                && ma + mnobia >
-                                xx[8] + xx[0] + 2000
-                                && ma <
-                                xx[8] + sc[t] - xx[0] - 2500
+                                && ma + mnobia > xx[8] + xx[0] + 2000
+                                && ma < xx[8] + sc[t] - xx[0] - 2500
                                 && mb + mnobib > xx[9] - 3000)
                         {
                             sgtype[t] = 1;
@@ -2847,24 +2619,20 @@ Mainprogram ()
                         }
                         if (ma + mnobia > xx[8] - xx[0]
                                 && ma < xx[8] + xx[2]
-                                && mb + mnobib >
-                                xx[9] + xx[1] * 3 / 4 && mb < xx[9] + sd[t] - xx[2])
+                                && mb + mnobib > xx[9] + xx[1] * 3 / 4 && mb < xx[9] + sd[t] - xx[2])
                         {
                             ma = xx[8] - xx[0] - mnobia;
                             mc = 0;
                         }
                         if (ma + mnobia > xx[8] + sc[t] - xx[0]
                                 && ma < xx[8] + sc[t] + xx[0]
-                                && mb + mnobib >
-                                xx[9] + xx[1] * 3 / 4 && mb < xx[9] + sd[t] - xx[2])
+                                && mb + mnobib > xx[9] + xx[1] * 3 / 4 && mb < xx[9] + sd[t] - xx[2])
                         {
                             ma = xx[8] + sc[t] + xx[0];
                             mc = 0;
                         }
-                        if (ma + mnobia >
-                                xx[8] + xx[0] * 2
-                                && ma <
-                                xx[8] + sc[t] - xx[0] * 2
+                        if (ma + mnobia > xx[8] + xx[0] * 2
+                                && ma < xx[8] + sc[t] - xx[0] * 2
                                 && mb > xx[9] + sd[t] - xx[1]
                                 && mb < xx[9] + sd[t] + xx[0])
                         {
@@ -2881,10 +2649,8 @@ Mainprogram ()
                     {
                         if (ma + mnobia > xx[8] + 2800
                                 && ma < xx[8] + sc[t] - 3000
-                                && mb + mnobib >
-                                xx[9] - 1000
-                                && mb + mnobib <
-                                xx[9] + xx[1] + 3000
+                                && mb + mnobib > xx[9] - 1000
+                                && mb + mnobib < xx[9] + xx[1] + 3000
                                 && mzimen == 1 && actaon[3] == 1 && mtype == 0)
                         {
                             /* 飛び出し */
@@ -2936,7 +2702,7 @@ Mainprogram ()
                                 && ma < xx[8] + sc[t] - 1000 && mb > xx[9] + 1000
                                 && mb + mnobib < xx[9] + xx[1] + 4000 && mzimen == 1
                                 && actaon[4] == 1 && mtype == 0)
-                        {   //end();
+                        {
                             /* 飛び出し */
                             if (sxtype[t] == 0)
                             {
@@ -2994,8 +2760,7 @@ Mainprogram ()
                             {
                                 for (t3 = 0; t3 <= 3; t3++)
                                 {
-                                    ayobi (sa[t]
-                                           + t3 * 3000, -3000, 0, 0, 0, 0, 0);
+                                    ayobi (sa[t] + t3 * 3000, -3000, 0, 0, 0, 0, 0);
                                 }
                             }
                             if (sxtype[t] == 1 && mb >= 16000)
@@ -3028,21 +2793,14 @@ Mainprogram ()
                             }
                             else if (sxtype[t] == 8)
                             {
-                                ayobi (sa[t] -
-                                       5000 -
-                                       3000 * 1, 26000, 0, -1600, 0, 5, 0);
+                                ayobi (sa[t] - 5000 - 3000 * 1, 26000, 0, -1600, 0, 5, 0);
                                 ot (oto[10]);
                             }
                             else if (sxtype[t] == 9)
                             {
                                 for (t3 = 0; t3 <= 2; t3++)
                                 {
-                                    ayobi (sa[t]
-                                           +
-                                           t3
-                                           *
-                                           3000
-                                           + 3000, 48000, 0, -6000, 0, 3, 0);
+                                    ayobi (sa[t] + t3 * 3000 + 3000, 48000, 0, -6000, 0, 3, 0);
                                 }
                             }
                             if (sxtype[t] == 10)
@@ -3055,12 +2813,7 @@ Mainprogram ()
                             {
                                 for (t3 = 1; t3 <= 3; t3++)
                                 {
-                                    ayobi (sa[t]
-                                           +
-                                           t3
-                                           *
-                                           3000
-                                           - 1000, 40000, 0, -2600, 0, 9, 0);
+                                    ayobi (sa[t] + t3 * 3000 - 1000, 40000, 0, -2600, 0, 9, 0);
                                 }
                             }
                             /* スクロール消し */
@@ -3092,8 +2845,7 @@ Mainprogram ()
                             {
                                 amsgtm[aco] = 10;
                                 amsgtype[aco] = 50;
-                                ayobi (sa[t] +
-                                       9000, sb[t] + 2000, 0, 0, 0, 79, 0);
+                                ayobi (sa[t] + 9000, sb[t] + 2000, 0, 0, 0, 79, 0);
                                 sa[t] = -800000000;
                             }
 
@@ -3101,10 +2853,9 @@ Mainprogram ()
                             {
                                 amsgtm[aco] = 10;
                                 amsgtype[aco] = 50;
-                                ayobi (sa[t] -
-                                       12000, sb[t] + 2000, 0, 0, 0, 79, 0);
+                                ayobi (sa[t] - 12000, sb[t] + 2000, 0, 0, 0, 79, 0);
                                 sa[t] = -800000000;
-                                txtype[9] = 500;	//ttype[9]=1;
+                                txtype[9] = 500;
                             }
                         }	//103
 
@@ -3112,20 +2863,15 @@ Mainprogram ()
                         {
                             if (sxtype[t] == 0)
                             {
-                                ayobi (sa[t] +
-                                       12000,
+                                ayobi (sa[t] + 12000,
                                        sb[t] + 2000 + 3000, 0, 0, 0, 79, 0);
-                                ayobi (sa[t] +
-                                       12000,
+                                ayobi (sa[t] + 12000,
                                        sb[t] + 2000 + 3000, 0, 0, 0, 79, 1);
-                                ayobi (sa[t] +
-                                       12000,
+                                ayobi (sa[t] + 12000,
                                        sb[t] + 2000 + 3000, 0, 0, 0, 79, 2);
-                                ayobi (sa[t] +
-                                       12000,
+                                ayobi (sa[t] + 12000,
                                        sb[t] + 2000 + 3000, 0, 0, 0, 79, 3);
-                                ayobi (sa[t] +
-                                       12000,
+                                ayobi (sa[t] + 12000,
                                        sb[t] + 2000 + 3000, 0, 0, 0, 79, 4);
                                 sa[t] = -800000000;
                             }
@@ -3166,8 +2912,7 @@ Mainprogram ()
                         {
                             sr[t] = 0;
                             ayobi (sa[t], 30000,
-                                   rand (600) - 300,
-                                   -1600 - rand (900), 0, 84, 0);
+                                   rand (600) - 300, -1600 - rand (900), 0, 84, 0);
                         }
                     }
 
@@ -3176,7 +2921,6 @@ Mainprogram ()
         }			/* 壁 */
 
         /* キー入力初期化 */
-//for (t=0;t<=6;t++)
         actaon[0] = 0;
         actaon[4] = 0;
 
@@ -3199,14 +2943,12 @@ Mainprogram ()
                 {
                     xx[1] = 900 + md;
                 }
-//if (srtype[t]==1){xx[0]=600;}
+
                 if (md > xx[1])
                     xx[1] = md + 100;
-//xx[18]=0;
 
                 srb[t] += sre[t];
                 sre[t] += srf[t];
-//if (srf[t]>=500)srf[t]=0;
 
                 /* 動き */
                 switch (sracttype[t])
@@ -3218,26 +2960,10 @@ Mainprogram ()
                     break;
 
                 case 2:
-                    /*
-                    if (sra[t]<=srmovep[t]-srmove[t])srmuki[t]=1;
-                    if (sra[t]>=srmovep[t]+srmove[t])srmuki[t]=0;
-                    */
                     break;
 
                 case 3:
-                    /*
-                    if (srb[t]<=srmovep[t]-srmove[t])srmuki[t]=1;
-                    if (srb[t]>=srmovep[t]+srmove[t])srmuki[t]=0;
-                    */
                     break;
-
-                    /*
-                    case 4:
-                    if (srmove[t]==0){srmuki[t]=0;}else{srmuki[t]=1;}
-                    if (sra[t]-fx<-1100-src[t]){sra[t]=fymax+fx+scrollx;}
-                    if (sra[t]-fx>24000+scrollx){sra[t]=-1100-src[t]+fx;}
-                    break;
-                    */
 
                 case 5:
                     if (srmove[t] == 0)
@@ -3265,10 +2991,7 @@ Mainprogram ()
 
                 case 7:
                     break;
-
                 }		//sw
-
-//if (srtype[t]==1){sre[10]=300;sre[11]=300;}
 
                 /* 乗ったとき */
                 if (!(mztm >= 1 && mztype == 1 && actaon[3] == 1) && mhp >= 1)
@@ -3279,7 +3002,6 @@ Mainprogram ()
                             && mb + mnobib < xx[9] + xx[1] && md >= -100)
                     {
                         mb = xx[9] - mnobib + 100;
-//if (sracttype[t]!=7)mzimen=1;
 
                         if (srtype[t] == 1)
                         {
@@ -3295,34 +3017,17 @@ Mainprogram ()
                         else
                         {
                             /* すべり */
-//md=0;mrzimen=1;mzimen=1;
                             md = -800;
                         }
-
-                        /*
-                        md=0;
-                        if ((sracttype[t]==1 || sracttype[t]==6) && sron[t]==1)mb+=sre[t];
-
-                        if (sracttype[t]==2 || sracttype[t]==4){
-                        if (srmuki[t]==0)ma-=srsok[t];
-                        if (srmuki[t]==1)ma+=srsok[t];
-                        }
-                        */
 
                         /* 落下 */
                         if ((sracttype[t] == 1) && sron[t] == 0)
                             sron[t] = 1;
 
-                        if (sracttype[t] == 1
-                                && sron[t] == 1
+                        if (sracttype[t] == 1 && sron[t] == 1
                                 || sracttype[t] == 3 || sracttype[t] == 5)
                         {
                             mb += sre[t];
-//if (srmuki[t]==0)
-//if (srf[t]<0)
-//if (srmuki[t]==1)
-//if (srf[t]>0)
-//mb+=srsok[t];
                         }
 
                         if (sracttype[t] == 7)
@@ -3343,12 +3048,9 @@ Mainprogram ()
                         if (srsp[t] == 1)
                         {
                             ot (oto[3]);
-                            eyobi (sra[t] + 200,
-                                   srb[t] - 1000,
+                            eyobi (sra[t] + 200, srb[t] - 1000,
                                    -240, -1400, 0, 160, 4500, 4500, 2, 120);
-                            eyobi (sra[t] + 4500 -
-                                   200,
-                                   srb[t] - 1000,
+                            eyobi (sra[t] + 4500 - 200, srb[t] - 1000,
                                    240, -1400, 0, 160, 4500, 4500, 3, 120);
                             sra[t] = -70000000;
                         }
@@ -3378,7 +3080,6 @@ Mainprogram ()
                                 srmove[t] = -5000;
                             }
                         }
-//if (srtype[t]==1){md=-600;mb-=610;mhp-=1;if (mmutekion!=1)mmutekitm=40;}
                     }		/* 判定内 */
 
                     /* 疲れ初期化 */
@@ -3394,7 +3095,7 @@ Mainprogram ()
                                 xx[8] + xx[0] - 2000 && ma < xx[8] + xx[12] - xx[0])
                         {
                             sron[t] = 1;
-                        }	// && mb+mnobib>xx[9]-1000 && mb+mnobib<xx[9]+xx[1]+2000)
+                        }
                         if (sron[t] == 1)
                         {
                             srf[t] = 60;
@@ -3430,15 +3131,6 @@ Mainprogram ()
                     }
 
                 }		//!
-
-                /*
-                //ジャンプ台
-                if (sracttype[t]==7){
-                if (ma+mnobia>xx[8]+xx[0] && ma<xx[8]+xx[12]-xx[0] && mb+mnobib>xx[9]+xx[1]/2 && mb+mnobib<xx[9]+xx[1]*3/2 && md>=-100){
-                if (actaon[2]!=1){md=-600;mb-=810;}
-                if (actaon[2]==1){mb-=400;md=-1400;mjumptm=10;}
-                }}
-                */
 
                 if (sracttype[t] == 2 || sracttype[t] == 4)
                 {
@@ -3524,16 +3216,15 @@ Mainprogram ()
                     {
                         xx[0] = 1;
                         amuki[aco] = 0;
-                    }		// && mmuki==1
+                    }
                     if (bz[t] == 0 && btm[t] < 0
-                            && ba[t] - fx >=
-                            -400 - anx[btype[t]] + mc
+                            && ba[t] - fx >= -400 - anx[btype[t]] + mc
                             && ba[t] - fx < -400 - anx[btype[t]] && tt == 1)
                     {
                         xx[0] = 1;
                         xx[1] = 1;
                         amuki[aco] = 1;
-                    }		// && mmuki==0
+                    }
                     if (bz[t] == 1 && ba[t] - fx >= 0 - anx[btype[t]]
                             && ba[t] - fx <= fxmax + 4000
                             && bb[t] - fy >= -9000
@@ -3541,14 +3232,12 @@ Mainprogram ()
                     {
                         xx[0] = 1;
                         bz[t] = 0;
-                    }		// && xza<=5000// && tyuukan!=1
-//if (bz[t]==2){xx[0]=0;xx[1]=0;}
-//if (btype[t]>=100){bz[t]=2;}
+                    }
 
                     if (xx[0] == 1)
                     {   //400
                         btm[t] = 401;
-                        xx[0] = 0;	//if (btype[t]>=20 && btype[t]<=23){btm[t]=90000;}
+                        xx[0] = 0;
                         if (btype[t] >= 10)
                         {
                             btm[t] = 9999999;
@@ -3592,15 +3281,13 @@ Mainprogram ()
                     xx[10] = 100;
                     break;
 
-//こうら
+/* こうら */
                 case 2:
                     xx[10] = 0;
                     xx[17] = 800;
                     if (axtype[t] >= 1)
                         xx[10] = xx[17];
-//if (axtype[t]==1)xx[10]=xx[17];
-//if (axtype[t]==2)xx[10]=-xx[17];
-//他の敵を倒す
+/* 他の敵を倒す */
                     if (axtype[t] >= 1)
                     {
                         for (tt = 0; tt < amax; tt++)
@@ -3613,21 +3300,10 @@ Mainprogram ()
                             xx[9] = ab[tt] - fy;
                             if (t != tt)
                             {
-                                if (aa[t] +
-                                        anobia[t] -
-                                        fx >
-                                        xx[8] +
-                                        xx[0] * 2
-                                        && aa[t] -
-                                        fx <
-                                        xx[8] +
-                                        anobia[tt] -
-                                        xx[0] * 2
-                                        && ab[t] +
-                                        anobib[t] - fy > xx[9] + xx[5]
-                                        && ab[t] +
-                                        anobib[t] -
-                                        fy < xx[9] + xx[1] * 3 + xx[12] + 1500)
+                                if (aa[t] + anobia[t] - fx > xx[8] + xx[0] * 2
+                                        && aa[t] - fx < xx[8] + anobia[tt] - xx[0] * 2
+                                        && ab[t] + anobib[t] - fy > xx[9] + xx[5]
+                                        && ab[t] + anobib[t] - fy < xx[9] + xx[1] * 3 + xx[12] + 1500)
                                 {
                                     aa[tt] = -800000;
                                     ot (oto[6]);
@@ -3638,9 +3314,9 @@ Mainprogram ()
 
                     break;
 
-//あらまき
+/* あらまき */
                 case 3:
-                    azimentype[t] = 0;	//end();
+                    azimentype[t] = 0;
                     if (axtype[t] == 0)
                     {
                         ab[t] -= 800;
@@ -3648,10 +3324,9 @@ Mainprogram ()
                     if (axtype[t] == 1)
                         ab[t] += 1200;
 
-//xx[10]=100;
                     break;
 
-//スーパージエン
+/* スーパージエン */
                 case 4:
                     xx[10] = 120;
                     xx[0] = 250;
@@ -3659,11 +3334,9 @@ Mainprogram ()
                     xx[9] = ab[t] - fy;
                     if (atm[t] >= 0)
                         atm[t]--;
-                    if (abs (ma + mnobia - xx[8] - xx[0] * 2)
-                            < 9000
-                            && abs (ma <
-                                    xx[8] - anobia[t] +
-                                    xx[0] * 2) < 3000 && md <= -600 && atm[t] <= 0)
+                    if (abs (ma + mnobia - xx[8] - xx[0] * 2) < 9000
+                            && abs (ma < xx[8] - anobia[t] + xx[0] * 2) < 3000
+                            && md <= -600 && atm[t] <= 0)
                     {
                         if (axtype[t] == 1 && mzimen == 0 && axzimen[t] == 1)
                         {
@@ -3674,13 +3347,12 @@ Mainprogram ()
                     }		//
                     break;
 
-//クマー
+/* クマー */
                 case 5:
                     xx[10] = 160;
-//azimentype[t]=2;
                     break;
 
-//デフラグさん
+/* デフラグさん */
                 case 6:
                     if (azimentype[t] == 30)
                     {
@@ -3721,21 +3393,16 @@ Mainprogram ()
                             }
                         }
                     }
-//ポール捨て
+/* ポール捨て */
                     if (axtype[t] == 1)
                     {
                         for (tt = 0; tt < smax; tt++)
                         {
                             if (stype[tt] == 300)
                             {
-//sa[sco]=xx[21]*100;sb[sco]=xx[22]*100;sc[sco]=3000;sd[sco]=(12-t)*3000;stype[sco]=300;sco++;
-                                if (aa[t] -
-                                        fx >= -8000
-                                        && aa[t] >=
-                                        sa[tt] +
-                                        2000
-                                        && aa[t] <= sa[tt] + 3600 && axzimen[t]
-                                        == 1)
+                                if (aa[t] - fx >= -8000
+                                        && aa[t] >= sa[tt] + 2000
+                                        && aa[t] <= sa[tt] + 3600 && axzimen[t] == 1)
                                 {
                                     sa[tt] = -800000;
                                     atm[t] = 100;
@@ -3745,10 +3412,8 @@ Mainprogram ()
 
                         if (atm[t] == 100)
                         {
-                            eyobi (aa[t] + 1200 -
-                                   1200,
-                                   ab[t] + 3000 -
-                                   10 * 3000 - 1500,
+                            eyobi (aa[t] + 1200 - 1200,
+                                   ab[t] + 3000 - 10 * 3000 - 1500,
                                    0, 0, 0, 0, 1000, 10 * 3000 - 1200, 4, 20);
                             if (mtype == 300)
                             {
@@ -3764,15 +3429,12 @@ Mainprogram ()
                         }
                         if (atm[t] == 120)
                         {
-                            eyobi (aa[t] + 1200 -
-                                   1200,
-                                   ab[t] + 3000 -
-                                   10 * 3000 - 1500,
-                                   600, -1200, 0,
-                                   160, 1000, 10 * 3000 - 1200, 4, 240);
+                            eyobi (aa[t] + 1200 - 1200,
+                                   ab[t] + 3000 - 10 * 3000 - 1500,
+                                   600, -1200, 0, 160, 1000, 10 * 3000 - 1200, 4, 240);
                             amuki[t] = 1;
                         }
-//mc=700;mkeytm=24;md=-1200;mb=xx[1]-1000-3000;amuki[t]=1;if (axtype[t]==1){mc=840;axtype[t]=0;}}
+
                         if (atm[t] == 140)
                         {
                             amuki[t] = 0;
@@ -3784,7 +3446,7 @@ Mainprogram ()
                         atm[t] = 0;
                         amuki[t] = 0;
                     }
-//他の敵を投げる
+/* 他の敵を投げる */
                     for (tt = 0; tt < amax; tt++)
                     {
                         xx[0] = 250;
@@ -3795,22 +3457,15 @@ Mainprogram ()
                         xx[9] = ab[tt] - fy;
                         if (t != tt && atype[tt] >= 100)
                         {
-                            if (aa[t] + anobia[t] -
-                                    fx >
-                                    xx[8] + xx[0] * 2
-                                    && aa[t] - fx <
-                                    xx[8] + anobia[tt] -
-                                    xx[0] * 2
+                            if (aa[t] + anobia[t] - fx > xx[8] + xx[0] * 2
+                                    && aa[t] - fx < xx[8] + anobia[tt] - xx[0] * 2
                                     && ab[t] + anobib[t] - fy > xx[9] + xx[5]
-                                    && ab[t] +
-                                    anobib[t] - fy <
-                                    xx[9] + xx[1] * 3 + xx[12] + 1500)
+                                    && ab[t] + anobib[t] - fy < xx[9] + xx[1] * 3 + xx[12] + 1500)
                             {
-//aa[tt]=-800000;
                                 amuki[tt] = 1;
                                 aa[tt] = aa[t] + 300;
                                 ab[tt] = ab[t] - 3000;
-                                abrocktm[tt] = 120;	//aa[tt]=0;
+                                abrocktm[tt] = 120;
                                 atm[t] = 200;
                                 amuki[t] = 1;
                             }
@@ -3819,7 +3474,7 @@ Mainprogram ()
 
                     break;
 
-//ジエン大砲
+/* ジエン大砲 */
                 case 7:
                     azimentype[t] = 0;
                     xx[10] = 0;
@@ -3834,7 +3489,7 @@ Mainprogram ()
                         ab[t] += xx[11];
                     break;
 
-//スーパーブーン
+/* スーパーブーン */
                 case 8:
                     azimentype[t] = 0;
                     xx[22] = 20;
@@ -3857,14 +3512,13 @@ Mainprogram ()
                     if (af[t] < -0)
                         atm[t] = 0;
                     ab[t] += ad[t];
-//atype[t]=151;
                     break;
-//ノーマルブーン
+/* ノーマルブーン */
                 case 151:
                     azimentype[t] = 2;
                     break;
 
-//ファイアー玉
+/* ファイアー玉 */
                 case 9:
                     azimentype[t] = 5;
                     ab[t] += ad[t];
@@ -3880,7 +3534,7 @@ Mainprogram ()
                     }
                     break;
 
-//ファイアー
+/* ファイアー */
                 case 10:
                     azimentype[t] = 0;
                     xx[10] = 0;
@@ -3891,7 +3545,7 @@ Mainprogram ()
                         xx[10] = -xx[11];
                     break;
 
-//モララー
+/* モララー */
                 case 30:
                     atm[t] += 1;
                     if (axtype[t] == 0)
@@ -3913,21 +3567,10 @@ Mainprogram ()
                             xx[9] = ab[tt] - fy;
                             if (t != tt && atype[tt] == 102)
                             {
-                                if (aa[t] +
-                                        anobia[t] -
-                                        fx >
-                                        xx[8] +
-                                        xx[0] * 2
-                                        && aa[t] -
-                                        fx <
-                                        xx[8] +
-                                        anobia[tt] -
-                                        xx[0] * 2
-                                        && ab[t] +
-                                        anobib[t] - fy > xx[9] + xx[5]
-                                        && ab[t] +
-                                        anobib[t] -
-                                        fy < xx[9] + xx[1] * 3 + xx[12] + 1500)
+                                if (aa[t] + anobia[t] - fx > xx[8] + xx[0] * 2
+                                        && aa[t] - fx < xx[8] + anobia[tt] - xx[0] * 2
+                                        && ab[t] + anobib[t] - fy > xx[9] + xx[5]
+                                        && ab[t] + anobib[t] - fy < xx[9] + xx[1] * 3 + xx[12] + 1500)
                                 {
                                     aa[tt] = -800000;
                                     axtype[t] = 1;
@@ -3946,7 +3589,7 @@ Mainprogram ()
                     }
                     break;
 
-//レーザー
+/* レーザー */
                 case 79:
                     azimentype[t] = 0;
                     xx[10] = 1600;
@@ -3972,10 +3615,9 @@ Mainprogram ()
                     }
                     break;
 
-//雲の敵
+/* 雲の敵 */
                 case 80:
                     azimentype[t] = 0;
-//xx[10]=100;
                     break;
                 case 81:
                     azimentype[t] = 0;
@@ -4030,7 +3672,7 @@ Mainprogram ()
                     }
                     break;
 
-//ファイアバー
+/* ファイアバー */
                 case 87:
                     azimentype[t] = 0;
                     if (aa[t] % 10 != 1)
@@ -4109,15 +3751,14 @@ Mainprogram ()
 
                 case 90:
                     xx[10] = 160;
-//azimentype[t]=0;
                     break;
 
-//おいしいキノコ
+/* おいしいキノコ */
                 case 100:
                     azimentype[t] = 1;
                     xx[10] = 100;
 
-//ほかの敵を巨大化
+/* ほかの敵を巨大化 */
                     if (axtype[t] == 2)
                     {
                         for (tt = 0; tt < amax; tt++)
@@ -4130,24 +3771,14 @@ Mainprogram ()
                             xx[9] = ab[tt] - fy;
                             if (t != tt)
                             {
-                                if (aa[t] +
-                                        anobia[t] -
-                                        fx >
-                                        xx[8] +
-                                        xx[0] * 2
-                                        && aa[t] -
-                                        fx <
-                                        xx[8] +
-                                        anobia[tt] -
-                                        xx[0] * 2
-                                        && ab[t] +
-                                        anobib[t] - fy > xx[9] + xx[5]
-                                        && ab[t] +
-                                        anobib[t] - fy < xx[9] + xx[1] * 3 + xx[12])
+                                if (aa[t] + anobia[t] - fx > xx[8] + xx[0] * 2
+                                        && aa[t] - fx < xx[8] + anobia[tt] - xx[0] * 2
+                                        && ab[t] + anobib[t] - fy > xx[9] + xx[5]
+                                        && ab[t] + anobib[t] - fy < xx[9] + xx[1] * 3 + xx[12])
                                 {
                                     if (atype[tt] == 0 || atype[tt] == 4)
                                     {
-                                        atype[tt] = 90;	//ot(oto[6]);
+                                        atype[tt] = 90;
                                         anobia[tt] = 6400;
                                         anobib[tt] = 6300;
                                         axtype[tt] = 0;
@@ -4163,7 +3794,7 @@ Mainprogram ()
 
                     break;
 
-//毒キノコ
+/* 毒キノコ */
                 case 102:
                     azimentype[t] = 1;
                     xx[10] = 100;
@@ -4171,7 +3802,7 @@ Mainprogram ()
                         xx[10] = 200;
                     break;
 
-//悪スター
+/* 悪スター */
                 case 110:
                     azimentype[t] = 1;
                     xx[10] = 200;
@@ -4186,127 +3817,6 @@ Mainprogram ()
                     azimentype[t] = 1;
                     xx[10] = 100;
                     break;
-
-                    /*
-                    case 1:
-                    xx[10]=180;
-                    if (axtype[t]==2)xx[10]=0;
-                    if (axzimen[t]==1){
-                    ab[t]-=1000;ad[t]=-1200;
-                    if (axtype[t]==1)ad[t]=-1600;
-                    if (axtype[t]==2){
-                    atm[t]+=1;
-                    if (atm[t]>=2){atm[t]=0;ad[t]=-1600;}else{ad[t]=-1000;}
-                    }
-                    }
-
-                    break;
-
-                    case 2:
-                    xx[10]=160;
-                    if (axtype[t]==1)azimentype[t]=2;xx[10]=100;
-                    if (axtype[t]==2)xx[10]=0;
-                    break;
-
-                    case 3:
-                    xx[10]=180;
-                    if (ae[t]==0)ad[t]+=10;
-                    if (ae[t]==1)ad[t]-=10;
-                    if (ad[t]>=100)ae[t]=1;
-                    if (ad[t]<=-100)ae[t]=0;
-                    ab[t]+=ad[t];//ad[t]+=
-
-                    if (axtype[t]==1){
-                    if (ab[t]<mb){ab[t]+=100;}
-                    }
-                    if (axtype[t]==2)xx[10]=0;
-                    break;
-
-                    case 4:
-                    if (ae[t]==0)ad[t]+=8;
-                    if (ae[t]==1)ad[t]-=8;
-                    if (ad[t]>=80)ae[t]=1;
-                    if (ad[t]<=-80)ae[t]=0;
-                    ab[t]+=ad[t];
-
-                    //sstr=""+atm[t];
-                    if (axtype[t]>=1){
-                    xx[22]=200;xx[21]=3600;
-
-                    if (atm[t]==0){atm[t]=ab[t]%2+1;a2tm[t]=aa[t];if (axtype[t]%2==0)a2tm[t]=ab[t];}
-
-                    if (axtype[t]%2==1){
-                    if (aa[t]<a2tm[t]-xx[21]){atm[t]=2;}
-                    if (aa[t]>a2tm[t]+xx[21]){atm[t]=1;}
-                    if (atm[t]==1){aa[t]-=xx[22];amuki[t]=0;}
-                    if (atm[t]==2){aa[t]+=xx[22];amuki[t]=1;}
-                    }
-                    if (axtype[t]%2==0){
-                    if (ab[t]<a2tm[t]-xx[21]){atm[t]=2;}
-                    if (ab[t]>a2tm[t]+xx[21]){atm[t]=1;}
-                    if (atm[t]==1){ab[t]-=xx[22];}
-                    if (atm[t]==2){ab[t]+=xx[22];}
-                    }
-
-                    }//axtype1
-
-                    break;
-
-                    case 5:
-                    xx[10]=120;atm[t]++;
-                    if (axtype[t]==2){xx[10]=200;azimentype[t]=2;}
-                    if (ma+mnobia>=aa[t]-fx && ma<=aa[t]+anobia[t]-fx && mb+mnobib+1000<ab[t]-fy){
-                    xx[10]=300;
-                    if (axtype[t]>=1){
-                    //xx[10]=240;
-                    if (atm[t]>=16){amuki[t]+=1;if (amuki[t]>=2)amuki[t]=0;atm[t]=0;
-                    //if (axtype[t]==2){ab[t]-=600;ad[t]=-900;}
-                    }}
-                    }
-                    break;
-
-                    case 6:
-                    atm[t]+=1;xx[10]=0;
-                    if (axtype[t]==1)atm[t]+=(rand(9)-4);
-                    if (axtype[t]==2)xx[10]=100;
-                    if (atm[t]>=40){
-                    xx[22]=360;if (amuki[t]==0)xx[22]=-xx[22];
-                    cyobi(aa[t]+amuki[t]*anobia[t],ab[t]+1600,xx[22],0,0,0,0,60);
-                    atm[t]=0;
-                    }
-
-                    if (axtype[t]!=2){
-                    if (ma+mnobia/2<=aa[t]+anobia[t]/2-fx){amuki[t]=0;}else{amuki[t]=1;}
-                    }
-                    break;
-
-                    case 7:
-                    xx[10]=160;
-                    if (axtype[t]==1)xx[10]=240;
-                    if (axtype[t]==2)xx[10]=60;
-                    break;
-
-                    case 8:
-                    atm[t]+=1;xx[10]=0;
-                    xx[15]=12;xx[17]=0;
-                    if (axtype[t]==1)xx[15]=8;
-                    if (axtype[t]==2){xx[15]=40;xx[17]=3;}
-
-                    if (atm[t]>=xx[15]){
-                    for (t3=0;t3<=xx[17];t3++){
-                    xx[16]=300;xx[22]=rand(xx[16])*5/4-xx[16]/4;
-                    a2tm[t]+=1;if (a2tm[t]>=1){xx[22]=-xx[22];a2tm[t]=-1;}
-                    cyobi(aa[t]+amuki[t]*anobia[t]/2,ab[t]+600,xx[22],-400-rand(600),0,80,1,60);
-                    //if ((xx[16]==0) || t3==xx[16])atm[t]=0;
-                    }//t
-                    atm[t]=0;
-                    }
-
-                    break;
-
-
-                    */
-
                 }		//sw
 
                 if (abrocktm[t] >= 1)
@@ -4317,31 +3827,27 @@ Mainprogram ()
                 if (amuki[t] == 1)
                     aacta[t] += xx[10];
 
-//最大値
+/* 最大値 */
                 xx[0] = 850;
                 xx[1] = 1200;
 
-//if (mc>xx[0]){mc=xx[0];}
-//if (mc<-xx[0]){mc=-xx[0];}
                 if (ad[t] > xx[1] && azimentype[t] != 5)
                 {
                     ad[t] = xx[1];
                 }
-//行動
-                aa[t] += aacta[t];	//ab[t]+=aactb[t];
+/* 行動 */
+                aa[t] += aacta[t];
 
                 if ((azimentype[t] >= 1 || azimentype[t] == -1)
                         && abrocktm[t] <= 0)
                 {
-//if (atype[t]==4)end();
-
-//移動
+/* 移動 */
                     aa[t] += ac[t];
                     if (azimentype[t] >= 1 && azimentype[t] <= 3)
                     {
                         ab[t] += ad[t];
                         ad[t] += 120;
-                    }		//ad[t]+=180;
+                    }
 
                     if (axzimen[t] == 1)
                     {
@@ -4362,15 +3868,14 @@ Mainprogram ()
 
                     axzimen[t] = 0;
 
-//地面判定
+/* 地面判定 */
                     if (azimentype[t] != 2)
                     {
                         tekizimen ();
                     }
+                }
 
-                }		//azimentype[t]>=1
-
-//ブロックから出現するさい
+/* ブロックから出現するさい */
                 if (abrocktm[t] > 0)
                 {
                     abrocktm[t]--;
@@ -4388,9 +3893,9 @@ Mainprogram ()
                         ac[t] = 700;
                         abrocktm[t] = 0;
                     }
-                }		//abrocktm[t]>0
+                }
 
-//プレイヤーからの判定
+/* プレイヤーからの判定 */
                 xx[0] = 250;
                 xx[1] = 1600;
                 xx[2] = 1000;
@@ -4413,8 +3918,7 @@ Mainprogram ()
                     if (atype[t] != 4 && atype[t] != 9 && atype[t] != 10
                             && (atype[t] <= 78 || atype[t] == 85) && mzimen != 1
                             && mtype != 200)
-                    {   // && atype[t]!=4 && atype[t]!=7){
-
+                    {
                         if (atype[t] == 0)
                         {
                             if (axtype[t] == 0)
@@ -4435,7 +3939,7 @@ Mainprogram ()
                             anobib[t] = 3000;
                             axtype[t] = 0;
                         }
-//こうら
+/* こうら */
                         else if (atype[t] == 2 && md >= 0)
                         {
                             if (axtype[t] == 1 || axtype[t] == 2)
@@ -4444,10 +3948,7 @@ Mainprogram ()
                             }
                             else if (axtype[t] == 0)
                             {
-                                if (ma +
-                                        mnobia >
-                                        xx[8] +
-                                        xx[0] * 2
+                                if (ma + mnobia > xx[8] + xx[0] * 2
                                         && ma < xx[8] + anobia[t] / 2 - xx[0] * 4)
                                 {
                                     axtype[t] = 1;
@@ -4482,9 +3983,6 @@ Mainprogram ()
                             atype[t] = 151;
                             ad[t] = 0;
                         }
-//if (atype[t]==4){
-//xx[25]=1;
-//}
 
                         if (atype[t] != 85)
                         {
@@ -4512,14 +4010,11 @@ Mainprogram ()
                             actaon[2] = 0;
                         }
                     }
-//if (atype[t]==200){mb=xx[9]-900-anobib[t];md=-2400;}
                 }
-//if (aa[t]+anobia[t]-fx>xx[8]-xx[0] && aa[t]-fx<xx[8]){md=-1000;}//aa[t]=-9000000;
-// && ab[t]-fy<xx[9]+xx[1]/2 && ab[t]+anobib[t]-fy>xx[9]+mnobib-xx[2]
 
                 xx[15] = -500;
 
-//プレイヤーに触れた時
+/* プレイヤーに触れた時 */
                 xx[16] = 0;
                 if (atype[t] == 4 || atype[t] == 9 || atype[t] == 10)
                     xx[16] = -3000;
@@ -4541,15 +4036,12 @@ Mainprogram ()
                     {
                         if (mmutekion != 1 && mtype != 200)
                         {
-//if (mmutekitm<=0)
-
-//ダメージ
+/* ダメージ */
                             if ((atype[t] != 2 || axtype[t] != 0) && mhp >= 1)
                             {
                                 if (atype[t] != 6)
                                 {
                                     mhp -= 1;
-//mmutekitm=40;
                                 }
                             }
 
@@ -4557,15 +4049,14 @@ Mainprogram ()
                             {
                                 atm[t] = 10;
                             }
-//せりふ
+/* せりふ */
                             if (mhp == 0)
                             {
 
                                 if (atype[t] == 0 || atype[t] == 7)
                                 {
                                     amsgtm[t] = 60;
-                                    amsgtype[t]
-                                    = rand (7) + 1 + 1000 + (stb - 1) * 10;
+                                    amsgtype[t] = rand (7) + 1 + 1000 + (stb - 1) * 10;
                                 }
 
                                 if (atype[t] == 1)
@@ -4574,8 +4065,7 @@ Mainprogram ()
                                     amsgtype[t] = rand (2) + 15;
                                 }
 
-                                if (atype[t] == 2 && axtype[t]
-                                        >= 1 && mmutekitm <= 0)
+                                if (atype[t] == 2 && axtype[t] >= 1 && mmutekitm <= 0)
                                 {
                                     amsgtm[t] = 60;
                                     amsgtype[t] = 18;
@@ -4590,8 +4080,7 @@ Mainprogram ()
                                 if (atype[t] == 4)
                                 {
                                     amsgtm[t] = 60;
-                                    amsgtype[t]
-                                    = rand (7) + 1 + 1000 + (stb - 1) * 10;
+                                    amsgtype[t] = rand (7) + 1 + 1000 + (stb - 1) * 10;
                                 }
 
                                 if (atype[t] == 5)
@@ -4639,7 +4128,7 @@ Mainprogram ()
                                     amsgtm[t] = 60;
                                     amsgtype[t] = rand (1) + 85;
                                 }
-//雲
+/* 雲 */
                                 if (atype[t] == 80)
                                 {
                                     atype[t] = 81;
@@ -4647,16 +4136,12 @@ Mainprogram ()
 
                             }	//mhp==0
 
-//こうら
+/* こうら */
                             if (atype[t] == 2)
                             {
-//if (axtype[t]==1 || axtype[t]==2){axtype[t]=0;}
                                 if (axtype[t] == 0)
                                 {
-                                    if (ma + mnobia > xx[8]
-                                            + xx[0]
-                                            * 2 && ma < xx[8]
-                                            + anobia[t] / 2 - xx[0] * 4)
+                                    if (ma + mnobia > xx[8] + xx[0] * 2 && ma < xx[8] + anobia[t] / 2 - xx[0] * 4)
                                     {
                                         axtype[t] = 1;
                                         amuki[t] = 1;
@@ -4674,16 +4159,14 @@ Mainprogram ()
                                 else
                                 {
                                     mhp -= 1;
-                                }	//mmutekitm=40;}
+                                }
                             }
 
                         }
                     }
-//else if (mmutekitm>=0 && mmutekitm<=2){mmutekitm+=1;}
-//アイテム
+/* アイテム */
                     if (atype[t] >= 100 && atype[t] <= 199)
                     {
-
                         if (atype[t] == 100 && axtype[t] == 0)
                         {
                             mmsgtm = 30;
@@ -4719,7 +4202,7 @@ Mainprogram ()
                             mmsgtm = 30;
                             mmsgtype = 10;
                         }
-//?ボール
+/* ?ボール */
                         if (atype[t] == 105)
                         {
                             if (axtype[t] == 0)
@@ -4732,29 +4215,14 @@ Mainprogram ()
                                 txtype[7] = 80;
                                 ot (oto[4]);
 
-//ayobi(aa[t]-6*3000+1000,-3*3000,0,0,0,110,0);
-                                ayobi (aa[t] -
-                                       8 * 3000 -
-                                       1000, -4 * 3000, 0, 0, 0, 110, 0);
-                                ayobi (aa[t] -
-                                       10 *
-                                       3000 + 1000, -1 * 3000, 0, 0, 0, 110, 0);
+                                ayobi (aa[t] - 8 * 3000 - 1000, -4 * 3000, 0, 0, 0, 110, 0);
+                                ayobi (aa[t] - 10 * 3000 + 1000, -1 * 3000, 0, 0, 0, 110, 0);
 
-                                ayobi (aa[t] +
-                                       4 * 3000 +
-                                       1000, -2 * 3000, 0, 0, 0, 110, 0);
-                                ayobi (aa[t] +
-                                       5 * 3000 -
-                                       1000, -3 * 3000, 0, 0, 0, 110, 0);
-                                ayobi (aa[t] +
-                                       6 * 3000 +
-                                       1000, -4 * 3000, 0, 0, 0, 110, 0);
-                                ayobi (aa[t] +
-                                       7 * 3000 -
-                                       1000, -2 * 3000, 0, 0, 0, 110, 0);
-                                ayobi (aa[t] +
-                                       8 * 3000 +
-                                       1000, -2 * 3000 - 1000, 0, 0, 0, 110, 0);
+                                ayobi (aa[t] + 4 * 3000 + 1000, -2 * 3000, 0, 0, 0, 110, 0);
+                                ayobi (aa[t] + 5 * 3000 - 1000, -3 * 3000, 0, 0, 0, 110, 0);
+                                ayobi (aa[t] + 6 * 3000 + 1000, -4 * 3000, 0, 0, 0, 110, 0);
+                                ayobi (aa[t] + 7 * 3000 - 1000, -2 * 3000, 0, 0, 0, 110, 0);
+                                ayobi (aa[t] + 8 * 3000 + 1000, -2 * 3000 - 1000, 0, 0, 0, 110, 0);
                                 tb[0] += 3000 * 3;
                             }
                         }	//105
@@ -4766,24 +4234,6 @@ Mainprogram ()
                             mmsgtype = 3;
                         }
 
-                        /*
-                        if (atype[t]==101){mmutekitm=120;mmutekion=1;}
-                        if (atype[t]==102){mhp-=1;mmutekitm=20;}
-                        if (atype[t]==103){
-                        //xx[24]=2400;
-                        eyobi(aa[t]-500,ab[t],0,-600,0,80,2500,1600,2,32);
-                        }
-                        if (atype[t]==104){mztm=120;mztype=1;}
-                        if (atype[t]==105){mztm=160;mztype=2;}
-
-                        if (atype[t]==120){mtype=3;mnobia=3800;mnobib=2300;}
-
-                        if (atype[t]==130){msoubi=1;}
-                        if (atype[t]==131){msoubi=2;}
-                        if (atype[t]==132){msoubi=3;}
-                        if (atype[t]==133){msoubi=4;}
-
-                        */
                         aa[t] = -90000000;
                     }
 
@@ -4797,9 +4247,7 @@ Mainprogram ()
 
         }			//t
 
-//スクロール
-//xx[0]=xx[0];
-//x
+/* スクロール */
         if (kscroll != 1 && kscroll != 2)
         {
             xx[2] = mascrollmax;
@@ -4814,15 +4262,11 @@ Mainprogram ()
                 if (xx[1] <= 5000)
                     xx[3] = 1;
             }
-//if (kscroll!=5){//戻りなし
-//xx[1]=xx[2]-500;if (ma<xx[1] && fzx>700){xx[5]=xx[1]-ma;ma=xx[1];fx-=xx[5];fzx-=xx[5];}
-//}
-//if (xx[3]==1){if (tyuukan==1)tyuukan=1;}
         }			//kscroll
 
     }				//if (mainZ==1){
 
-//スタッフロール
+/* スタッフロール */
     if (mainZ == 2)
     {
         maintm++;
@@ -4849,7 +4293,7 @@ Mainprogram ()
             {
                 xx[12 + t] = 980000;
             }
-//for (t=0;t<=xx[7];t+=2){xx[12+t]=46000;}
+
             xx[12] = 460;
             xx[13] = 540;
             xx[14] = 590;
@@ -4913,7 +4357,7 @@ Mainprogram ()
         }
     }				//if (mainZ==10){
 
-//タイトル
+/* タイトル */
     if (mainZ == 100)
     {
         maintm++;
@@ -5016,26 +4460,22 @@ Mainprogram ()
 
     }				//100
 
-//描画
+/* 描画 */
     rpaint ();
 
-//30-fps
+/* 30-fps */
     xx[0] = 30;
     if (CheckHitKey (KEY_INPUT_SPACE) == 1)
     {
         xx[0] = 60;
     }
     wait2 (stime, long (GetNowCount ()), 1000 / xx[0]);
-
-//wait(20);
-
 }				//Mainprogram()
 
 void
 tekizimen ()
 {
-
-//壁
+/* 壁 */
     for (tt = 0; tt < smax; tt++)
     {
         if (sa[tt] - fx + sc[tt] >= -12010
@@ -5063,7 +4503,7 @@ tekizimen ()
                 aa[t] = xx[8] + sc[tt] + xx[0] + fx;
                 amuki[t] = 1;
             }
-//if (aa[t]+anobia[t]-fx>xx[8]+xx[0] && aa[t]-fx<xx[8]+sc[tt]-xx[0] && ab[t]+anobib[t]-fy>xx[9] && ab[t]+anobib[t]-fy<xx[9]+xx[1] && ad[t]>=-100){ab[t]=sb[tt]-fy-anobib[t]+100+fy;ad[t]=0;}//mzimen=1;}
+
             if (aa[t] + anobia[t] - fx > xx[8] + xx[0]
                     && aa[t] - fx < xx[8] + sc[tt] - xx[0]
                     && ab[t] + anobib[t] - fy > xx[9]
@@ -5090,7 +4530,7 @@ tekizimen ()
         }
     }
 
-//ブロック
+/* ブロック */
     for (tt = 0; tt < tmax; tt++)
     {
         xx[0] = 200;
@@ -5102,17 +4542,13 @@ tekizimen ()
         {
             if (atype[t] != 86 && atype[t] != 90 && ttype[tt] != 140)
             {
-
-//上
+/* 上 */
                 if (ttype[tt] != 7)
                 {
-//if (ttype[tt]==117 && txtype[t]==1){ad[t]=-1500;}
                     if (!(ttype[tt] == 117))
                     {
-//if (!(ttype[tt]==120 && txtype[t]==0)){
                         if (aa[t] + anobia[t] - fx > xx[8] + xx[0]
-                                && aa[t] - fx <
-                                xx[8] + xx[1] - xx[0] * 1
+                                && aa[t] - fx < xx[8] + xx[1] - xx[0] * 1
                                 && ab[t] + anobib[t] - fy > xx[9]
                                 && ab[t] + anobib[t] - fy < xx[9] + xx[1]
                                 && ad[t] >= -100)
@@ -5120,23 +4556,20 @@ tekizimen ()
                             ab[t] = xx[9] - anobib[t] + 100 + fy;
                             ad[t] = 0;
                             axzimen[t] = 1;
-//ジャンプ台
+/* ジャンプ台 */
                             if (ttype[tt] == 120)
                             {
                                 ad[t] = -1600;
                                 azimentype[t] = 30;
                             }
-//}
-
                         }
                     }
                 }
-//下
+/* 下 */
                 if (ttype[tt] != 117)
                 {
                     if (aa[t] + anobia[t] - fx > xx[8] + xx[0]
-                            && aa[t] - fx <
-                            xx[8] + xx[1] - xx[0] * 1
+                            && aa[t] - fx < xx[8] + xx[1] - xx[0] * 1
                             && ab[t] - fy > xx[9] + xx[1] - xx[1]
                             && ab[t] - fy < xx[9] + xx[1] + xx[0])
                     {
@@ -5144,40 +4577,33 @@ tekizimen ()
                         if (ad[t] < 0)
                         {
                             ad[t] = 0;
-                        }	//=-ad[t]*2/3;}
-//if (ttype[t]==7){
-//for (t2=0;t2<tmax;t2++){if (ttype[t2]==5){ttype[t2]=6;}else if (ttype[t2]==6){ttype[t2]=5;}}
-//}
+                        }
                     }
                 }
-//左右
+/* 左右 */
                 xx[27] = 0;
-                if ((atype[t] >= 100
-                        || (ttype[tt] != 7 || ttype[tt] == 7
+                if ((atype[t] >= 100 || (ttype[tt] != 7 || ttype[tt] == 7
                             && atype[t] == 2)) && ttype[tt] != 117)
                 {
                     if (aa[t] + anobia[t] - fx > xx[8]
                             && aa[t] - fx < xx[8] + xx[2]
-                            && ab[t] + anobib[t] - fy >
-                            xx[9] + xx[1] / 2 - xx[0] && ab[t] - fy < xx[9] + xx[2])
+                            && ab[t] + anobib[t] - fy > xx[9] + xx[1] / 2 - xx[0] && ab[t] - fy < xx[9] + xx[2])
                     {
                         aa[t] = xx[8] - anobia[t] + fx;
                         ac[t] = 0;
                         amuki[t] = 0;
                         xx[27] = 1;
                     }
-                    if (aa[t] + anobia[t] - fx >
-                            xx[8] + xx[1] - xx[0] * 2
+                    if (aa[t] + anobia[t] - fx > xx[8] + xx[1] - xx[0] * 2
                             && aa[t] - fx < xx[8] + xx[1]
-                            && ab[t] + anobib[t] - fy >
-                            xx[9] + xx[1] / 2 - xx[0] && ab[t] - fy < xx[9] + xx[2])
+                            && ab[t] + anobib[t] - fy > xx[9] + xx[1] / 2 - xx[0] && ab[t] - fy < xx[9] + xx[2])
                     {
                         aa[t] = xx[8] + xx[1] + fx;
                         ac[t] = 0;
                         amuki[t] = 1;
                         xx[27] = 1;
                     }
-//こうらブレイク
+/* こうらブレイク */
                     if (xx[27] == 1 && (ttype[tt] == 7 || ttype[tt] == 1)
                             && atype[t] == 2)
                     {
@@ -5229,9 +4655,8 @@ tekizimen ()
 
                 }
             }			//90
-
         }
-//剣とってクリア
+/* 剣とってクリア */
         if (ttype[tt] == 140)
         {
             if (ab[t] - fy > xx[9] - xx[0] * 2 - 2000
@@ -5306,9 +4731,8 @@ deinit ()
     SDL_Quit ();
 }
 
-//画像関係
-//{
-//色かえ(指定)
+/* 画像関係 */
+/* 色かえ(指定) */
 void
 setcolor (int red, int green, int blue)
 {
@@ -5316,7 +4740,7 @@ setcolor (int red, int green, int blue)
     gfxcolor = red << 8 * 3 | green << 8 * 2 | blue << 8 | 0xFF;
 }
 
-//色かえ(黒)(白)
+/* 色かえ(黒)(白) */
 void
 setc0 ()
 {
@@ -5329,42 +4753,42 @@ setc1 ()
     setcolor (255, 255, 255);
 }
 
-//点
+/* 点 */
 void
 drawpixel (int a, int b)
 {
     pixelColor (screen, a, b, gfxcolor);
 }
 
-//線
+/* 線 */
 void
 drawline (int a, int b, int c, int d)
 {
     lineColor (screen, a, b, c, d, gfxcolor);
 }
 
-//四角形(塗り無し)
+/* 四角形(塗り無し) */
 void
 drawrect (int a, int b, int c, int d)
 {
     rectangleColor (screen, a, b, a + c - 1, b + d - 1, gfxcolor);
 }
 
-//四角形(塗り有り)
+/* 四角形(塗り有り) */
 void
 fillrect (int a, int b, int c, int d)
 {
     boxColor (screen, a, b, a + c - 1, b + d - 1, gfxcolor);
 }
 
-//円(塗り無し)
+/* 円(塗り無し) */
 void
 drawarc (int a, int b, int c, int d)
 {
     ellipseColor (screen, a, b, c, d, gfxcolor);
 }
 
-//円(塗り有り)
+/* 円(塗り有り) */
 void
 fillarc (int a, int b, int c, int d)
 {
@@ -5377,11 +4801,10 @@ FillScreen ()
     SDL_FillRect (screen, 0, color);
 }
 
-//画像の読み込み
+/* 画像の読み込み */
 SDL_Surface *
 loadimage (string x)
 {
-//mgrap[a]=LoadGraph(b);
     return LoadGraph (x.c_str ());
 }
 
@@ -5391,7 +4814,7 @@ loadimage (SDL_Surface * a, int x, int y, int r, int z)
     return DerivationGraph (x, y, r, z, a);
 }
 
-//画像表示
+/* 画像表示 */
 void
 drawimage (SDL_Surface * mx, int a, int b)
 {
@@ -5413,27 +4836,16 @@ drawimage (SDL_Surface * mx, int a, int b, int c, int d, int e, int f)
     SDL_FreeSurface (m);
 }
 
-/*
-//文字
-void str(char d[],int a,int b){
-//char d[]=c;
-DrawString(a,b,d,color);
-}
-*/
-
-//文字
+/* 文字 */
 void
 str (string x, int a, int b)
 {
-//char d[]="あ";
     DrawString (a, b, x.c_str (), color);
-//DrawString(10,10,xs[3].c_str(),color);
-
     xx[2] = 4;
 
 }
 
-//音楽再生
+/* 音楽再生 */
 void
 ot (Mix_Chunk * x)
 {
@@ -5453,7 +4865,7 @@ stagecls ()
         stype[t] = 0;
         sxtype[t] = 0;
     }
-//for (t=0;t<spmax;t++){spa[t]=-9000000;szyunni[t]=t;spb[t]=1;spc[t]=1;spd[t]=1;sptype[t]=0;spgtype[t]=0;}
+
     for (t = 0; t < tmax; t++)
     {
         ta[t] = -9000000;
@@ -5479,9 +4891,7 @@ stagecls ()
         srmovep[t] = 0;
         srsp[t] = 0;
     }
-//for (t=0;t<sqmax;t++){sqa[t]=-9000000;sqb[t]=1;sqc[t]=1;sqd[t]=1;sqgtype[t]=0;sqtype[t]=0;}
-//for (t=0;t<kmax;t++){ka[t]=-9000000;kmuki[t]=0;ksoka[t]=0;ksokb[t]=0;kxsoka[t]=0;kxsokb[t]=0;}
-//for (t=0;t<imax;t++){ia[t]=-9000000;ib[t]=1;ic[t]=1;id[t]=1;}
+
     for (t = 0; t < amax; t++)
     {
         aa[t] = -9000000;
@@ -5525,9 +4935,6 @@ stagecls ()
         ng[t] = 0;
         ntype[t] = 0;
     }
-//for (t=0;t<cmax;t++){ca[t]=-9000000;cb[t]=1;contm[t]=0;ctype[t]=0;ce[t]=0;cf[t]=0;}
-//for (t=0;t<vmax;t++){va[t]=-9000000;vtype[t]=0;vb[t]=0;vc[t]=1;vd[t]=1;}
-//for (t=0;t<gmax;t++){ga[t]=-9000000;gx[t]=0;gstring[t]="";}
 
     sco = 0;
     tco = 0;
@@ -5535,21 +4942,15 @@ stagecls ()
     bco = 0;
     eco = 0;
     nco = 0;
-//haikeitouroku();
 }				//stagecls()
 
-//ステージロード
+/* ステージロード */
 void
 stage ()
 {
-
-//fzx=6000*100;
     scrollx = 3600 * 100;
 
-//byte stagedate[16][801];
-//byte stagedate2[16][801];
-
-//1-レンガ,2-コイン,3-空,4-土台//5-6地面//7-隠し//
+/* 1-レンガ,2-コイン,3-空,4-土台//5-6地面//7-隠し// */
 
     stagep ();
 
@@ -5631,7 +5032,7 @@ stage ()
                 if (sco >= smax)
                     sco = 0;
             }
-//これなぜかバグの原因ｗ
+/* これなぜかバグの原因ｗ */
             if (xx[10] >= 50 && xx[10] <= 79)
             {
                 ba[bco] = xx[21] * 100;
@@ -5651,7 +5052,7 @@ stage ()
                 if (nco >= nmax)
                     nco = 0;
             }
-//コイン
+/* コイン */
             if (xx[10] == 9)
             {
                 tyobi (tt * 29, t * 29 - 12, 800);
@@ -5689,336 +5090,39 @@ stage ()
         }
         tyuukan += xx[17];
     }
-//tyobi(1,2,3);
-
 }				//stage()
 
 void
 stagep ()
 {
-
-//ステージロード
-//void stage(){
-
-//fzx=6000*100;
     scrollx = 3600 * 100;
 
-//byte stagedate[16][801];
-//byte stagedate2[16][801];
-
-//1-レンガ,2-コイン,3-空,4-土台//5-6地面//7-隠し//
+/* 1-レンガ,2-コイン,3-空,4-土台//5-6地面//7-隠し// */
 
 //1-1
     if (sta == 1 && stb == 1 && stc == 0)
     {
+/*                                                                                                                                                                                     中間                                                                                                                                                                                                                                                           */
+byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,98,98,98, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0,98, 0, 0, 0, 1,98, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 1,98, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,98, 0, 0, 0, 0, 0, 0, 1,98, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0,80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0,40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 7, 7, 7, 7, 7,40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,83, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0,41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,40, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,50, 0, 0, 0, 0, 0,50, 0, 0,81,41, 0, 0, 0, 0, 0,81,98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,50, 0,50, 0, 0,51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,81, 0, 0, 0, 4, 4, 4, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0,41, 0, 0, 0, 0, 0,50, 0,50, 0, 0,41, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4,81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5} ,
+{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+} ;
 
-//new byte stagedate[16][801]={
-
-//                                                                                                                                                                                     中間
-        byte stagedatex[17][1001] = {
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                82, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 82,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                98, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 98, 98, 98, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 7,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 4,
-                4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                30, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 4,
-                4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 4,
-                4, 4,
-                4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 98, 0, 0, 0, 1, 98, 1, 2, 1, 0,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                7, 0, 0,
-                0, 0,
-                0, 1, 98, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98, 0, 0, 0,
-                0, 0,
-                0, 1,
-                98, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                4, 4,
-                4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0
-            }
-            ,
-            {   0, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0,
-                0, 0,
-                40, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,
-                0, 0, 4,
-                0, 7,
-                7, 7, 7, 7, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 4,
-                4, 4, 4,
-                4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 83, 0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                41, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0,
-                0, 4, 4,
-                0, 0,
-                0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 4,
-                4, 4,
-                4, 4,
-                4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 50, 0,
-                0, 81,
-                41, 0,
-                0, 0, 0, 0, 81, 98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50,
-                0, 50,
-                0, 0,
-                51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 0, 0, 0, 4, 4,
-                4, 0,
-                0, 0,
-                4, 4, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 50, 0, 50, 0,
-                0, 41,
-                0, 4, 4,
-                4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 81, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0,
-                0, 0, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0,
-                0, 5, 5,
-                5, 5,
-                5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 0,
-                5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0,
-                0, 0, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0,
-                0, 6, 6,
-                6, 6,
-                6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 0,
-                6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-        };
-
-//追加情報
+/* 追加情報 */
         tyobi (8 * 29, 9 * 29 - 12, 100);
         txtype[tco] = 2;
         tyobi (13 * 29, 9 * 29 - 12, 102);
@@ -6065,7 +5169,7 @@ stagep ()
         sd[t] = 70000;
         stype[t] = 101;
         sco++;
-//t=sco;sa[t]=77*29*100;sb[t]=(6*29-12)*100-1500;sc[t]=12000;sd[t]=3000;stype[t]=103;sco++;
+
         t = 28;
         sa[t] = 29 * 29 * 100 + 500;
         sb[t] = (9 * 29 - 12) * 100;
@@ -6102,7 +5206,6 @@ stagep ()
         btype[t] = 80;
         bxtype[t] = 0;
         bco++;
-//t=bco;ba[t]=13*29*100;bb[t]=(5*29-12)*100;btype[t]=81;bxtype[t]=0;bco++;
 
         for (tt = 0; tt <= 1000; tt++)
         {
@@ -6115,113 +5218,41 @@ stagep ()
 
     }				//sta1
 
-//1-2(地上)
+/* 1-2(地上) */
     if (sta == 1 && stb == 2 && stc == 0)
     {
-
-//マリ　地上　入れ
-//Mix_HaltMusic();
+/* マリ　地上　入れ */
         bgmchange (otom[1]);
-//PlaySoundMem(oto[0],DX_PLAYTYPE_LOOP) ;
 
         scrollx = 0 * 100;
-//ma=3000;mb=3000;
 
-        byte stagedatex[17][1001] = {
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 7}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 44, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0,
-                0, 0, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0,
-                0, 5, 5,
-                5, 5,
-                5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 0,
-                5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0,
-                0, 0, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0,
-                0, 6, 6,
-                6, 6,
-                6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 0,
-                6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-        };
+byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 7},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0,83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,44, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5} ,
+{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+} ;
 
         tco = 0;
-//ヒント1
+/* ヒント1 */
         txtype[tco] = 1;
         tyobi (4 * 29, 9 * 29 - 12, 300);
-//tyobi(7*29,9*29-12,300);
 
-//毒1
+/* 毒1 */
         tyobi (13 * 29, 8 * 29 - 12, 114);
 
-//t=28;
         sco = 0;
         t = sco;
         sa[t] = 14 * 29 * 100 + 500;
@@ -6248,8 +5279,7 @@ stagep ()
         sxtype[t] = 1;
         sco++;
 
-//ブロックもどき
-//t=bco;ba[t]=7*29*100;bb[t]=(9*29-12)*100;btype[t]=82;bxtype[t]=0;bco++;
+/* ブロックもどき */
 
         for (tt = 0; tt <= 1000; tt++)
         {
@@ -6262,11 +5292,10 @@ stagep ()
 
     }				//sta2
 
-//1-2-1(地下)
+/* 1-2-1(地下) */
     if (sta == 1 && stb == 2 && stc == 1)
     {
-
-//マリ　地下　入れ
+/* マリ　地下　入れ */
         bgmchange (otom[2]);
 
         scrollx = 4080 * 100;
@@ -6274,366 +5303,24 @@ stagep ()
         mb = 3000;
         stagecolor = 2;
 
-        byte stagedatex[17][1001] = {
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 97, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 98, 0,
-                1, 1,
-                1, 1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
-                0, 1, 0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 97, 44, 0, 0,
-                1, 1,
-                1, 1,
-                1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1,
-                0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 7, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 54, 0, 1,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 97, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 98, 2, 2, 98, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                4, 7,
-                7, 7, 7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 4, 4, 4,
-                1, 1, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1,
-                0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 4,
-                0, 0,
-                0, 0, 4, 0, 4, 0, 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 1, 1, 4, 4, 4, 4, 1,
-                1, 1, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0
-            }
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,
-                4, 0, 4,
-                0, 0,
-                0, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 30, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 4, 4, 4, 4,
-                1, 1, 1,
-                1, 0,
-                0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1,
-                0
-            }
-            ,
-            {   1, 0, 7, 0, 0, 0, 0, 0, 0, 0, 50, 0, 50, 0, 4, 0, 4, 0,
-                4, 0,
-                4, 0,
-                50, 0, 0, 4, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0, 50, 50, 50,
-                7, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 4, 4, 4,
-                4, 1, 1,
-                1, 1,
-                1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
-                1, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                1, 0
-            }
-            ,
-            {   5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 0,
-                0, 0,
-                5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 0, 0,
-                0, 0, 5,
-                5, 5,
-                5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 0
-            }
-            ,
-            {   6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 0,
-                0, 0,
-                6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 0, 6, 6, 0, 0,
-                0, 0, 6,
-                6, 6,
-                6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 0,
-                0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-        };
-//{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0, 0},
+{ 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,98, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,97,44, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,54, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0,98, 2, 2,98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 7, 7, 7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 4, 4, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 4, 0,51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 1, 1, 4, 4, 4, 4, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,40, 0, 0, 0, 0, 0, 0,30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 1, 0, 7, 0, 0, 0, 0, 0, 0, 0,50, 0,50, 0, 4, 0, 4, 0, 4, 0, 4, 0,50, 0, 0, 4, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0,50,50,50, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+{ 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0} ,
+{ 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 0, 6, 6, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+};
 
         tco = 0;
         txtype[tco] = 2;
@@ -6653,8 +5340,6 @@ stagep ()
         txtype[tco] = 2;
         tyobi (78 * 29, 5 * 29 - 12, 102);
 
-//txtype[tco]=1;tyobi(11*29,9*29-12,114);//毒1
-
         sco = 0;
         t = sco;
         sa[t] = 2 * 29 * 100;
@@ -6663,7 +5348,7 @@ stagep ()
         sd[t] = 3000;
         stype[t] = 52;
         sco++;
-//t=sco;sa[t]=19*29*100;sb[t]=(13*29-12)*100;sc[t]=3000*1-1;sd[t]=3000;stype[t]=52;sco++;
+
         t = sco;
         sa[t] = 24 * 29 * 100;
         sb[t] = (13 * 29 - 12) * 100;
@@ -6704,7 +5389,7 @@ stagep ()
         sxtype[t] = 7;
         sco++;
 
-//ブロックもどき
+/* ブロックもどき */
 
         t = 27;
         sa[t] = 69 * 29 * 100;
@@ -6734,7 +5419,7 @@ stagep ()
         sgtype[t] = 0;
         sco++;
 
-//26 ファイアー土管
+/* 26 ファイアー土管 */
         t = 26;
         sa[t] = 103 * 29 * 100 - 1500;
         sb[t] = (9 * 29 - 12) * 100 - 2000;
@@ -6771,9 +5456,7 @@ stagep ()
         sxtype[t] = 0;
         sco++;
 
-//t=sco;sa[t]=44*29*100;sb[t]=-6000;sc[t]=9000;sd[t]=70000;stype[t]=102;sco++;
-
-//オワタゾーン
+/* オワタゾーン */
         t = sco;
         sa[t] = 143 * 29 * 100;
         sb[t] = (9 * 29 - 12) * 100;
@@ -6806,7 +5489,7 @@ stagep ()
         btype[t] = 82;
         bxtype[t] = 1;
         bco++;
-//t=bco;ba[t]=52*29*100;bb[t]=(2*29-12)*100;btype[t]=82;bxtype[t]=1;bco++;
+
         t = bco;
         ba[t] = 51 * 29 * 100 + 1000;
         bb[t] = (2 * 29 - 12 + 10) * 100;
@@ -6814,7 +5497,7 @@ stagep ()
         bxtype[t] = 1;
         bco++;
 
-//？ボール
+/* ？ボール */
         t = bco;
         ba[t] = 96 * 29 * 100 + 100;
         bb[t] = (10 * 29 - 12) * 100;
@@ -6822,7 +5505,7 @@ stagep ()
         bxtype[t] = 0;
         bco++;
 
-//リフト
+/* リフト */
         srco = 0;
         t = srco;
         sra[t] = 111 * 29 * 100;
@@ -6857,18 +5540,6 @@ stagep ()
         sre[t] = 300;
         srco++;
 
-//ヒント1
-//tyobi(4*29,9*29-12,300);
-//tyobi(7*29,9*29-12,300);
-
-//毒1
-//tyobi(13*29,8*29-12,114);
-
-//t=28;
-//sco=0;
-//t=sco;
-//sa[t]=14*29*100+500;sb[t]=(9*29-12)*100;sc[t]=6000;sd[t]=12000-200;stype[t]=50;sxtype[t]=1;sco++;
-
         for (tt = 0; tt <= 1000; tt++)
         {
             for (t = 0; t <= 16; t++)
@@ -6877,171 +5548,37 @@ stagep ()
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
-//stagedatex[0][0];
-
     }				//sta1-2-1
 
-//1-2(地上)
+/* 1-2(地上) */
     if (sta == 1 && stb == 2 && stc == 2)
     {
 
-//マリ　地上　入れ
-//Mix_HaltMusic();
+/* マリ　地上　入れ */
         bgmchange (otom[1]);
-//PlaySoundMem(oto[0],DX_PLAYTYPE_LOOP) ;
 
         scrollx = 900 * 100;
         ma = 7500;
         mb = 3000 * 9;
 
-        byte stagedatex[17][1001] = {
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 82, 0, 0, 0, 0,
-                0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 83, 0, 0,
-            }
-            ,
-            {   0, 0, 40, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0,
-            }
-            ,
-            {   0, 0, 41, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-                4, 4,
-                4, 0, 0,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81,
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0,
-                0, 5, 5,
-                5, 5,
-                5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 0,
-                5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0,
-                0, 6, 6,
-                6, 6,
-                6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 0,
-                6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-        };
-
-        /*
-        //毒1
-        tyobi(13*29,8*29-12,114);
-
-        //t=28;
-        sco=0;
-        t=sco;sa[t]=14*29*100+500;sb[t]=(9*29-12)*100;sc[t]=6000;sd[t]=12000-200;stype[t]=50;sxtype[t]=1;sco++;
-        t=sco;sa[t]=12*29*100;sb[t]=(11*29-12)*100;sc[t]=3000;sd[t]=6000-200;stype[t]=40;sxtype[t]=0;sco++;
-        t=sco;sa[t]=14*29*100+1000;sb[t]=-6000;sc[t]=5000;sd[t]=70000;stype[t]=100;sxtype[t]=1;sco++;
-        */
+byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,99, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,83, 0, 0,},
+{ 0, 0,40, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0,41, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 81,},
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5} ,
+{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+} ;
 
         t = sco;
         sa[t] = 5 * 29 * 100 + 500;
@@ -7051,7 +5588,7 @@ stagep ()
         stype[t] = 102;
         sxtype[t] = 8;
         sco++;
-//空飛ぶ土管
+/* 空飛ぶ土管 */
         t = 28;
         sa[t] = 44 * 29 * 100 + 500;
         sb[t] = (10 * 29 - 12) * 100;
@@ -7060,7 +5597,7 @@ stagep ()
         stype[t] = 50;
         sco++;
 
-//ポールもどき
+/* ポールもどき */
         bco = 0;
         t = bco;
         ba[t] = 19 * 29 * 100;
@@ -7080,362 +5617,43 @@ stagep ()
 
     }				//sta2
 
-//必要BGM+SE
+/* 必要BGM+SE */
 
-//1-3(地上)
+/* 1-3(地上) */
     if (sta == 1 && stb == 3 && stc == 6)
     {
         stc = 0;
     }
     if (sta == 1 && stb == 3 && stc == 0)
     {
-
-//Mix_HaltMusic();
         bgmchange (otom[1]);
-//PlaySoundMem(oto[0],DX_PLAYTYPE_LOOP) ;
 
         scrollx = 3900 * 100;
-//ma=3000;mb=3000;
 
-        byte stagedatex[17][1001] = {	//                                                                                                                                                                                     中間
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 97,
-                0, 0, 0,
-                0, 0, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 82, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 57, 0, 0, 0, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                82, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 84, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 51, 0, 0, 0, 84,
-                0, 0,
-                0, 0,
-                0, 99, 0, 0, 0, 0, 0, 0, 82, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                97, 0, 0,
-                0, 0, 0, 0, 57, 0, 0, 0, 0, 0, 0, 0, 97, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1,
-                1, 1,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                30, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                7, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 2, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 84, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 97,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 97, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0,
-                0, 0,
-                0, 0,
-                85, 85, 0, 0, 0, 0, 0, 0, 0, 97, 0, 0, 0, 0, 4, 4, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0,
-                81, 0,
-                0, 0,
-                0, 50, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                81, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5,
-                0, 0, 0,
-                5, 5,
-                5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6,
-                0, 0, 0,
-                6, 6,
-                6, 0, 0, 0, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-        };
+byte stagedatex[17][1001]={/*                                                                                                                                                                                     中間                                                                                                                                                                                                                                                           */
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,57, 0, 0, 0,84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,51, 0, 0, 0,84, 0, 0, 0, 0, 0,99, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0, 0,57, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0,83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,30, 0, 0, 0, 0, 0, 0,85,85, 0, 0, 0, 0, 0, 0, 0,97, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0,81, 0, 0, 0, 0, 0, 0, 0, 0, 0,81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,81, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0,81, 0, 0, 0, 0,50, 0,50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,81, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0} ,
+{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 0, 0, 0, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+};
 
         tco = 0;
         tyobi (22 * 29, 3 * 29 - 12, 1);
-//毒1
+/* 毒1 */
         tyobi (54 * 29, 9 * 29 - 12, 116);
-//音符+
+/* 音符+ */
         tyobi (18 * 29, 14 * 29 - 12, 117);
         tyobi (19 * 29, 14 * 29 - 12, 117);
         tyobi (20 * 29, 14 * 29 - 12, 117);
@@ -7443,17 +5661,17 @@ stagep ()
         tyobi (61 * 29, 9 * 29 - 12, 101);	//5
         tyobi (74 * 29, 9 * 29 - 12, 7);	//6
 
-//ヒント2
+/* ヒント2 */
         txtype[tco] = 2;
         tyobi (28 * 29, 9 * 29 - 12, 300);	//7
-//ファイア
+/* ファイア */
         txtype[tco] = 3;
         tyobi (7 * 29, 9 * 29 - 12, 101);
-//ヒント3
+/* ヒント3 */
         txtype[tco] = 4;
         tyobi (70 * 29, 8 * 29 - 12, 300);	//9
 
-//もろいぶろっく×３
+/* もろいぶろっく×３ */
         txtype[tco] = 1;
         tyobi (58 * 29, 13 * 29 - 12, 115);
         txtype[tco] = 1;
@@ -7461,15 +5679,12 @@ stagep ()
         txtype[tco] = 1;
         tyobi (60 * 29, 13 * 29 - 12, 115);
 
-//ヒントブレイク
+/* ヒントブレイク */
         txtype[tco] = 0;
         tyobi (111 * 29, 6 * 29 - 12, 301);
-//ジャンプ
+/* ジャンプ */
         txtype[tco] = 0;
         tyobi (114 * 29, 9 * 29 - 12, 120);
-
-//ファイア
-//tyobi(7*29,9*29-12,101);
 
         bco = 0;
         t = bco;
@@ -7492,9 +5707,8 @@ stagep ()
         sd[t] = 3000;
         stype[t] = 52;
         sco++;
-//t=sco;sa[t]=58*29*100;sb[t]=(13*29-12)*100;sc[t]=9000-1;sd[t]=3000;stype[t]=52;sco++;
 
-//土管
+/* 土管 */
         t = sco;
         sa[t] = 65 * 29 * 100 + 500;
         sb[t] = (10 * 29 - 12) * 100;
@@ -7503,9 +5717,8 @@ stagep ()
         stype[t] = 50;
         sxtype[t] = 1;
         sco++;
-//t=28;sa[t]=65*29*100;sb[t]=(10*29-12)*100;sc[t]=6000;sd[t]=9000-200;stype[t]=50;sco++;
 
-//トラップ
+/* トラップ */
         t = sco;
         sa[t] = 74 * 29 * 100;
         sb[t] = (8 * 29 - 12) * 100 - 1500;
@@ -7522,7 +5735,7 @@ stagep ()
         stype[t] = 102;
         sxtype[t] = 10;
         sco++;
-//ポール砲
+/* ポール砲 */
         t = sco;
         sa[t] = 131 * 29 * 100 - 1500;
         sb[t] = (1 * 29 - 12) * 100 - 3000;
@@ -7531,22 +5744,21 @@ stagep ()
         stype[t] = 104;
         sco++;
 
-//？ボール
+/* ？ボール */
         t = bco;
         ba[t] = 10 * 29 * 100 + 100;
         bb[t] = (11 * 29 - 12) * 100;
         btype[t] = 105;
         bxtype[t] = 1;
         bco++;
-//ブロックもどき
+/* ブロックもどき */
         t = bco;
         ba[t] = 43 * 29 * 100;
         bb[t] = (11 * 29 - 12) * 100;
         btype[t] = 82;
         bxtype[t] = 1;
         bco++;
-//t=bco;ba[t]=146*29*100;bb[t]=(12*29-12)*100;btype[t]=82;bxtype[t]=1;bco++;
-//うめぇ
+/* うめぇ */
         t = bco;
         ba[t] = 1 * 29 * 100;
         bb[t] = (2 * 29 - 12 + 10) * 100 - 1000;
@@ -7554,7 +5766,7 @@ stagep ()
         bxtype[t] = 0;
         bco++;
 
-//リフト
+/* リフト */
         srco = 0;
         t = srco;
         sra[t] = 33 * 29 * 100;
@@ -7639,88 +5851,37 @@ stagep ()
 
     }				//sta3
 
-//1-3(地下)
+/* 1-3(地下) */
     if (sta == 1 && stb == 3 && stc == 1)
     {
-
-//マリ　地上　入れ
-//Mix_HaltMusic();
+/* マリ　地上　入れ */
         bgmchange (otom[2]);
-//PlaySoundMem(oto[0],DX_PLAYTYPE_LOOP) ;
 
         scrollx = 0 * 100;
         ma = 6000;
         mb = 6000;
         stagecolor = 2;
 
-        byte stagedatex[17][1001] = {
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,}
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,}
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,}
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,}
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,}
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,}
-            ,
-            {   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-                0, 0
-            }
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,}
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,}
-            ,
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,}
-            ,
-            {   1, 54, 0, 54, 0, 54, 0, 54, 0, 54, 0, 54, 0, 54, 0, 54,
-                1, 0,
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 8,
-                8, 8, 8,
-            }
-            ,
-            {   6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-        };
+byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,},
+{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,},
+{ 1,54, 0,54, 0,54, 0,54, 0,54, 0,54, 0,54, 0,54, 1, 0,},
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 8, 8, 8, 8,} ,
+{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+} ;
 
         tco = 0;
-//tyobi(15*29,12*29-12,111);
 
         stc = 0;
 
@@ -7735,10 +5896,9 @@ stagep ()
 
     }				//sta3
 
-//1-3(空中)
+/* 1-3(空中) */
     if (sta == 1 && stb == 3 && stc == 5)
     {
-
         stagecolor = 3;
         bgmchange (otom[3]);
 
@@ -7748,67 +5908,24 @@ stagep ()
 
         stagepoint = 1;
 
-        byte stagedatex[17][1001] = {
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 9, 0, 9, 0, 9, 0, 9, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
-            ,
-            {   8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0, 0, 8, 8,
-                8, 8, 8,
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-        };
+byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 9, 0, 9, 0, 9, 0, 9, 0, 0, 0, 0, 0,},
+{ 0, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+{ 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0, 0, 8, 8, 8, 8, 8,} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+} ;
 
         sco = 0;
         t = sco;
@@ -7819,17 +5936,12 @@ stagep ()
         stype[t] = 50;
         sxtype[t] = 1;
         sco++;
-//t=sco;sa[t]=12*29*100;sb[t]=(11*29-12)*100;sc[t]=3000;sd[t]=6000-200;stype[t]=40;sxtype[t]=0;sco++;
-//t=sco;sa[t]=14*29*100+1000;sb[t]=-6000;sc[t]=5000;sd[t]=70000;stype[t]=100;sxtype[t]=1;sco++;
 
         txtype[tco] = 0;
         tyobi (12 * 29, 4 * 29 - 12, 112);
-//ヒント3
+/* ヒント3 */
         txtype[tco] = 3;
         tyobi (12 * 29, 8 * 29 - 12, 300);
-//txtype[tco]=0;tyobi(13*29,4*29-12,110);
-
-//stc=0;
 
         for (tt = 0; tt <= 1000; tt++)
         {
@@ -7842,407 +5954,37 @@ stagep ()
 
     }				//sta5
 
-//1-4(地下)
+/* 1-4(地下) */
     if (sta == 1 && stb == 4 && stc == 0)
     {
-
-//マリ　地上　入れ
-//Mix_HaltMusic();
+/* マリ　地上　入れ */
         bgmchange (otom[4]);
-//PlaySoundMem(oto[0],DX_PLAYTYPE_LOOP) ;
 
         scrollx = 4400 * 100;
         ma = 12000;
         mb = 6000;
         stagecolor = 4;
 
-        byte stagedatex[17][1001] = {	//                                                                                                                                                                                     中間
-            {   5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                7, 7, 7, 7, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0
-            }
-            ,
-            {   5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 5,
-                5, 5,
-                5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 5,
-                5, 5,
-                5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                60, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 60, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 5, 0, 0,
-                5, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 5, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0,
-                5, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                2, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                5, 5, 0,
-                0, 0,
-                0, 0, 0, 7, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                0, 0,
-                0, 3, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 7, 7, 2, 2, 7, 5,
-                5, 5, 5,
-                0, 0,
-                0, 3, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                5, 5, 5,
-                5, 5,
-                0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0,
-                0, 0, 0,
-                59, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                0, 0,
-                0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                5, 5, 5,
-                5, 5,
-                0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                0, 0,
-                0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                0, 0,
-                0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                5, 5, 5,
-                5, 5,
-                0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5,
-                5, 5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 5,
-                5, 5,
-                5, 0, 0,
-                0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 59, 0, 0, 0, 0, 0, 5,
-                5, 5,
-                5, 0, 0,
-                0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                5, 5, 5,
-                5, 5,
-                0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 5, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5,
-                5, 5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5,
-                5, 5, 5,
-                5, 5,
-                0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 41, 0, 5, 5, 5, 5, 5, 5,
-                5, 5,
-                5, 5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 86, 0, 0, 86, 0, 5, 5, 5,
-                5, 5,
-                86, 0,
-                0, 86, 0, 0, 86, 0, 0, 86, 0, 0, 86, 0, 0, 86, 0, 0,
-                86, 0, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 86, 0, 0, 86, 5,
-                5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 86, 5, 5, 5, 5, 5, 86, 0, 0,
-                86, 0, 0,
-                5, 5,
-                5, 5, 5, 5, 5, 86, 0, 0, 86, 5, 5, 5, 5, 86, 0, 0, 86,
-                0, 5,
-                5, 5, 5,
-                5, 5, 5, 5, 5, 5, 86, 0, 5, 5, 86, 0, 0, 86, 0, 0, 86,
-                0, 0,
-                86, 0,
-                0, 86, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                41, 0,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 0, 0,
-                0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-        };
+byte stagedatex[17][1001]={/*                                                                                                                                                                                     中間                                                                                                                                                                                                                                                           */
+{ 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7, 7, 7, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,50, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0,30, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 3, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 7, 7, 2, 2, 7, 5, 5, 5, 5, 0, 0, 0, 3, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,59, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0,59, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,40, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,41, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 5, 5, 5,86, 0, 0,86, 0, 5, 5, 5, 5, 5,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,86, 0, 0,86, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,86, 5, 5, 5, 5, 5,86, 0, 0,86, 0, 0, 5, 5, 5, 5, 5, 5, 5,86, 0, 0,86, 5, 5, 5, 5,86, 0, 0,86, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,86, 0, 5, 5,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0,86, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,41, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+} ;
 
-        sco = 0;			//sco=140;
+        sco = 0;
         t = sco;
         sa[t] = 35 * 29 * 100 - 1500 + 750;
         sb[t] = (8 * 29 - 12) * 100 - 1500;
@@ -8266,8 +6008,7 @@ stagep ()
         sd[t] = 3000;
         stype[t] = 52;
         sco++;
-//t=sco;sa[t]=79*29*100;sb[t]=(13*29-12)*100;sc[t]=30*3*100-1;sd[t]=6000-200;stype[t]=51;sxtype[t]=4;sco++;
-//t=sco;sa[t]=83*29*100;sb[t]=(-2*29-12)*100;sc[t]=30*5*100-1;sd[t]=3000-200;stype[t]=51;sxtype[t]=4;sco++;
+
         t = sco;
         sa[t] = 123 * 29 * 100;
         sb[t] = (1 * 29 - 12) * 100;
@@ -8425,7 +6166,6 @@ stagep ()
         tyobi (35 * 29, 9 * 29 - 12, 5);
         /* 隠し */
         tyobi (55 * 29 + 15, 6 * 29 - 12, 7);
-//tyobi(62*29,9*29-12,2);
         /* 隠しON-OFF */
         txtype[tco] = 10;
         tyobi (50 * 29, 9 * 29 - 12, 114);
@@ -8435,8 +6175,6 @@ stagep ()
         /* ファイア */
         txtype[tco] = 3;
         tyobi (86 * 29, 9 * 29 - 12, 101);
-        /* キノコなし　普通 */
-//txtype[tco]=2;tyobi(81*29,1*29-12,5);
         /* 音符 */
         txtype[tco] = 2;
         tyobi (86 * 29, 6 * 29 - 12, 117);
@@ -8505,268 +6243,26 @@ stagep ()
         bgmchange (otom[1]);
         stagecolor = 1;
         scrollx = 2900 * (113 - 19);
-        //
-        byte stagedatex[17][1001] = {
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                82, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 4, 4, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 82,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4,
-                4, 0,
-                82, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0,
-                0, 0, 4,
-                4, 4,
-                4, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 4,
-                4, 0,
-                0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
-                4, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                4, 0,
-                0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 7,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 4, 4, 4, 4,
-                4, 0, 0,
-                4, 7,
-                7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 2, 98, 2, 4, 0,
-                0, 0,
-                0, 0, 0,
-                0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 0, 0, 10, 10,
-                10, 10,
-                4, 1,
-                1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 4, 0,
-                0, 0,
-                0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 7, 0, 4, 4,
-                4, 4, 4,
-                4, 4,
-                4
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 4,
-                4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 4, 7, 7, 7, 4, 4, 4, 0, 0, 0, 0,
-                80, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                4, 4,
-                4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7,
-                0, 0, 4,
-                4, 4,
-                4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                81, 0, 0, 0, 81, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 50,
-                0, 0,
-                50, 81,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 0,
-                4, 0,
-                0, 4, 4,
-                4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0,
-                0, 0, 0,
-                0, 0
-            }
-            ,
 
-            {   5, 5, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0,
-                0, 0, 0,
-                0, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0,
-                5, 5, 5
-            }
-            ,
-            {   6, 6, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0,
-                0, 0, 0,
-                0, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0,
-                6, 6, 6
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
+        byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,99, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 4, 4, 4, 4, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 4, 4, 4, 4, 4, 0, 0, 4, 7, 7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 2,98, 2, 4, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,10,10,10,10, 0, 0,10,10,10,10, 4, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 7, 0, 4, 4, 4, 4, 4, 4, 4, 4} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 4, 7, 7, 7, 4, 4, 4, 0, 0, 0, 0,80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0,81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,81, 0, 0, 0,81, 0, 0, 0, 0, 0, 0, 0, 0,50, 0, 0,50, 0, 0,50,81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,81, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 5, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5} ,
+{ 6, 6, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0, 6, 6, 6} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         /* 追加情報 */
         tco = 0;
         //
@@ -8882,40 +6378,26 @@ stagep ()
         bgmchange (otom[1]);
         stagecolor = 1;
         scrollx = 2900 * (19 - 19);
-        //
-        byte stagedatex[17][1001] = {
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 82, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0}
-            ,
-            {0, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5}
-            ,
-            {6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+        byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0},
+{ 0,80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5},
+{ 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         //
         sa[sco] = 14 * 29 * 100 + 200;
         sb[sco] = -6000;
@@ -8966,316 +6448,26 @@ stagep ()
         ma = 7500;
         mb = 9000;
         scrollx = 2900 * (137 - 19);
-//
-        byte stagedatex[17][1001] = {
-            {   0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-                4, 4, 4,
-                4, 4,
-                4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4,
-                4, 4, 4,
-                4, 98,
-                4, 4, 4, 4, 4, 4, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-                4, 98, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 10, 10,
-                10, 10,
-                10, 10,
-                10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 7, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                10, 10,
-                10, 10,
-                10, 10, 10, 10, 10, 10, 10, 0, 0, 1, 1, 1, 1, 1, 1, 0,
-                0, 0,
-                10, 10,
-                10, 10, 10, 10, 10, 10, 10, 0, 0, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0,
-                0, 0, 0,
-                0, 7,
-                0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 51, 0,
-                0, 0,
-                0, 0, 0,
-                7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4,
-                4, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 1, 1, 1, 1, 1, 1, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0,
-                0, 3, 0,
-                0, 0,
-                3, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 57,
-                0, 0, 0,
-                0, 0, 57, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4,
-                4, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 7,
-                0, 0, 0, 0, 0, 0, 0, 0, 10, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                44, 0,
-                0, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 7, 7, 7,
-                0, 97,
-                0, 0, 0,
-                1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 1
-            }
-            ,
-            {   4, 7, 7, 7, 7, 7, 7, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 1, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 4, 4, 0, 0, 0, 1, 1, 0, 0, 0, 0, 44,
-                0, 0, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 1, 1, 0, 0, 0, 97, 0,
-                0, 0, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1,
-                1, 1, 1
-            }
-            ,
-            {   4, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1,
-                1, 1, 1
-            }
-            ,
-            {   5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 1, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 5, 5, 5, 0, 0, 1, 1, 0, 0, 0, 1, 1,
-                1, 1, 1
-            }
-            ,
-            {   6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 0, 0, 1, 0, 0, 0,
-                1, 1, 1,
-                1, 1,
-                1, 1, 1, 1, 1, 1, 6, 6, 6, 0, 0, 1, 1, 0, 0, 0, 1, 1,
-                1, 1, 1
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0
-            }
+
+        byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,98, 4, 4, 4, 4, 4, 4, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,98, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,10,10,10,10,10,10,10,10,10,10,10, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0,10,10,10,10,10,10,10,10,10, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,51, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,10,10,10,10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0,30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,57, 0, 0, 0, 0, 0,57, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,10, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,44, 0, 0, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 7, 7, 7, 0,97, 0, 0, 0, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1} ,
+{ 4, 7, 7, 7, 7, 7, 7, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 0, 0, 0, 1, 1, 0, 0, 0, 0,44, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 1, 1, 0, 0, 0,97, 0, 0, 0, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1} ,
+{ 4, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1} ,
+{ 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1} ,
+{ 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 6, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         //
         bco = 0;
         ba[bco] = 32 * 29 * 100 - 1400;
@@ -9473,104 +6665,26 @@ stagep ()
         scrollx = 2900 * (36 - 19);
         ma = 7500;
         mb = 3000 * 9;
-//
-        byte stagedatex[17][1001] = {
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50,
-                51, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4,
-                4, 4, 4,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4,
-                4, 4, 4,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4,
-                4, 4, 4,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 4, 4, 4, 4, 4,
-                4, 4,
-                4, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4,
-                4, 4, 4,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4,
-                4, 4, 4,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4,
-                4, 4,
-                4, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 41, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-                4, 4,
-                4, 0, 0,
-                0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 54, 0, 0
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                0, 0,
-                0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                0, 0,
-                0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
+
+        byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,99, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,50,51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,50, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0,40, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{ 0, 0,41, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,54, 0, 0},
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         //
         bco = 0;
         ba[bco] = 9 * 29 * 100;
@@ -9662,296 +6776,26 @@ stagep ()
         bgmchange (otom[1]);
         stagecolor = 1;
         scrollx = 2900 * (126 - 19);
-        //
+
         byte stagedatex[17][1001] = {
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                4, 4,
-                4, 4, 4, 4, 4, 4, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-                4, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                82, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0,
-                0, 0, 0,
-                4, 4,
-                4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 82, 0, 0,
-                0, 0,
-                0, 0,
-                56, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10, 10, 10, 10, 10, 10,
-                10, 10,
-                10,
-                10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 51, 0, 1, 0,
-                0, 0,
-                0, 4, 4,
-                4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 0,
-                0, 0,
-                1, 0, 0, 0, 0, 0, 82, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                50, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 1, 0, 0, 0, 1,
-                7, 0, 0,
-                0, 4,
-                4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                4, 4,
-                4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                4, 4,
-                4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 10, 4, 4, 4, 0, 54, 0,
-                54, 0, 4,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 4, 4,
-                4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 4, 4, 4, 4,
-                4, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                7, 4,
-                7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0,
-                0, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 58, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0,
-                0, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0,
-                0, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 4, 1, 1, 1, 4,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 0, 4, 0, 0, 0, 0, 0, 0,
-                0, 4,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 7,
-                0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 30, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0,
-                0, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 3,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0,
-                0, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 4, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5,
-                5, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0,
-                0, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6,
-                6, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0,
-                0, 4, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 6, 6, 0, 6, 6, 6, 6, 6
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0,56, 0, 0, 0, 0, 0, 0, 0, 0, 4,10,10,10,10,10,10,10,10,10,10,10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,99, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,51, 0, 1, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 1, 0, 0, 0, 1, 7, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,10, 4, 4, 4, 0,54, 0,54, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 4, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,58, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,52, 0, 0, 0, 0, 4, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,10,10, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0,30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 5, 5, 5, 5, 5} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 0, 6, 6, 6, 6, 6} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         //
         tco = 0;
         txtype[tco] = 0;
@@ -9980,14 +6824,7 @@ stagep ()
         txtype[tco] = 8;
         tyobi (60 * 29, 6 * 29 - 12, 300);
         tco += 1;
-        /*
-           bco = 1;
-           ba[bco]=(54*29-12)*100;
-           bb[bco]=(1*29-12)*100;
-           btype[bco]=80;
-           bxtype[bco]=0;
-           bco += 1;
-         */
+
         sco = 0;
         ba[sco] = (102 * 29 - 12) * 100;
         bb[sco] = (10 * 29 - 12) * 100;
@@ -10067,104 +6904,26 @@ stagep ()
         bgmchange (otom[4]);
         stagecolor = 4;
         scrollx = 2900 * (40 - 19);
-        //
-        byte stagedatex[17][1001] = {
-            {   5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 10,
-                0, 0,
-                0, 10,
-                10, 10, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 7, 7, 10, 10, 10, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 7,
-                7, 7, 3,
-                7, 0,
-                7, 5, 0, 0, 5, 5, 5, 0, 58, 0, 5, 0, 0, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 59, 0, 5, 5, 5, 5, 0,
-                0, 0,
-                0, 0,
-                0, 0, 5, 0, 0, 0, 0, 5, 59, 0, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 5, 5, 5, 5, 5, 40, 0, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0,
-                0, 0,
-                0, 0, 0,
-                0, 5, 0, 0, 0, 0, 5, 0, 59, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 86, 5, 5, 5, 5, 41, 0, 5, 86, 0, 0, 86, 5, 5, 5, 5,
-                86, 0,
-                0, 86,
-                0, 0, 86, 5, 0, 86, 5, 5, 5, 86, 0, 0, 5, 5, 5, 5, 5
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 59, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 0
-            }
+
+		byte stagedatex[17][1001]={
+{ 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5, 5, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0,10, 0, 0, 0,10,10,10, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7,10,10,10, 5, 5, 5, 5, 5} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 7, 7, 7, 3, 7, 0, 7, 5, 0, 0, 5, 5, 5, 0,58, 0, 5, 0, 0, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 5, 5} ,
+{ 5, 0, 0, 0, 0, 0, 0, 0, 0, 0,59,59, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5,59, 0, 0, 5, 5, 5, 5, 5} ,
+{ 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5, 5} ,
+{ 5, 5, 5, 5, 5, 5,40, 0, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0,59, 0, 5, 5, 5, 5, 5} ,
+{ 5,86, 5, 5, 5, 5,41, 0, 5,86, 0, 0,86, 5, 5, 5, 5,86, 0, 0,86, 0, 0,86, 5, 0,86, 5, 5, 5,86, 0, 0, 5, 5, 5, 5, 5} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,59,59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,59, 0, 0, 0, 0, 0}
         };
+
         //
         tco = 0;
         txtype[tco] = 0;
@@ -10242,53 +7001,26 @@ stagep ()
         bgmchange (otom[4]);
         stagecolor = 4;
         scrollx = 2900 * (21 - 19);
-        //
+
         byte stagedatex[17][1001] = {
-            {   5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                98
-            }
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 7, 7, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {0, 5, 5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0}
-            ,
-            {   0, 10, 10, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0,
-                0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 44, 0,
-                0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 97, 0, 0,
-                0
-            }
-            ,
-            {   0, 40, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5,
-                5
-            }
-            ,
-            {   86, 41, 0, 86, 0, 5, 86, 0, 0, 86, 0, 5, 86, 0, 0, 86,
-                0, 0,
-                86
-            }
-            ,
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,98} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 7, 7, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 5, 5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0,10,10, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0,44, 0, 0} ,
+{ 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0,97, 0, 0, 0} ,
+{ 0,40, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5} ,
+{86,41, 0,86, 0, 5,86, 0, 0,86, 0, 5,86, 0, 0,86, 0, 0,86} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         //
         tco = 0;
         txtype[tco] = 1;
@@ -10353,298 +7085,26 @@ stagep ()
         bgmchange (otom[5]);	//6
         stagecolor = 4;
         scrollx = 2900 * (128 - 19);
-        //
-        byte stagedatex[17][1001] = {
-            {   5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 5, 5,
-                5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 5, 5,
-                5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 5, 0, 5, 5, 5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 5, 5,
-                5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 7,
-                7, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0,
-                0, 5, 0,
-                0, 5,
-                0, 5, 0, 10, 10, 5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0,
-                0, 60, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 5,
-                5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 5, 0,
-                0, 5,
-                0, 5, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                5, 5,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 5, 3,
-                0, 5,
-                0, 3, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                5, 5,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 5, 0,
-                0, 5,
-                0, 5, 5, 5, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 7, 7, 7, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                5, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   3, 0, 0, 3, 0, 0, 3, 7, 0, 3, 7, 7, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0,
-                5, 0, 0,
-                0, 5,
-                0, 5, 10, 10, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 7, 7, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 5,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0,
-                0, 0, 0,
-                0, 5,
-                0, 5, 0, 0, 0, 5, 0, 5, 7, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                5, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 3, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 0, 0,
-                0, 5,
-                0, 0, 0, 30, 0, 5, 0, 0, 0, 0, 0, 0, 7, 7, 5, 0, 0, 0,
-                5, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
-            ,
-            {   5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 5,
-                5, 5, 0,
-                0, 5,
-                0, 0, 7, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0,
-                5, 0, 0,
-                0, 5,
-                5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0,
-                0, 5, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 0, 0,
-                0, 5,
-                0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0,
-                5, 59,
-                0, 59,
-                5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 40, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-                0, 0, 0,
-                0, 5,
-                0, 0, 0, 5, 0, 5, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0,
-                5, 0,
-                59, 0, 5,
-                5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
-            }
-            ,
-            {   5, 41, 0, 5, 86, 0, 5, 86, 0, 5, 5, 5, 5, 86, 0, 0, 86,
-                0, 0,
-                86, 0,
-                0, 86, 0, 0, 86, 0, 0, 86, 0, 0, 86, 0, 0, 86, 0, 0, 5,
-                86, 0,
-                0, 86,
-                0, 0, 86, 5, 0, 86, 0, 5, 86, 5, 0, 5, 86, 0, 0, 5, 5,
-                5, 5,
-                86, 0,
-                0, 5, 86, 59, 0, 5, 5, 5, 5, 5, 86, 0, 0, 86, 5, 5, 86,
-                0, 0,
-                86, 0,
-                0, 86, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 86, 0, 0, 86,
-                0, 0,
-                86, 0, 0,
-                86, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5, 5,
-                5, 5, 5
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                59, 0,
-                0, 0, 0, 0, 59, 0, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 59,
-                0, 59,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            }
+
+		byte stagedatex[17][1001]={
+{ 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 5, 5, 5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 5, 0, 0, 5, 0, 5, 0,10,10, 5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,60, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, 5, 0, 5, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 3, 0, 5, 0, 3, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, 5, 0, 5, 5, 5, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 3, 0, 0, 3, 0, 0, 3, 7, 0, 3, 7, 7, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 5, 0, 0, 0, 5, 0, 5,10,10, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 5, 0, 5, 7, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0,30, 0, 5, 0, 0, 0, 0, 0, 0, 7, 7, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 5, 5, 5, 0, 0, 5, 0, 0, 7, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5,59, 0,59, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 5,40, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 5, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0,59, 0, 5, 5, 5, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 5,41, 0, 5,86, 0, 5,86, 0, 5, 5, 5, 5,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0, 5,86, 0, 0,86, 0, 0,86, 5, 0,86, 0, 5,86, 5, 0, 5,86, 0, 0, 5, 5, 5, 5,86, 0, 0, 5,86,59, 0, 5, 5, 5, 5, 5,86, 0, 0,86, 5, 5,86, 0, 0,86, 0, 0,86, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5,86, 0, 0,86, 0, 0,86, 0, 0,86, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,59, 0, 0, 0, 0, 0,59, 0,59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,59, 0,59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         //
         tco = 0;
         txtype[tco] = 0;
@@ -10875,281 +7335,26 @@ stagep ()
         bgmchange (otom[1]);
         stagecolor = 5;
         scrollx = 2900 * (112 - 19);
-        byte stagedatex[17][1001] = {
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 7,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                82, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 7,
-                7, 7, 7,
-                7, 7,
-                7, 7, 7, 7, 7, 7, 7, 7, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 7, 0, 4, 4, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 7, 7, 7, 4, 0,
-                0, 82,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10, 10, 0, 0, 10, 10,
-                4, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 4, 0, 0, 0, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0
-            }
-            ,
-            {   0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 7, 0, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 4, 4, 4, 4, 4, 0,
-                0, 0, 0,
-                0, 0,
-                0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 4, 4, 4, 4, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 4, 4, 4, 4, 4, 0,
-                0, 0, 0,
-                0, 0,
-                4, 4, 4, 4, 0, 0, 0, 4, 0, 7, 7, 4, 4, 4, 4, 0, 4, 4,
-                4, 4, 4,
-                4, 4
-            }
-            ,
-            {   0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 7, 0, 0, 4, 0, 4, 4, 4, 4, 4, 4, 0,
-                0, 0, 0,
-                0, 4,
-                4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4,
-                4, 4, 4,
-                4, 4
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 4, 4, 4, 4, 4, 0,
-                0, 0, 0,
-                4, 4,
-                4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4,
-                4, 4, 4,
-                4, 4
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 4,
-                4, 4,
-                4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4,
-                4, 4, 4,
-                4, 4
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                1, 0,
-                51, 1, 0, 81, 0, 0, 1, 1, 1, 1, 1, 7, 0, 0, 0, 0, 0, 4,
-                0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7,
-                0, 0, 4,
-                4, 4,
-                4, 4, 4, 4, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4,
-                4, 4, 4,
-                4, 4,
-                4
-            }
-            ,
-            {   0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-                0, 1, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 7,
-                5, 5, 5,
-                5, 5,
-                5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 5, 5, 5, 5, 5,
-                5, 5, 5,
-                5, 5
-            }
-            ,
-            {   0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 6, 6,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 0, 0,
-                6, 6, 6,
-                6, 6,
-                6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 6, 6, 6, 6, 6, 6, 6,
-                6, 6, 6,
-                6, 6
-            }
-            ,
-            {   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0,
-                0, 0
-            }
+
+        byte stagedatex[17][1001]={
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 7, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 7, 7, 7, 4, 0, 0,82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,10,10, 0, 0,10,10, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 7, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 4, 4, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 4, 0, 7, 7, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 4} ,
+{ 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 4, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,51, 1, 0,81, 0, 0, 1, 1, 1, 1, 1, 7, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4} ,
+{ 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5} ,
+{ 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6} ,
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         /* 追加情報 */
         tco = 0;
         //
@@ -11246,14 +7451,14 @@ void
 bgmchange (Mix_Music * x)
 {
     Mix_HaltMusic ();
-//otom[0]=0;
+
     otom[0] = x;
     Mix_PlayMusic (otom[0], -1);;
     if (x == otom[2])
         Mix_VolumeMusic (MIX_MAX_VOLUME * 40 / 100);
     else
         Mix_VolumeMusic (MIX_MAX_VOLUME * 50 / 100);
-}				//bgmchange()
+}
 
 /* ブロック出現 */
 void
@@ -11267,25 +7472,14 @@ tyobi (int x, int y, int type)
     tco++;
     if (tco >= tmax)
         tco = 0;
-}				//tyobi
+}
 
 /* ブロック破壊 */
 void
 brockbreak (int t)
 {
-    if (titem[t] == 1)
-    {
-//eyobi(ta[t],tb[t],0,-800,0,80,xx[1],xx[1],titem[t],8);
-//hosico++;
-    }
-    if (titem[t] >= 2 && titem[t] <= 7)
-    {
-//ayobi(ta[t],tb[t],-800,10,100+(titem[t]-2),0);//end();
-    }
-
     ta[t] = -800000;
-//}//ty==1
-}				//brock
+}
 
 /* メッセージ */
 void
@@ -11305,90 +7499,90 @@ ttmsg ()
         if (tmsg == 0)
         {
             setc1 ();
-            txmsg ("テスト　hoge", 0);
+            txmsg (txtmsg[75], 0);
         }
 
         if (tmsg == 1)
         {
             setc1 ();
             txmsg ("", 0);
-            txmsg ("ステージ 1 より", 0);
-            txmsg ("特殊的なものが増えたので", 1);
-            txmsg ("気をつけてくれよ〜", 2);
-            txmsg ("後、アイテムの一部を利用するかも…", 4);
-            txmsg ("                       ちく より", 6);
+            txmsg (txtmsg[76], 0);
+            txmsg (txtmsg[77], 1);
+            txmsg (txtmsg[78], 2);
+            txmsg (txtmsg[79], 4);
+            txmsg (txtmsg[80], 6);
         }
 
         if (tmsg == 2)
         {
-            txmsg ("            ？が必要です ", 3);
-            txmsg ("                         m9(^Д^)", 6);
+            txmsg (txtmsg[81], 3);
+            txmsg (txtmsg[82], 6);
         }
 
         if (tmsg == 3)
         {
-            txmsg ("   別にコインに意味ないけどね ", 3);
-            txmsg ("                      (・ω・ )ﾉｼ", 6);
+            txmsg (txtmsg[83], 3);
+            txmsg (txtmsg[84], 6);
         }
 
         if (tmsg == 4)
         {
-            txmsg ("この先に隠しブロックがあります ", 2);
-            txmsg ("注意してください !!", 4);
+            txmsg (txtmsg[85], 2);
+            txmsg (txtmsg[86], 4);
         }
 
         if (tmsg == 5)
         {
             txmsg ("", 0);
-            txmsg (" 前回よりも難易度を下げましたので", 1);
-            txmsg (" 気楽にプレイしてください    ", 3);
-            txmsg ("                       ちく より", 6);
+            txmsg (txtmsg[87], 1);
+            txmsg (txtmsg[88], 3);
+            txmsg (txtmsg[89], 6);
         }
 
         if (tmsg == 6)
         {
             txmsg ("", 0);
-            txmsg (" そこにいる敵のそばによると、      ", 1);
-            txmsg (" 自分と一緒にジャンプしてくれます。", 2);
-            txmsg ("   可愛いですね。                  ", 3);
+            txmsg (txtmsg[90], 1);
+            txmsg (txtmsg[91], 2);
+            txmsg (txtmsg[92], 3);
         }
 
         if (tmsg == 7)
         {
             txmsg ("", 0);
-            txmsg (" あの敵は連れて来れましたか?、     ", 1);
-            txmsg (" 連れて来れなかった貴方は、        ", 2);
-            txmsg (" そこの落とし穴から Let's dive!    ", 3);
+            txmsg (txtmsg[93], 1);
+            txmsg (txtmsg[94], 2);
+            txmsg (txtmsg[95], 3);
         }
 
         if (tmsg == 8)
         {
-            txmsg ("そんな容易に", 1);
-            txmsg ("ヒントに頼るもんじゃないぜ", 2);
-            txmsg ("ほら、さっさと次行きな!!", 3);
+            txmsg (txtmsg[96], 1);
+            txmsg (txtmsg[97], 2);
+            txmsg (txtmsg[98], 3);
         }
 
         if (tmsg == 9)
         {
-            txmsg (" 正真正銘のファイナルステージ。    ", 1);
-            txmsg (" クリアすれば遂にエンディング!!    ", 2);
-            txmsg (" その土管から戻ってもいいんだぜ?   ", 3);
+            txmsg (txtmsg[99], 1);
+            txmsg (txtmsg[100], 2);
+            txmsg (txtmsg[101], 3);
         }
 
         if (tmsg == 10)
         {
-            txmsg (" 床が凍ってるから、すっごい滑るよ。", 1);
+            txmsg (txtmsg[102], 1);
             txmsg (" ", 2);
-            txmsg (" 　                      ", 3);
+            txmsg ("                         ", 3);
         }
 
         if (tmsg == 100)
         {
-            txmsg ("え？私ですか？ ", 0);
-            txmsg ("いやぁ、ただの通りすがりの", 2);
-            txmsg ("ヒントブロックですよ〜", 3);
-            txmsg ("決して怪しいブロックじゃないですよ", 5);
-            txmsg ("                          (…チッ)", 6);
+            txmsg (txtmsg[103], 0);
+            txmsg (txtmsg[104], 2);
+            txmsg (txtmsg[105], 3);
+            txmsg (txtmsg[106], 5);
+            txmsg (txtmsg[107], 6);
         }
     }				//2
 
@@ -11403,8 +7597,7 @@ ttmsg ()
             drawrect (xx[1], xx[2] + tmsgy / 100, 360, xx[5]);
         }
     }
-
-}				//ttmsg
+}
 
 void
 txmsg (string x, int a)
@@ -11412,8 +7605,7 @@ txmsg (string x, int a)
     int xx = 6;
 
     str (x, 60 + xx, 40 + xx + a * 24);
-
-}				//txmsg
+}
 
 /* グラ作成 */
 void
@@ -11455,16 +7647,16 @@ ayobi (int xa, int xb, int xc, int xd, int xnotm, int xtype, int xxtype)
             t1 = 3;
 
             aa[aco] = xa;
-            ab[aco] = xb;		//ag[aco]=0;ah[aco]=0;ai[aco]=bb[t];//ad[t]=0;aeon[t]=1;
+            ab[aco] = xb;
             ac[aco] = xc;
             ad[aco] = xd;
             if (xxtype > 100)
                 ac[aco] = xxtype;
-//ae[aco]=0;af[aco]=0;
+
             atype[aco] = xtype;
             if (xxtype >= 0 && xxtype <= 99100)
-                axtype[aco] = xxtype;	//ahp[aco]=iz[bxtype[t]];aytm[aco]=0;
-//if (xxtype==1)end();
+                axtype[aco] = xxtype;
+
             anotm[aco] = xnotm;
             if (aa[aco] - fx <= ma + mnobia / 2)
                 amuki[aco] = 1;
@@ -11491,43 +7683,6 @@ ayobi (int xa, int xb, int xc, int xd, int xnotm, int xtype, int xxtype)
 
             azimentype[aco] = 1;
 
-//if (atype[aco]<=30 && atype[aco]!=4)atm[aco]=20;
-
-//azimentype[aco]=1;
-
-            switch (atype[aco])
-            {
-                /*
-                case 0:case 1:case 2:case 5:case 6:case 7:case 8:
-                azimentype[aco]=2;
-                break;
-
-                case 3:case 4:
-                azimentype[aco]=0;
-                break;
-
-                case 49:case 50://case 2:case 5:case 6:
-                azimentype[aco]=4;
-                break;
-
-                case 80:case 81:case 82:case 83:case 84:case 85:
-                azimentype[aco]=1;
-                break;
-
-                case 100:case 101:case 102:case 103:case 104:case 105:case 106:case 107:case 108:
-                azimentype[aco]=1;
-                break;
-
-                case 120:case 121:case 122:
-                azimentype[aco]=1;
-                break;
-
-                case 130:case 131:case 132:case 133:case 134:
-                azimentype[aco]=1;
-                break;
-                */
-            }
-
             if (xtype == 87)
             {
                 atm[aco] = rand (179) + (-90);
@@ -11539,8 +7694,5 @@ ayobi (int xa, int xb, int xc, int xd, int xnotm, int xtype, int xxtype)
                 aco = 0;
             }
         }			//t1
-
-//if (bz[t]==1){bz[t]=0;}
     }				//rz
-
 }				//ayobi

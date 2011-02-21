@@ -10,18 +10,15 @@
 #include <time.h>
 #include <stdio.h>
 #include <math.h>
-#include <string>
 #include <stdarg.h>
-
-#ifdef _WIN32
-#include <windows.h>
-#else
-#include <iconv.h>
-#endif
 
 #ifdef _MSC_VER
 #define strcasecmp _strcmpi
+#pragma warning (disable:4312)
+#pragma warning (disable:4996)
 #endif
+
+#include <string>
 
 #ifndef PREFIX
 #ifdef _MACOSX
