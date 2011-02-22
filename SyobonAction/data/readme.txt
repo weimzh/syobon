@@ -2,8 +2,14 @@ OpenSyobon-M
 ------------------
 by Wei Mingzhi <whistler_wmz@users.sf.net>
 
-OpenSyobon-M is a cross-platform port of the unforgiving Japanese parody of
-Super Mario Bros.
+(Please note that I am not the author of Syobon Action, I just improved the
+SDL port and made it run on Mac OS X.)
+
+This is an improved version of the SDL version of Syobon Action.
+
+The original website is at:
+http://www.geocities.jp/z_gundam_tanosii/home/Main.html (if you
+understand Japanese).
 
 Please report any bugs on the project page
 (http://syobon.codeplex.com/)
