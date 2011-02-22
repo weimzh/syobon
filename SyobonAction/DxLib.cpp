@@ -92,7 +92,7 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
             if (font) {
                 for (i = 0; i < 15; i++) {
                     for (j = 0; j < 16; j++) {
-                        if (((*font >> 8) | (*font << 8)) & (1 << (16 - j))) {
+                        if (*font & (1 << (16 - j))) {
                             if (b + i >= screen->h || b + i < 0) continue;
                             if (a + j >= screen->w || a + j < 0) continue;
 
@@ -111,7 +111,7 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
         if (font) {
             for (i = 0; i < 15; i++) {
                 for (j = 0; j < 16; j++) {
-                    if (((*font >> 8) | (*font << 8)) & (1 << (16 - j))) {
+                    if (*font & (1 << (16 - j))) {
                         if (b + i >= screen->h || b + i < 0) continue;
                         if (a + j >= screen->w || a + j < 0) continue;
 
