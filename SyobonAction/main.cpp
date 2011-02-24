@@ -72,19 +72,8 @@ rpaint ()
                     && xx[1] + xx[3] >= -10 && xx[3] <= fymax)
             {
                 if (ntype[t] != 3)
-                {
-#if 0
-                    if (ntype[t] == 1 || ntype[t] == 2) && stagecolor == 5)
-                    {
-                        drawimage (grap[ntype[t] + 30][4], xx[0] / 100, xx[1] / 100);
-                    }
-                    else
-#endif
-                    {
-                        drawimage (grap[ntype[t]][4], xx[0] / 100, xx[1] / 100);
-                    }
-                }
-                if (ntype[t] == 3)
+                    drawimage (grap[ntype[t]][4], xx[0] / 100, xx[1] / 100);
+                else
                     drawimage (grap[ntype[t]][4], xx[0] / 100 - 5, xx[1] / 100);
 
 //51

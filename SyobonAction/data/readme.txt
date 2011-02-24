@@ -7,15 +7,17 @@ SDL port and made it run on Mac OS X.)
 
 This is an improved version of the SDL version of Syobon Action.
 
+Please report any bugs on the project page:
+http://syobon.codeplex.com/
+
 The original website is at:
-http://www.geocities.jp/z_gundam_tanosii/home/Main.html (if you
-understand Japanese).
+http://www.geocities.jp/z_gundam_tanosii/home/Main.html
 
-Please report any bugs on the project page
-(http://syobon.codeplex.com/)
+This version contains additional levels made by Kazuki Okawa:
+http://yaruki0.sakura.ne.jp/programs/action.html
 
-OpenSyobon-M is based on Open Syobon Action RC 2 by Mathew Velasquez
-(http://sourceforge.net/projects/opensyobon/).
+OpenSyobon-M is based on Open Syobon Action RC 2 by Mathew Velasquez:
+http://sourceforge.net/projects/opensyobon/
 
 Requires:
 SDL, SDL_image, SDL_mixer
