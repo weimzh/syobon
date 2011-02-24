@@ -71,15 +71,15 @@ rpaint ()
             if (xx[0] + xx[2] >= -10 && xx[0] <= fxmax
                     && xx[1] + xx[3] >= -10 && xx[3] <= fymax)
             {
-
                 if (ntype[t] != 3)
                 {
-                    if ((ntype[t] == 1 || ntype[t] == 2) && stagecolor == 5)
+#if 0
+                    if (ntype[t] == 1 || ntype[t] == 2) && stagecolor == 5)
                     {
-                        drawimage (grap[ntype[t] + 30]
-                                   [4], xx[0] / 100, xx[1] / 100);
+                        drawimage (grap[ntype[t] + 30][4], xx[0] / 100, xx[1] / 100);
                     }
                     else
+#endif
                     {
                         drawimage (grap[ntype[t]][4], xx[0] / 100, xx[1] / 100);
                     }
@@ -358,7 +358,6 @@ rpaint ()
 
                 if (atype[t] == 82)
                 {
-
                     if (axtype[t] == 0)
                     {
                         xx[9] = 0;
@@ -726,14 +725,7 @@ rpaint ()
                         {
                             for (t2 = 0; t2 <= sd[t] / 3000; t2++)
                             {
-                                drawimage (grap[1 + xx[29]]
-                                           [1], (sa[t]
-                                                 -
-                                                 fx) /
-                                           100 + fma + 29 * t3, (sb[t]
-                                                                 -
-                                                                 fy) /
-                                           100 + fmb + 29 * t2);
+                                drawimage (grap[1 + xx[29]][1], (sa[t] - fx) / 100 + fma + 29 * t3, (sb[t] - fy) / 100 + fmb + 29 * t2);
                             }
                         }
 
