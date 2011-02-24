@@ -10,7 +10,7 @@ This is an improved version of the SDL version of Syobon Action.
 Please report any bugs on the project page:
 http://syobon.codeplex.com/
 
-The original website is at:
+The original website of Syobon Action is at:
 http://www.geocities.jp/z_gundam_tanosii/home/Main.html
 
 This version contains additional levels made by Kazuki Okawa:
