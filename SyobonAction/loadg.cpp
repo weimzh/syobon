@@ -135,8 +135,10 @@ loadg (void)
     grap[4][x1] = DerivationGraph (151, 113, 51, 29, mgrap[x1]);
     grap[5][x1] = DerivationGraph (222, 0, 28, 60, mgrap[x1]);
     grap[6][x1] = DerivationGraph (151, 143, 90, 40, mgrap[x1]);
+#if 0
     grap[30][x1] = DerivationGraph (293, 0, 149, 90, mgrap[x1]);
     grap[31][x1] = DerivationGraph (293, 92, 64, 29, mgrap[x1]);
+#endif
 
 /* 中間フラグ */
     grap[20][x1] = DerivationGraph (40, 182, 40, 60, mgrap[x1]);
