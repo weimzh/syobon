@@ -13,7 +13,7 @@ distclean: clean
 SyobonAction: main.o loadg.o DxLib.o sdlgfx/SDL_gfxPrimitives.o
 	g++ main.o loadg.o DxLib.o sdlgfx/SDL_gfxPrimitives.o \
 		-o SyobonAction `sdl-config --libs` \
-		-lSDL_image -lSDL_mixer $(LDFLAGS)
+		-lSDL_mixer $(LDFLAGS)
 
 main.o:main.cpp
 	g++ `sdl-config --cflags` $(CFLAGS) -I./sdlgfx -c main.cpp -o main.o

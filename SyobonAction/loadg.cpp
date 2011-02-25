@@ -25,23 +25,23 @@ loadg (void)
 /* 画像読み込み */
 
 /* プレイヤー */
-    mgrap[0] = LoadGraph (PREFIX "res/player.PNG");
+    mgrap[0] = LoadGraph (PREFIX "res/player.bmp");
 /* ブロック */
-    mgrap[1] = LoadGraph (PREFIX "res/brock.PNG");
+    mgrap[1] = LoadGraph (PREFIX "res/brock.bmp");
 /* アイテム */
-    mgrap[2] = LoadGraph (PREFIX "res/item.PNG");
+    mgrap[2] = LoadGraph (PREFIX "res/item.bmp");
 /* 敵 */
-    mgrap[3] = LoadGraph (PREFIX "res/teki.PNG");
+    mgrap[3] = LoadGraph (PREFIX "res/teki.bmp");
 /* 背景 */
-    mgrap[4] = LoadGraph (PREFIX "res/haikei.PNG");
+    mgrap[4] = LoadGraph (PREFIX "res/haikei.bmp");
 /* ブロック2 */
-    mgrap[5] = LoadGraph (PREFIX "res/brock2.PNG");
+    mgrap[5] = LoadGraph (PREFIX "res/brock2.bmp");
 /* おまけ */
-    mgrap[6] = LoadGraph (PREFIX "res/omake.PNG");
+    mgrap[6] = LoadGraph (PREFIX "res/omake.bmp");
 /* おまけ2 */
-    mgrap[7] = LoadGraph (PREFIX "res/omake2.PNG");
+    mgrap[7] = LoadGraph (PREFIX "res/omake2.bmp");
 /* タイトル */
-    mgrap[30] = LoadGraph (PREFIX "res/syobon3.PNG");
+    mgrap[30] = LoadGraph (PREFIX "res/syobon3.bmp");
 
 /* プレイヤー読み込み */
     grap[40][0] = DerivationGraph (0, 0, 30, 36, mgrap[0]);

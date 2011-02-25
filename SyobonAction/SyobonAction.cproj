@@ -27,7 +27,6 @@
     </Includes>
     <Libs>
       <Libs>
-        <Lib>SDL_image</Lib>
         <Lib>SDL_mixer</Lib>
       </Libs>
     </Libs>
@@ -49,7 +48,6 @@
     </Includes>
     <Libs>
       <Libs>
-        <Lib>SDL_image</Lib>
         <Lib>SDL_mixer</Lib>
       </Libs>
     </Libs>

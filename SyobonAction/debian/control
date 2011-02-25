@@ -2,7 +2,7 @@ Source: syobonaction
 Section: games
 Priority: extra
 Maintainer: whistler <whistler@(none)>
-Build-Depends: debhelper (>= 7), libsdl1.2-dev, libsdl-image1.2-dev, libsdl-mixer1.2-dev
+Build-Depends: debhelper (>= 7), libsdl1.2-dev, libsdl-mixer1.2-dev
 Standards-Version: 3.8.1
 Homepage: http://syobon.codeplex.com/
 

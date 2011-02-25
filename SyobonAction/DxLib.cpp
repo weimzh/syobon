@@ -376,12 +376,12 @@ DerivationGraph (int srcx, int srcy, int width, int height, SDL_Surface * src)
 SDL_Surface *
 LoadGraph (const char *filename)
 {
-    SDL_Surface *image = IMG_Load (filename);
+    SDL_Surface *image = SDL_LoadBMP (filename);
 
     if (image)
         return image;
     fprintf (stderr, "Error: Unable to load %s: %s\n", filename,
-             IMG_GetError ());
+             SDL_GetError ());
     exit (1);
 }
 
