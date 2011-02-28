@@ -5193,7 +5193,6 @@ byte stagedatex[17][1001]={
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -5267,7 +5266,6 @@ byte stagedatex[17][1001]={
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -5526,7 +5524,6 @@ byte stagedatex[17][1001]={
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -5592,7 +5589,6 @@ byte stagedatex[17][1001]={
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -5826,7 +5822,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -5871,7 +5866,6 @@ byte stagedatex[17][1001]={
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -5929,7 +5923,6 @@ byte stagedatex[17][1001]={
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -6211,7 +6204,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -6349,7 +6341,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -6417,7 +6408,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -6633,7 +6623,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -6745,7 +6734,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -6864,7 +6852,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -6970,7 +6957,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -7054,7 +7040,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -7304,7 +7289,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
@@ -7420,7 +7404,6 @@ byte stagedatex[17][1001]={/*                                                   
         {
             for (t = 0; t <= 16; t++)
             {
-                stagedate[t][tt] = 0;
                 stagedate[t][tt] = stagedatex[t][tt];
             }
         }
