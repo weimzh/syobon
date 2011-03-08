@@ -40,7 +40,7 @@ install: build
 
 	install -m644 $(CURDIR)/data/BGM/*.ogg $(CURDIR)/debian/syobonaction/usr/share/games/syobonaction/BGM/
 	install -m644 $(CURDIR)/data/SE/*.ogg $(CURDIR)/debian/syobonaction/usr/share/games/syobonaction/SE/ 
-	install -m644 $(CURDIR)/data/res/*.PNG $(CURDIR)/debian/syobonaction/usr/share/games/syobonaction/res/
+	install -m644 $(CURDIR)/data/res/*.bmp $(CURDIR)/debian/syobonaction/usr/share/games/syobonaction/res/
 
 	install -D -m644 $(CURDIR)/debian/syobonaction.desktop \
 		$(CURDIR)/debian/syobonaction/usr/share/applications/syobonaction.desktop
