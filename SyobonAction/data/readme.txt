@@ -16,17 +16,18 @@ http://www.geocities.jp/z_gundam_tanosii/home/Main.html
 This version contains additional levels made by Kazuki Okawa:
 http://yaruki0.sakura.ne.jp/programs/action.html
 
-OpenSyobon-M is based on Open Syobon Action RC 2 by Mathew Velasquez:
+This version is based on Open Syobon Action RC 2 by Mathew Velasquez:
 http://sourceforge.net/projects/opensyobon/
 
 Requires:
-SDL, SDL_image, SDL_mixer
+SDL, SDL_mixer
 
 Controls:
 Z, Up, Semicolon, Button 1 (Joystick*) - Jump
 Left, Right - Movement
 Down - Enter warp pipe
-0-9 (On menu) - Level Select
+1-9 (On menu) - Level Select
+0 - Enter randomized level
 
 *Gamepad/Joystick Notes:
 Your gamepad or joystick may not work by default with OpenSyobon-M. Check
