@@ -4689,6 +4689,7 @@ deinit ()
 //--
 
 //SOUNDS
+    Mix_HaltMusic ();
     if (current_music)
         Mix_FreeMusic (current_music);
     for (int i = 1; i < 19; i++)
