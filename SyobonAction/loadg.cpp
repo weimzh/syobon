@@ -4,7 +4,7 @@ extern int ma, t, tt;
 extern SDL_Surface *grap[161][8];
 extern SDL_Surface *mgrap[51];
 int x1;
-extern char otom[6][255];
+extern Mix_Music *otom[6];
 extern Mix_Chunk *oto[19];
 
 extern int anx[160], any[160];
@@ -185,11 +185,11 @@ loadg (void)
 
 
 /* ogg読み込み */
-    strcpy(otom[1], PREFIX "BGM/field.ogg");
-    strcpy(otom[2], PREFIX "BGM/dungeon.ogg");
-    strcpy(otom[3], PREFIX "BGM/star4.ogg");
-    strcpy(otom[4], PREFIX "BGM/castle.ogg");
-    strcpy(otom[5], PREFIX "BGM/puyo.ogg");
+    otom[1] = LoadMusicMem (PREFIX "BGM/field.ogg");
+    otom[2] = LoadMusicMem (PREFIX "BGM/dungeon.ogg");
+    otom[3] = LoadMusicMem (PREFIX "BGM/star4.ogg");
+    otom[4] = LoadMusicMem (PREFIX "BGM/castle.ogg");
+    otom[5] = LoadMusicMem (PREFIX "BGM/puyo.ogg");
 
     oto[1] = LoadSoundMem (PREFIX "SE/jump.ogg");
     //oto[2] = LoadSoundMem(PREFIX "SE/brockcoin.ogg");

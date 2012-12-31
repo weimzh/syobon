@@ -4689,9 +4689,9 @@ deinit ()
 //--
 
 //SOUNDS
-    Mix_HaltMusic ();
-    if (current_music)
-        Mix_FreeMusic (current_music);
+    for (int i = 1; i < 6; i++)
+        if (otom[i])
+            Mix_FreeMusic (otom[i]);
     for (int i = 1; i < 19; i++)
         if (oto[i])
             Mix_FreeChunk (oto[i]);
@@ -7413,18 +7413,13 @@ byte stagedatex[17][1001]={/*                                                   
 
 /* BGM変更 */
 void
-bgmchange (const char * x)
+bgmchange (Mix_Music * x)
 {
     Mix_HaltMusic ();
 
-    strcpy (otom[0], x);
-
-    if (current_music != NULL)
-        Mix_FreeMusic (current_music);
-    current_music = LoadMusicMem (otom[0]);
-
-    Mix_PlayMusic (current_music, -1);
-    if (strcmp (x, otom[2]) == 0)
+    otom[0] = x;
+    Mix_PlayMusic (otom[0], -1);;
+    if (x == otom[2])
         Mix_VolumeMusic (MIX_MAX_VOLUME * 40 / 100);
     else
         Mix_VolumeMusic (MIX_MAX_VOLUME * 50 / 100);
