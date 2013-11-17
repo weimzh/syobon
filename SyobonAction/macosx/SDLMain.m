@@ -373,6 +373,19 @@ int main (int argc, char **argv)
         gFinderLaunch = NO;
     }
 
+    // set current working directory to containing path
+    // required for OSX Mavericks
+    NSBundle *main_bundle = [NSBundle mainBundle];
+    NSString *bundle_path = [main_bundle bundlePath];
+
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [fm changeCurrentDirectoryPath: bundle_path];
+
+    [fm release];
+    [to_dir release];
+    [bundle_path release];
+    [main_bundle release];
+
 #if SDL_USE_NIB_FILE
     [SDLApplication poseAsClass:[NSApplication class]];
     NSApplicationMain (argc, argv);
