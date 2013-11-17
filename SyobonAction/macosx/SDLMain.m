@@ -382,7 +382,6 @@ int main (int argc, char **argv)
     [fm changeCurrentDirectoryPath: bundle_path];
 
     [fm release];
-    [to_dir release];
     [bundle_path release];
     [main_bundle release];
 
