@@ -87,7 +87,7 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
 {
     if (!screen) return;
 
-    Uint32 pixel = SDL_MapRGB(screen->format, c >> 16, c >> 8, c);
+    Uint32 pixel = SDL_MapRGB(screen->format, (c >> 16) & 0xFF, (c >> 8) & 0xFF, c & 0xFF);
     int i, j;
 
     if (*ch <= 0x7f) {

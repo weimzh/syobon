@@ -373,15 +373,15 @@ int main (int argc, char **argv)
         gFinderLaunch = NO;
     }
 
-    // set current working directory to containing path
-    // required for OSX Mavericks
     NSBundle *main_bundle = [NSBundle mainBundle];
     NSString *bundle_path = [main_bundle bundlePath];
+    NSString *to_dir = [bundle_path stringByAppendingString:@"/../"];
 
     NSFileManager *fm = [NSFileManager defaultManager];
-    [fm changeCurrentDirectoryPath: bundle_path];
+    [fm changeCurrentDirectoryPath: to_dir];
 
     [fm release];
+    [to_dir release];
     [bundle_path release];
     [main_bundle release];
 

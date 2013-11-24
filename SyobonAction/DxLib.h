@@ -21,7 +21,7 @@
 
 #ifndef PREFIX
 #ifdef _MACOSX
-#define PREFIX "./Contents/Resources/data/"
+#define PREFIX "./SyobonAction.app/Contents/Resources/data/"
 #else
 #define PREFIX "./data/"
 #endif
