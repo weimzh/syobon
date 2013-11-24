@@ -87,7 +87,6 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
 {
     if (!screen) return;
 
-    Uint32 pixel = SDL_MapRGB(screen->format, (c >> 16) & 0xFF, (c >> 8) & 0xFF, c & 0xFF);
     int i, j;
 
     if (*ch <= 0x7f) {
@@ -110,7 +109,7 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
                             if (a + j >= screen->w || a + j < 0) continue;
 
                             int offset = (b + i) * screen->pitch + (a + j) * 4;
-                            *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
+                            *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = c;
                         }
                     }
                     font++;
@@ -129,7 +128,7 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
                         if (a + j >= screen->w || a + j < 0) continue;
 
                         int offset = (b + i) * screen->pitch + (a + j) * 4;
-                        *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = pixel;
+                        *(Uint32 *)&((Uint8 *)screen->pixels)[offset] = c;
                     }
                 }
                 font++;
@@ -307,6 +306,8 @@ DrawTurnGraphZ (int a, int b, SDL_Surface * mx)
         Uint32 *dst = (Uint32 *) screen->pixels;
 
         int i, j;
+        Uint8 rv = 0, gv = 0, bv = 0;
+        Uint32 key = SDL_MapRGB (mx->format, 9 * 16 + 9, 255, 255);
 
         for (i = 0; i < mx->h; i++)
         {
@@ -317,10 +318,11 @@ DrawTurnGraphZ (int a, int b, SDL_Surface * mx)
                     continue;
 
                 Uint32 pixel = src[(i + 1) * mx->pitch / 4 - j - 1];
-                if (pixel == SDL_MapRGB (mx->format, 9 * 16 + 9, 255, 255))
+                if (pixel == key)
                     continue;
 
-                dst[y * screen->pitch / 4 + x] = pixel;
+                SDL_GetRGB (pixel, mx->format, &rv, &gv, &bv);
+                dst[y * screen->pitch / 4 + x] = SDL_MapRGB (screen->format, rv, gv, bv);
             }
         }
 
@@ -341,6 +343,8 @@ DrawVertTurnGraph (int a, int b, SDL_Surface * mx)
         Uint32 *dst = (Uint32 *) screen->pixels;
 
         int i, j;
+        Uint8 rv = 0, gv = 0, bv = 0;
+        Uint32 key = SDL_MapRGB (mx->format, 9 * 16 + 9, 255, 255);
 
         for (i = 0; i < mx->h; i++)
         {
@@ -351,10 +355,11 @@ DrawVertTurnGraph (int a, int b, SDL_Surface * mx)
                     continue;
 
                 Uint32 pixel = src[(mx->h - i - 1) * mx->pitch / 4 + j];
-                if (pixel == SDL_MapRGB (mx->format, 9 * 16 + 9, 255, 255))
+                if (pixel == key)
                     continue;
 
-                dst[y * screen->pitch / 4 + x] = pixel;
+                SDL_GetRGB (pixel, mx->format, &rv, &gv, &bv);
+                dst[y * screen->pitch / 4 + x] = SDL_MapRGB (screen->format, rv, gv, bv);
             }
         }
 
