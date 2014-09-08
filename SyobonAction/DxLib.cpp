@@ -59,26 +59,26 @@ DxLib_Init ()
 		return -1;
 	}
 
-	if (!(screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480, 420,
+	if (!(screen = SDL_CreateRGBSurface (SDL_SWSURFACE, 480, 420,
 		32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000)))
 	{
-		SDL_DestroyRenderer(renderer);
+		SDL_DestroyRenderer (renderer);
 		renderer = NULL;
-		SDL_DestroyWindow(window);
+		SDL_DestroyWindow (window);
 		window = NULL;
-		SDL_Quit();
+		SDL_Quit ();
 		return -1;
 	}
 
-	if (!(texture = SDL_CreateTextureFromSurface(renderer, screen)))
+	if (!(texture = SDL_CreateTextureFromSurface (renderer, screen)))
 	{
-		SDL_FreeSurface(screen);
+		SDL_FreeSurface (screen);
 		screen = NULL;
-		SDL_DestroyRenderer(renderer);
+		SDL_DestroyRenderer (renderer);
 		renderer = NULL;
-		SDL_DestroyWindow(window);
+		SDL_DestroyWindow (window);
 		window = NULL;
-		SDL_Quit();
+		SDL_Quit ();
 		return -1;
 	}
 #else
