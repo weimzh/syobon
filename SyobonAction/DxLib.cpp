@@ -3,6 +3,10 @@
 
 SDL_Joystick *joystick;
 
+#ifndef __SDL2__
+typedef SDLKey SDL_Keycode;
+#endif
+
 std::set<SDL_Keycode> keysHeld;
 bool sound = true;
 bool fullscreen = false;
@@ -321,9 +325,9 @@ ProcessMessage ()
 byte
 CheckHitKey (int key)
 {
-    if (key == SDLK_z && CHECK_KEY(SDLK_SEMICOLON))
+    if (key == SDLK_z && CHECK_KEY (SDLK_SEMICOLON))
         return true;
-    return CHECK_KEY(key);
+    return CHECK_KEY ((SDL_Keycode) key);
 }
 
 void
@@ -334,7 +338,7 @@ WaitKey ()
 		SDL_Delay (100);
 		UpdateKeys ();
 
-		if (!keysHeld.empty())
+		if (!keysHeld.empty ())
 			return;
 
 		if (joystick != NULL && SDL_JoystickGetButton (joystick, JOYSTICK_JUMP))
