@@ -452,8 +452,13 @@ DerivationGraph (int srcx, int srcy, int width, int height, SDL_Surface * src)
     offset.h = height;
 
     SDL_BlitSurface (src, &offset, img, NULL);
+#ifdef __SDL2__
     SDL_SetColorKey (img, 1,
                      SDL_MapRGB (img->format, 9 * 16 + 9, 255, 255));
+#else
+    SDL_SetColorKey (img, SDL_SRCCOLORKEY,
+                     SDL_MapRGB (img->format, 9 * 16 + 9, 255, 255));
+#endif
     return img;
 }
 
@@ -465,6 +470,7 @@ LoadGraph (const char *filename)
 
     if (image)
         return image;
+
     fprintf (stderr, "Error: Unable to load %s: %s\n", filename,
              SDL_GetError ());
     exit (1);
