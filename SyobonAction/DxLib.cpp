@@ -44,7 +44,7 @@ DxLib_Init ()
 #endif
 
 #ifdef __SDL2__
-	if (!(window = SDL_CreateWindow("Syobon Action", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+	if (!(window = SDL_CreateWindow ("Syobon Action", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		480, 420, (fullscreen ? SDL_WINDOW_FULLSCREEN : 0))))
 	{
 		SDL_Quit ();
@@ -506,8 +506,20 @@ LoadMusicMem (const char *f)
 void
 ScreenFlip()
 {
+	SDL_RenderClear(renderer);
 	SDL_UpdateTexture(texture, NULL, screen->pixels, screen->pitch);
-	SDL_RenderCopy(renderer, texture, NULL, NULL);
+
+	int w, h;
+	SDL_GetWindowSize(window, &w, &h);
+
+	SDL_Rect dstrect;
+	dstrect.x = (w - 480 * h / 420) / 2;
+	dstrect.y = 0;
+	dstrect.w = 480 * h / 420;
+	dstrect.h = h;
+
+	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+
 	SDL_RenderPresent(renderer);
 }
 
