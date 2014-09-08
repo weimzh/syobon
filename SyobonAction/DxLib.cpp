@@ -1,12 +1,32 @@
 #include "DxLib.h"
+#include <set>
 
 SDL_Joystick *joystick;
 
-bool keysHeld[SDLK_LAST];
+std::set<SDL_Keycode> keysHeld;
 bool sound = true;
 bool fullscreen = false;
 
-void deinit ();
+void deinit();
+
+#define SET_KEY(keycode) do { \
+	std::set<SDL_Keycode>::iterator it = keysHeld.find(keycode); \
+	if (it == keysHeld.end()) \
+	{ \
+		keysHeld.insert(keycode); \
+	} \
+} while (0)
+
+#define UNSET_KEY(keycode) do { \
+	std::set<SDL_Keycode>::iterator it = keysHeld.find(keycode); \
+	if (it != keysHeld.end()) \
+	{ \
+		keysHeld.erase(it); \
+	} \
+} while (0)
+
+#define CHECK_KEY(keycode) \
+	(keysHeld.find(keycode) != keysHeld.end())
 
 int
 DxLib_Init ()
@@ -19,14 +39,49 @@ DxLib_Init ()
         return -1;
     }
 
-#ifdef _WIN32
-#if SDL_MAJOR_VERSION == 1 && SDL_MINOR_VERSION <= 2
+#if defined (_WIN32) && !defined (__SDL2__)
     putenv("SDL_VIDEODRIVER=directx");
-#else
-    putenv("SDL_VIDEODRIVER=win32");
-#endif
 #endif
 
+#ifdef __SDL2__
+	if (!(window = SDL_CreateWindow("Syobon Action", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		480, 420, (fullscreen ? SDL_WINDOW_FULLSCREEN : 0))))
+	{
+		SDL_Quit ();
+		return -1;
+	}
+
+	if (!(renderer = SDL_CreateRenderer (window, -1, SDL_RENDERER_ACCELERATED)))
+	{
+		SDL_DestroyWindow (window);
+		window = NULL;
+		SDL_Quit ();
+		return -1;
+	}
+
+	if (!(screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480, 420,
+		32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000)))
+	{
+		SDL_DestroyRenderer(renderer);
+		renderer = NULL;
+		SDL_DestroyWindow(window);
+		window = NULL;
+		SDL_Quit();
+		return -1;
+	}
+
+	if (!(texture = SDL_CreateTextureFromSurface(renderer, screen)))
+	{
+		SDL_FreeSurface(screen);
+		screen = NULL;
+		SDL_DestroyRenderer(renderer);
+		renderer = NULL;
+		SDL_DestroyWindow(window);
+		window = NULL;
+		SDL_Quit();
+		return -1;
+	}
+#else
     if (!(screen = SDL_SetVideoMode (480 /*(int)fmax/100 */ ,
                                      420 /*(int)fymax/100 */ , 32,
                                      SDL_HWSURFACE | SDL_DOUBLEBUF | (fullscreen ? SDL_FULLSCREEN : 0))))
@@ -40,16 +95,9 @@ DxLib_Init ()
         }
     }
 
-    SDL_WM_SetCaption ("Syobon Action", NULL);
-    if (fullscreen) SDL_ShowCursor (SDL_DISABLE);
-
-#if SDL_IMAGE_MAJOR_VERSION > 1 || SDL_IMAGE_MINOR_VERSION > 2 || SDL_IMAGE_PATCHLEVEL >= 8
-    if (IMG_Init (IMG_INIT_PNG) != IMG_INIT_PNG)
-    {
-        fprintf (stderr, "Unable to init SDL_img: %s\n", IMG_GetError ());
-        return -1;
-    }
+	SDL_WM_SetCaption("Syobon Action", NULL);
 #endif
+	if (fullscreen) SDL_ShowCursor(SDL_DISABLE);
 
     //Audio Rate, Audio Format, Audio Channels, Audio Buffers
 #define AUDIO_CHANNELS 2
@@ -59,15 +107,27 @@ DxLib_Init ()
         sound = false;
     }
     //Try to get a joystick
-    joystick = SDL_JoystickOpen (0);
+	if (SDL_NumJoysticks() > 0)
+	{
+		joystick = SDL_JoystickOpen(0);
+	}
+	else
+	{
+		joystick = NULL;
+	}
 
-    for (int i = 0; i < SDLK_LAST; i++)
-        keysHeld[i] = false;
+    keysHeld.clear();
 
     srand ((unsigned int) time (NULL));
 
     return 0;
 }
+
+#ifdef __SDL2__
+SDL_Renderer *renderer;
+SDL_Window *window;
+SDL_Texture *texture;
+#endif
 
 //Main screen
 SDL_Surface *screen;
@@ -88,6 +148,10 @@ DrawChar (const unsigned char *ch, int a, int b, Uint32 c)
     if (!screen) return;
 
     int i, j;
+
+	if (c == 0) {
+		c = SDL_MapRGB(screen->format, 0, 0, 0);
+	}
 
     if (*ch <= 0x7f) {
         // ASCII character
@@ -207,10 +271,10 @@ UpdateKeys ()
         switch (event.type)
         {
         case SDL_KEYDOWN:
-            keysHeld[event.key.keysym.sym] = true;
+            SET_KEY(event.key.keysym.sym);
             break;
-        case SDL_KEYUP:
-            keysHeld[event.key.keysym.sym] = false;
+		case SDL_KEYUP:
+			UNSET_KEY(event.key.keysym.sym);
             break;
         case SDL_JOYAXISMOTION:
             if (event.jaxis.which == 0)
@@ -218,25 +282,25 @@ UpdateKeys ()
                 if (event.jaxis.axis == JOYSTICK_XAXIS)
                 {
                     if (event.jaxis.value < -16383)
-                        keysHeld[SDLK_LEFT] = true;
+                        SET_KEY(SDLK_LEFT);
                     else if (event.jaxis.value > 16383)
-                        keysHeld[SDLK_RIGHT] = true;
+                        SET_KEY(SDLK_RIGHT);
                     else
                     {
-                        keysHeld[SDLK_LEFT] = false;
-                        keysHeld[SDLK_RIGHT] = false;
+                        UNSET_KEY(SDLK_LEFT);
+                        UNSET_KEY(SDLK_RIGHT);
                     }
                 }
                 else if (event.jaxis.axis == JOYSTICK_YAXIS)
                 {
                     if (event.jaxis.value < -16383)
-                        keysHeld[SDLK_UP] = true;
+                        SET_KEY(SDLK_UP);
                     else if (event.jaxis.value > 16383)
-                        keysHeld[SDLK_DOWN] = true;
+                        SET_KEY(SDLK_DOWN);
                     else
                     {
-                        keysHeld[SDLK_UP] = false;
-                        keysHeld[SDLK_DOWN] = false;
+                        UNSET_KEY(SDLK_UP);
+                        UNSET_KEY(SDLK_DOWN);
                     }
                 }
             }
@@ -257,9 +321,9 @@ ProcessMessage ()
 byte
 CheckHitKey (int key)
 {
-    if (key == SDLK_z && keysHeld[SDLK_SEMICOLON])
+    if (key == SDLK_z && CHECK_KEY(SDLK_SEMICOLON))
         return true;
-    return keysHeld[key];
+    return CHECK_KEY(key);
 }
 
 void
@@ -270,11 +334,10 @@ WaitKey ()
 		SDL_Delay (100);
 		UpdateKeys ();
 
-		for (int i = 0; i < SDLK_LAST; i++)
-			if (keysHeld[i])
-				return;
+		if (!keysHeld.empty())
+			return;
 
-		if (SDL_JoystickGetButton (joystick, JOYSTICK_JUMP))
+		if (joystick != NULL && SDL_JoystickGetButton (joystick, JOYSTICK_JUMP))
 			return;
 
 		if (ex)
@@ -373,10 +436,10 @@ DerivationGraph (int srcx, int srcy, int width, int height, SDL_Surface * src)
 {
     SDL_Surface *img = SDL_CreateRGBSurface (SDL_SWSURFACE, width, height,
                        screen->format->BitsPerPixel,
-                       src->format->Rmask,
-                       src->format->Bmask,
-                       src->format->Gmask,
-                       src->format->Amask);
+					   screen->format->Rmask,
+					   screen->format->Gmask,
+					   screen->format->Bmask,
+					   screen->format->Amask);
 
     SDL_Rect offset;
     offset.x = srcx;
@@ -385,7 +448,7 @@ DerivationGraph (int srcx, int srcy, int width, int height, SDL_Surface * src)
     offset.h = height;
 
     SDL_BlitSurface (src, &offset, img, NULL);
-    SDL_SetColorKey (img, SDL_SRCCOLORKEY,
+    SDL_SetColorKey (img, 1,
                      SDL_MapRGB (img->format, 9 * 16 + 9, 255, 255));
     return img;
 }
@@ -437,3 +500,15 @@ LoadMusicMem (const char *f)
              Mix_GetError ());
     return NULL;
 }
+
+#ifdef __SDL2__
+
+void
+ScreenFlip()
+{
+	SDL_UpdateTexture(texture, NULL, screen->pixels, screen->pitch);
+	SDL_RenderCopy(renderer, texture, NULL, NULL);
+	SDL_RenderPresent(renderer);
+}
+
+#endif

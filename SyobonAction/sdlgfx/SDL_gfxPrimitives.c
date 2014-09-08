@@ -14,6 +14,12 @@
 #include "SDL_gfxPrimitives.h"
 #include "SDL_gfxPrimitives_font.h"
 
+#if SDL_MAJOR_VERSION >= 2
+#define SDL_HWSURFACE 0
+#define SDL_SRCALPHA 0
+#define SDL_SetAlpha(a, b, c)
+#endif
+
 /* -===================- */
 
 /* ----- Defines for pixel clipping tests */

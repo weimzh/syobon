@@ -33,7 +33,15 @@
 #define FALSE 0
 #define byte unsigned char
 
+#if SDL_MAJOR_VERSION >= 2
+#define __SDL2__ 1
+#endif
+
+#ifdef __SDL2__
+void ScreenFlip();
+#else
 #define ScreenFlip() SDL_Flip(screen)
+#endif
 #define GetNowCount() SDL_GetTicks()
 
 //UNIMPLEMENTED - macro substitution
@@ -49,6 +57,12 @@ Mix_Music *LoadMusicMem (const char *f);
 #define CheckSoundMem(s) !s
 
 int DxLib_Init ();
+
+#ifdef __SDL2__
+extern SDL_Renderer *renderer;
+extern SDL_Window *window;
+extern SDL_Texture *texture;
+#endif
 
 //Main screen
 extern SDL_Surface *screen;

@@ -4676,7 +4676,7 @@ deinit ()
     setc0 ();
     FillScreen ();
     DrawString (200, 200, "EXITING...", GetColor (255, 255, 255));
-    SDL_Flip (screen);
+	ScreenFlip ();
 
 //SURFACES
     for (t = 0; t < 51; t++)
