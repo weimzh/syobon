@@ -4412,6 +4412,37 @@ Mainprogram ()
             over = 1;
         }
 
+		static int prevn = 0;
+		if (CheckHitKey (KEY_INPUT_N) == 1)
+		{
+			if (!prevn)
+			{
+				prevn = 1;
+				switch (sta)
+				{
+				case 1:
+				case 2:
+					stb++;
+					if (stb > 4)
+					{
+						stb = 1;
+						sta++;
+					}
+					break;
+
+				case 3:
+					sta = 1;
+					stb = 1;
+					stc = 0;
+					break;
+				}
+			}
+		}
+		else
+		{
+			prevn = 0;
+		}
+
         if (CheckHitKey (KEY_INPUT_RETURN) == 1)
         {
             xx[0] = 1;
