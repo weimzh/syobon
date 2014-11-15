@@ -269,6 +269,225 @@ DrawFormatString (int a, int b, Uint32 color, const char *str, ...)
 
 bool ex = false;
 
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+
+#define  TOUCH_NONE     0
+#define  TOUCH_UP       1
+#define  TOUCH_DOWN     2
+#define  TOUCH_LEFT     3
+#define  TOUCH_RIGHT    4
+#define  TOUCH_BUTTON1  5
+#define  TOUCH_BUTTON2  6
+#define  TOUCH_BUTTON3  7
+#define  TOUCH_BUTTON4  8
+
+int
+GetTouchArea(float X, float Y)
+{
+	if (Y < 0.5)
+	{
+		//
+		// Upper area
+		//
+		return TOUCH_NONE;
+	}
+	else if (X < 1.0 / 3)
+	{
+		if (Y - 0.5 < (1.0 / 6 - fabs(X - 1.0 / 3 / 2)) * (0.5 / (1.0 / 3)))
+		{
+			return TOUCH_UP;
+		}
+		else if (Y - 0.75 > fabs(X - 1.0 / 3 / 2) * (0.5 / (1.0 / 3)))
+		{
+			return TOUCH_DOWN;
+		}
+		else if (X < 1.0 / 3 / 2 && fabs(Y - 0.75) < 0.25 - X * (0.5 / (1.0 / 3)))
+		{
+			return TOUCH_LEFT;
+		}
+		else
+		{
+			return TOUCH_RIGHT;
+		}
+	}
+	else if (X > 1.0 - 1.0 / 3)
+	{
+		if (X < 1.0 - (1.0 / 3 / 2))
+		{
+			if (Y < 0.75)
+			{
+				return TOUCH_BUTTON1;
+			}
+			else
+			{
+				return TOUCH_BUTTON3;
+			}
+		}
+		else
+		{
+			if (Y < 0.75)
+			{
+				return TOUCH_BUTTON2;
+			}
+			else
+			{
+				return TOUCH_BUTTON4;
+			}
+		}
+	}
+
+	return TOUCH_NONE;
+}
+
+void
+SetTouchAction(int area)
+{
+	switch (area)
+	{
+	case TOUCH_UP:
+		SET_KEY(SDLK_n);
+		break;
+
+	case TOUCH_DOWN:
+		SET_KEY(SDLK_n);
+		break;
+
+	case TOUCH_LEFT:
+		SET_KEY(SDLK_LEFT);
+		break;
+
+	case TOUCH_RIGHT:
+		SET_KEY(SDLK_RIGHT);
+		break;
+
+	case TOUCH_BUTTON1:
+		SET_KEY(SDLK_o);
+		break;
+
+	case TOUCH_BUTTON2:
+		SET_KEY(SDLK_z);
+		break;
+
+	case TOUCH_BUTTON3:
+		SET_KEY(SDLK_F1);
+		break;
+
+	case TOUCH_BUTTON4:
+		SET_KEY(SDLK_RETURN);
+		SET_KEY(SDLK_UP);
+		break;
+	}
+}
+
+void
+UnsetTouchAction(int area)
+{
+	switch (area)
+	{
+	case TOUCH_UP:
+		UNSET_KEY(SDLK_n);
+		break;
+
+	case TOUCH_DOWN:
+		UNSET_KEY(SDLK_n);
+		break;
+
+	case TOUCH_LEFT:
+		UNSET_KEY(SDLK_LEFT);
+		break;
+
+	case TOUCH_RIGHT:
+		UNSET_KEY(SDLK_RIGHT);
+		break;
+
+	case TOUCH_BUTTON1:
+		UNSET_KEY(SDLK_o);
+		break;
+
+	case TOUCH_BUTTON2:
+		UNSET_KEY(SDLK_z);
+		break;
+
+	case TOUCH_BUTTON3:
+		UNSET_KEY(SDLK_F1);
+		break;
+
+	case TOUCH_BUTTON4:
+		UNSET_KEY(SDLK_RETURN);
+		UNSET_KEY(SDLK_UP);
+		break;
+	}
+}
+
+static void TouchEventFilter(const SDL_Event *lpEvent)
+{
+	static SDL_TouchID finger1 = -1, finger2 = -1;
+	static int prev_touch1 = TOUCH_NONE;
+	static int prev_touch2 = TOUCH_NONE;
+
+	switch (lpEvent->type)
+	{
+	case SDL_FINGERDOWN:
+		if (finger1 == -1)
+		{
+			int area = GetTouchArea(lpEvent->tfinger.x, lpEvent->tfinger.y);
+
+			finger1 = lpEvent->tfinger.fingerId;
+			prev_touch1 = area;
+			SetTouchAction(area);
+		}
+		else if (finger2 == -1)
+		{
+			int area = GetTouchArea(lpEvent->tfinger.x, lpEvent->tfinger.y);
+
+			finger2 = lpEvent->tfinger.fingerId;
+			prev_touch2 = area;
+			SetTouchAction(area);
+		}
+		break;
+
+	case SDL_FINGERUP:
+		if (lpEvent->tfinger.fingerId == finger1)
+		{
+			UnsetTouchAction(prev_touch1);
+			finger1 = -1;
+			prev_touch1 = TOUCH_NONE;
+		}
+		else if (lpEvent->tfinger.fingerId == finger2)
+		{
+			UnsetTouchAction(prev_touch2);
+			finger2 = -1;
+			prev_touch2 = TOUCH_NONE;
+		}
+		break;
+
+	case SDL_FINGERMOTION:
+		if (lpEvent->tfinger.fingerId == finger1)
+		{
+			int area = GetTouchArea(lpEvent->tfinger.x, lpEvent->tfinger.y);
+			if (prev_touch1 != area && area != TOUCH_NONE)
+			{
+				UnsetTouchAction(prev_touch1);
+				prev_touch1 = area;
+				SetTouchAction(area);
+			}
+		}
+		else if (lpEvent->tfinger.fingerId == finger2)
+		{
+			int area = GetTouchArea(lpEvent->tfinger.x, lpEvent->tfinger.y);
+			if (prev_touch2 != area && area != TOUCH_NONE)
+			{
+				UnsetTouchAction(prev_touch2);
+				prev_touch2 = area;
+				SetTouchAction(area);
+			}
+		}
+		break;
+	}
+}
+
+#endif
+
 void
 UpdateKeys ()
 {
@@ -316,6 +535,9 @@ UpdateKeys ()
             ex = true;
             break;
         }
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		TouchEventFilter(&event);
+#endif
     }
 }
 
