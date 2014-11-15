@@ -67,7 +67,7 @@ DxLib_Init ()
 	}
 
 	if (!(screen = SDL_CreateRGBSurface (SDL_SWSURFACE, 480, 420,
-		32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000)))
+		32, 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000)))
 	{
 		SDL_DestroyRenderer (renderer);
 		renderer = NULL;
@@ -114,9 +114,15 @@ DxLib_Init ()
         sound = false;
     }
     //Try to get a joystick
-	if (SDL_NumJoysticks() > 0)
+	if (SDL_NumJoysticks () > 0)
 	{
-		joystick = SDL_JoystickOpen(0);
+		joystick = SDL_JoystickOpen (0);
+        const char *pName = SDL_JoystickName (joystick);
+        if (strstr (pName, "ccelerometer") != NULL || strcmp (pName, "applesmc") == 0)
+        {
+            SDL_JoystickClose (joystick);
+            joystick = NULL;
+        }
 	}
 	else
 	{
