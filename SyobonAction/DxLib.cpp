@@ -350,6 +350,7 @@ SetTouchAction(int area)
 
 	case TOUCH_DOWN:
 		SET_KEY(SDLK_n);
+		SET_KEY(SDLK_DOWN);
 		break;
 
 	case TOUCH_LEFT:
@@ -390,6 +391,7 @@ UnsetTouchAction(int area)
 
 	case TOUCH_DOWN:
 		UNSET_KEY(SDLK_n);
+		UNSET_KEY(SDLK_DOWN);
 		break;
 
 	case TOUCH_LEFT:
