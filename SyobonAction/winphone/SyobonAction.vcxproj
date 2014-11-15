@@ -137,6 +137,7 @@
     <Image Include="..\data\res\item.bmp" />
     <Image Include="..\data\res\omake.bmp" />
     <Image Include="..\data\res\omake2.bmp" />
+    <Image Include="..\data\res\overlay.bmp" />
     <Image Include="..\data\res\player.bmp" />
     <Image Include="..\data\res\syobon3.bmp" />
     <Image Include="..\data\res\teki.bmp" />

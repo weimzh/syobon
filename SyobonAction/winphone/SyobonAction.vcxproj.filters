@@ -73,6 +73,9 @@
     <Image Include="..\data\res\brock2.bmp">
       <Filter>Assets\Data\res</Filter>
     </Image>
+    <Image Include="..\data\res\overlay.bmp">
+      <Filter>Assets\Data\res</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="WMAppManifest.xml" />

@@ -516,9 +516,47 @@ LoadMusicMem (const char *f)
 
 #ifdef __SDL2__
 
+static SDL_Texture       *gpTouchOverlay = NULL;
+static bool               bTouchOverlayLoaded = false;
+
+static void
+LoadTouchOverlay()
+{
+	// Create texture for overlay.
+	char path[4096];
+	sprintf(path, "%s/%s", RES_PREFIX, "overlay.bmp");
+
+	SDL_Surface *overlay = SDL_LoadBMP(path);
+
+	if (overlay != NULL)
+	{
+		SDL_SetColorKey(overlay, SDL_RLEACCEL, SDL_MapRGB(overlay->format, 255, 0, 255));
+		gpTouchOverlay = SDL_CreateTextureFromSurface(renderer, overlay);
+		SDL_SetTextureAlphaMod(gpTouchOverlay, 120);
+		SDL_FreeSurface(overlay);
+	}
+}
+
+static void
+UnloadTouchOverlay()
+{
+	if (gpTouchOverlay)
+	{
+		SDL_DestroyTexture(gpTouchOverlay);
+		gpTouchOverlay = NULL;
+	}
+}
+
 void
 ScreenFlip()
 {
+	if (!bTouchOverlayLoaded)
+	{
+		LoadTouchOverlay();
+		atexit(UnloadTouchOverlay);
+		bTouchOverlayLoaded = true;
+	}
+
 	SDL_RenderClear(renderer);
 	SDL_UpdateTexture(texture, NULL, screen->pixels, screen->pitch);
 
@@ -532,6 +570,11 @@ ScreenFlip()
 	dstrect.h = h;
 
 	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+
+	if (gpTouchOverlay != NULL)
+	{
+		SDL_RenderCopy(renderer, gpTouchOverlay, NULL, NULL);
+	}
 
 	SDL_RenderPresent(renderer);
 }
