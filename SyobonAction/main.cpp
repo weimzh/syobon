@@ -7692,3 +7692,4 @@ ayobi (int xa, int xb, int xc, int xd, int xnotm, int xtype, int xxtype)
         }			//t1
     }				//rz
 }				//ayobi
+

@@ -37,7 +37,7 @@ DxLib_Init ()
 {
     atexit (deinit);
 
-    if (SDL_Init (SDL_INIT_EVERYTHING) < 0)
+	if (SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
     {
         fprintf (stderr, "Unable to init SDL: %s\n", SDL_GetError ());
         return -1;
@@ -48,6 +48,9 @@ DxLib_Init ()
 #endif
 
 #ifdef __SDL2__
+#ifdef __WINPHONE__
+	SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeRight");
+#endif
 	if (!(window = SDL_CreateWindow ("Syobon Action", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		480, 420, (fullscreen ? SDL_WINDOW_FULLSCREEN : 0))))
 	{

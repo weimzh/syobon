@@ -10,6 +10,19 @@ extern Mix_Chunk *oto[19];
 extern int anx[160], any[160];
 extern int ne[40], nf[40];
 
+char *
+va(const char *format, ...)
+{
+	static char string[256];
+	va_list     argptr;
+
+	va_start(argptr, format);
+	vsnprintf(string, 256, format, argptr);
+	va_end(argptr);
+
+	return string;
+}
+
 void
 loadg (void)
 {
@@ -25,23 +38,23 @@ loadg (void)
 /* 画像読み込み */
 
 /* プレイヤー */
-    mgrap[0] = LoadGraph (PREFIX "res/player.bmp");
+    mgrap[0] = LoadGraph (va ("%s/%s", RES_PREFIX, "player.bmp"));
 /* ブロック */
-    mgrap[1] = LoadGraph (PREFIX "res/brock.bmp");
+    mgrap[1] = LoadGraph (va ("%s/%s", RES_PREFIX, "brock.bmp"));
 /* アイテム */
-    mgrap[2] = LoadGraph (PREFIX "res/item.bmp");
+    mgrap[2] = LoadGraph (va ("%s/%s", RES_PREFIX, "item.bmp"));
 /* 敵 */
-    mgrap[3] = LoadGraph (PREFIX "res/teki.bmp");
+    mgrap[3] = LoadGraph (va ("%s/%s", RES_PREFIX, "teki.bmp"));
 /* 背景 */
-    mgrap[4] = LoadGraph (PREFIX "res/haikei.bmp");
+    mgrap[4] = LoadGraph (va ("%s/%s", RES_PREFIX, "haikei.bmp"));
 /* ブロック2 */
-    mgrap[5] = LoadGraph (PREFIX "res/brock2.bmp");
+    mgrap[5] = LoadGraph (va ("%s/%s", RES_PREFIX, "brock2.bmp"));
 /* おまけ */
-    mgrap[6] = LoadGraph (PREFIX "res/omake.bmp");
+    mgrap[6] = LoadGraph (va ("%s/%s", RES_PREFIX, "omake.bmp"));
 /* おまけ2 */
-    mgrap[7] = LoadGraph (PREFIX "res/omake2.bmp");
+    mgrap[7] = LoadGraph (va ("%s/%s", RES_PREFIX, "omake2.bmp"));
 /* タイトル */
-    mgrap[30] = LoadGraph (PREFIX "res/syobon3.bmp");
+    mgrap[30] = LoadGraph (va ("%s/%s", RES_PREFIX, "syobon3.bmp"));
 
 /* プレイヤー読み込み */
     grap[40][0] = DerivationGraph (0, 0, 30, 36, mgrap[0]);
@@ -183,32 +196,31 @@ loadg (void)
         }
     }
 
-
 /* ogg読み込み */
-    otom[1] = LoadMusicMem (PREFIX "BGM/field.ogg");
-    otom[2] = LoadMusicMem (PREFIX "BGM/dungeon.ogg");
-    otom[3] = LoadMusicMem (PREFIX "BGM/star4.ogg");
-    otom[4] = LoadMusicMem (PREFIX "BGM/castle.ogg");
-    otom[5] = LoadMusicMem (PREFIX "BGM/puyo.ogg");
+    otom[1] = LoadMusicMem (va ("%s/%s", BGM_PREFIX, "field.ogg"));
+    otom[2] = LoadMusicMem (va ("%s/%s", BGM_PREFIX, "dungeon.ogg"));
+    otom[3] = LoadMusicMem (va ("%s/%s", BGM_PREFIX, "star4.ogg"));
+    otom[4] = LoadMusicMem (va ("%s/%s", BGM_PREFIX, "castle.ogg"));
+    otom[5] = LoadMusicMem (va ("%s/%s", BGM_PREFIX, "puyo.ogg"));
 
-    oto[1] = LoadSoundMem (PREFIX "SE/jump.ogg");
-    //oto[2] = LoadSoundMem(PREFIX "SE/brockcoin.ogg");
-    oto[3] = LoadSoundMem (PREFIX "SE/brockbreak.ogg");
-    oto[4] = LoadSoundMem (PREFIX "SE/coin.ogg");
-    oto[5] = LoadSoundMem (PREFIX "SE/humi.ogg");
-    oto[6] = LoadSoundMem (PREFIX "SE/koura.ogg");
-    oto[7] = LoadSoundMem (PREFIX "SE/dokan.ogg");
-    oto[8] = LoadSoundMem (PREFIX "SE/brockkinoko.ogg");
-    oto[9] = LoadSoundMem (PREFIX "SE/powerup.ogg");
-    oto[10] = LoadSoundMem (PREFIX "SE/kirra.ogg");
-    oto[11] = LoadSoundMem (PREFIX "SE/goal.ogg");
-    oto[12] = LoadSoundMem (PREFIX "SE/death.ogg");
-    oto[13] = LoadSoundMem (PREFIX "SE/Pswitch.ogg");
-    oto[14] = LoadSoundMem (PREFIX "SE/jumpBlock.ogg");
-    oto[15] = LoadSoundMem (PREFIX "SE/hintBlock.ogg");
-    oto[16] = LoadSoundMem (PREFIX "SE/4-clear.ogg");
-    oto[17] = LoadSoundMem (PREFIX "SE/allclear.ogg");
-    oto[18] = LoadSoundMem (PREFIX "SE/tekifire.ogg");
+    oto[1] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "jump.ogg"));
+    //oto[2] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "brockcoin.ogg"));
+    oto[3] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "brockbreak.ogg"));
+    oto[4] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "coin.ogg"));
+    oto[5] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "humi.ogg"));
+    oto[6] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "koura.ogg"));
+    oto[7] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "dokan.ogg"));
+    oto[8] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "brockkinoko.ogg"));
+    oto[9] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "powerup.ogg"));
+    oto[10] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "kirra.ogg"));
+    oto[11] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "goal.ogg"));
+    oto[12] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "death.ogg"));
+    oto[13] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "Pswitch.ogg"));
+    oto[14] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "jumpBlock.ogg"));
+    oto[15] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "hintBlock.ogg"));
+    oto[16] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "4-clear.ogg"));
+    oto[17] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "allclear.ogg"));
+    oto[18] = LoadSoundMem (va ("%s/%s", SE_PREFIX, "tekifire.ogg"));
 }
 
 extern bool sound;

@@ -19,12 +19,36 @@
 
 #include <string>
 
+#ifdef __WINPHONE__
+
+const char *GetInstallPath();
+#define PREFIX GetInstallPath()
+#define BGM_PREFIX PREFIX
+#define RES_PREFIX PREFIX
+#define SE_PREFIX PREFIX
+
+#else
+
 #ifndef PREFIX
 #ifdef _MACOSX
 #define PREFIX "./SyobonAction.app/Contents/Resources/data/"
 #else
 #define PREFIX "./data/"
 #endif
+#endif
+
+#ifndef BGM_PREFIX
+#define BGM_PREFIX PREFIX "bgm/"
+#endif
+
+#ifndef RES_PREFIX
+#define RES_PREFIX PREFIX "res/"
+#endif
+
+#ifndef SE_PREFIX
+#define SE_PREFIX PREFIX "se/"
+#endif
+
 #endif
 
 #include "joyconfig.h"
