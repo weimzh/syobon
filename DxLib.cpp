@@ -117,7 +117,11 @@ DxLib_Init ()
 	if (SDL_NumJoysticks () > 0)
 	{
 		joystick = SDL_JoystickOpen (0);
+#ifdef __SDL2__
         const char *pName = SDL_JoystickName (joystick);
+#else
+        const char *pName = SDL_JoystickName (0);
+#endif
         if (strstr (pName, "ccelerometer") != NULL || strcmp (pName, "applesmc") == 0)
         {
             SDL_JoystickClose (joystick);

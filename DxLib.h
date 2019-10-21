@@ -74,6 +74,7 @@ extern "C" const char *IOS_BasePath();
 void ScreenFlip();
 #else
 #define ScreenFlip() SDL_Flip(screen)
+#define SDL_INIT_EVENTS 0
 #endif
 #define GetNowCount() SDL_GetTicks()
 
@@ -130,6 +131,15 @@ void DrawFormatString (int a, int b, Uint32 color, const char *str, ...);
 #define KEY_INPUT_8 SDLK_8
 #define KEY_INPUT_9 SDLK_9
 #define KEY_INPUT_0 SDLK_0
+
+#ifdef SDL_JOYSTICK_DISABLED
+#define SDL_JoystickOpen(a) NULL
+#define SDL_JoystickClose(a)
+#define SDL_JoystickName(a) ""
+#define SDL_JoystickGetButton(a,b) 0
+#define SDL_NumJoysticks() 0
+#define SDL_Joystick int
+#endif
 
 extern SDL_Joystick *joystick;
 
