@@ -63,8 +63,7 @@ DxLib_Init ()
 		return -1;
 	}
 
-	if (!(screen = SDL_CreateRGBSurface (SDL_SWSURFACE, 480, 420,
-		32, 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000)))
+	if (!(screen = SDL_CreateRGBSurface (SDL_SWSURFACE, 480, 420, 32, 0, 0, 0, 0)))
 	{
 		SDL_DestroyRenderer (renderer);
 		renderer = NULL;

@@ -6,7 +6,7 @@ CFLAGS=-O2 -DPREFIX=\"$(PREFIX)/\" `sdl2-config --cflags`
 LDFLAGS=${HOMEBREW_DIR}/lib/libSDL2.a ${HOMEBREW_DIR}/lib/libSDL2_mixer.a ${HOMEBREW_DIR}/lib/libSDL2main.a \
 	-lm -liconv -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,ForceFeedback -lobjc \
 	-Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit \
-	-Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal \
+	-Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal -L${HOMEBREW_DIR}/lib \
 	-lmodplug ${HOMEBREW_DIR}/lib/libogg.a ${HOMEBREW_DIR}/lib/libvorbis.a ${HOMEBREW_DIR}/lib/libvorbisfile.a
 
 CC=gcc
