@@ -1,1 +1,0 @@
-Download SDL2_mixer source code and extract to here.
