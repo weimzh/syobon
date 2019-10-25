@@ -19,15 +19,7 @@
 
 #include <string>
 
-#if defined __WINPHONE__
-
-const char *GetInstallPath();
-#define PREFIX GetInstallPath()
-#define BGM_PREFIX PREFIX
-#define RES_PREFIX PREFIX
-#define SE_PREFIX PREFIX
-
-#elif defined __IOS__
+#if defined __IOS__
 
 extern "C" const char *IOS_BasePath();
 

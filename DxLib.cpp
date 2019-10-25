@@ -48,9 +48,6 @@ DxLib_Init ()
 #endif
 
 #ifdef __SDL2__
-#ifdef __WINPHONE__
-	SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeRight");
-#endif
 	if (!(window = SDL_CreateWindow ("Syobon Action", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		480, 420, (fullscreen ? SDL_WINDOW_FULLSCREEN : 0))))
 	{
