@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
+	<string>SyobonAction</string>
 	<key>CFBundleIconFile</key>
 	<string>SyobonAction.icns</string>
 	<key>CFBundleIdentifier</key>
