@@ -10,11 +10,16 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdarg.h>
+#include <string.h>
 
+#ifdef _WIN32
 #ifdef _MSC_VER
-#define strcasecmp _strcmpi
 #pragma warning (disable:4312)
 #pragma warning (disable:4996)
+#define strcasecmp _strcmpi
+#else
+#define strcasecmp strcmpi
+#endif
 #endif
 
 #include <string>
