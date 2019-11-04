@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SyobonAction", "SyobonAction.vcxproj", "{67F5DF5E-7DAB-4DBF-B01D-5B220D5D7F43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67F5DF5E-7DAB-4DBF-B01D-5B220D5D7F43}.Debug|x86.ActiveCfg = Debug|Win32
+		{67F5DF5E-7DAB-4DBF-B01D-5B220D5D7F43}.Debug|x86.Build.0 = Debug|Win32
+		{67F5DF5E-7DAB-4DBF-B01D-5B220D5D7F43}.Release|x86.ActiveCfg = Release|Win32
+		{67F5DF5E-7DAB-4DBF-B01D-5B220D5D7F43}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E63C748-7C7C-467B-A198-13436FACD42B}
+	EndGlobalSection
+EndGlobal
