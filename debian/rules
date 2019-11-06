@@ -12,9 +12,7 @@ build: build-stamp
 
 build-stamp: configure-stamp  
 	dh_testdir
-
-	$(MAKE) PREFIX=/usr/share/games/syobonaction/
-
+	$(MAKE) SDL_CONFIG=sdl-config PREFIX=/usr/share/games/syobonaction/
 	touch $@
 
 clean: 

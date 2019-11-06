@@ -8,10 +8,10 @@ SDL port and made it run on Mac OS X.)
 This is an improved version of the SDL version of Syobon Action.
 
 Please report any bugs on the project page:
-http://syobon.codeplex.com/
+http://github.com/CecilHarvey/syobon/
 
 The original website of Syobon Action is at:
-http://www.geocities.jp/z_gundam_tanosii/home/Main.html
+http://web.archive.org/web/20071228195123/http://www.geocities.jp/z_gundam_tanosii/home/Main.html
 
 This version contains additional levels made by Kazuki Okawa:
 http://yaruki0.sakura.ne.jp/programs/action.html
@@ -20,7 +20,7 @@ This version is based on Open Syobon Action RC 2 by Mathew Velasquez:
 http://sourceforge.net/projects/opensyobon/
 
 Requires:
-SDL, SDL_mixer
+SDL2, SDL2_mixer
 
 Controls:
 Z, Up, Semicolon, Button 1 (Joystick*) - Jump
